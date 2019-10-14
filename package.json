@@ -4,9 +4,22 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --verbose --coverage",
+    "start": "node index.js",
+    "watch": "nodemon index.js",
+    "lint": "eslint '**/*.js'",
+    "jsdoc": "jsdoc -c ./docs/config/jsdoc.config.json"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^8.1.0",
+    "eslint": "^6.5.1",
+    "express": "^4.17.1",
+    "jsdoc": "^3.6.3",
+    "morgan": "^1.9.1",
+    "nodemon": "^1.19.3"
+  }
 }
