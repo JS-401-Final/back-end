@@ -4,11 +4,16 @@
   "description": "## Authors - Austin Hedeen - Benjamin Clark - Bradley G. Elliott - Corey Chang - Evan BC - Hanna Alemu - Jessica Walters - Leyla Li - Lillian Gales - Joanna Arroyo - Trae Bennett",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --verbose --coverage",
+    "start": "node index.js",
+    "watch": "nodemon index.js",
+    "lint": "eslint '**/*.js'",
+    "jsdoc": "jsdoc -c ./docs/config/jsdoc.config.json"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
+<<<<<<< HEAD
   "repository": {
     "type": "git",
     "url": "git+https://github.com/JS-401-Final/back-end.git"
@@ -17,4 +22,15 @@
     "url": "https://github.com/JS-401-Final/back-end/issues"
   },
   "homepage": "https://github.com/JS-401-Final/back-end#readme"
+=======
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^8.1.0",
+    "eslint": "^6.5.1",
+    "express": "^4.17.1",
+    "jsdoc": "^3.6.3",
+    "morgan": "^1.9.1",
+    "nodemon": "^1.19.3"
+  }
+>>>>>>> 1d9a4e587eefa18ca6064775bbef68a1da6b461f
 }

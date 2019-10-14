@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
     "env": {
       "browser": true,
       "node": true,
@@ -23,3 +24,29 @@
       "no-unused-vars": [1, {"vars": "local", "args": "none"}]
     }
   }
+=======
+  "env": {
+    "browser": true,
+    "node": true,
+    "commonjs": true,
+    "jest": true,
+    "es6": true
+  },
+  "globals": {
+    "fail":true
+  },
+  "extends": "eslint:recommended",
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaVersion": 2018
+  },
+  "rules": {
+    "no-console": "off",
+    "indent": [ "error", 2 ],
+    "quotes": ["error", "single", { "allowTemplateLiterals": true }],
+    "comma-dangle": ["error", "always-multiline"],
+    "semi": [ "error", "always" ],
+    "no-unused-vars": [1, {"vars": "local", "args": "none"}]
+  }
+}
+>>>>>>> 1d9a4e587eefa18ca6064775bbef68a1da6b461f
