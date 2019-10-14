@@ -1,12 +1,20 @@
 {
   "name": "back-end",
   "version": "1.0.0",
-  "description": "",
+  "description": "## Authors - Austin Hedeen - Benjamin Clark - Bradley G. Elliott - Corey Chang - Evan BC - Hanna Alemu - Jessica Walters - Leyla Li - Lillian Gales - Joanna Arroyo - Trae Bennett",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JS-401-Final/back-end.git"
+  },
+  "bugs": {
+    "url": "https://github.com/JS-401-Final/back-end/issues"
+  },
+  "homepage": "https://github.com/JS-401-Final/back-end#readme"
 }
