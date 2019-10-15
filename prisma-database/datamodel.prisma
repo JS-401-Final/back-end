@@ -1,0 +1,74 @@
+type User {
+  id: ID! @id
+  email: String @unique
+  userName: String!
+  role: String
+  contact: Contact 
+}
+
+type Case {
+  id: ID! @id
+  caseId: String!
+  title: String
+  status: String
+  referralType: String 
+  legalPlan: String 
+  importantDates: [ImportantDate] 
+  caseNumberDetails: String
+  generalCaseDetails: String
+  caseContacts: [Contact] @relation(name: "CaseContacts")
+  client: [Contact] @relation(name: "ClientContacts")
+  staffAttorneys: [Contact] @relation(name: "StaffContacts")
+  staffAssistants: [Contact] @relation(name: "StaffAssistantContacts")
+  opposingPartys: [Contact] @relation(name: "OppPartyContacts")
+  opposingAttorneys: [Contact] @relation(name: "OppAttorneyContacts")
+  referringPartys: [Contact] @relation(name: "ReferringContacts")
+  associatedContacts: [Contact] @relation(name: "AssociatedContacts")
+  caseNotes: [Note]
+}
+
+type Contact {
+  id: ID! @id
+  contactType: contactType
+  firstName: String!
+  lastName: String!
+  homeStreet: String
+  homeStreet2: String
+  homeCity: String
+  homeState: String
+  homeZip: String
+  workStreet: String
+  workStreet2: String
+  emailMain: String
+  emailBackup: String
+  socialSecurity: Int
+  cellPhone: Int
+  workPhone: Int
+  homePhone: Int
+  fax: Int
+  contactComment: String
+}
+enum contactType {
+  Attorney
+  Assistant
+  Client
+  ReferringParty
+  OpposingParty
+  OpposingAttorney
+}
+
+type Note {
+  id: ID! @id
+  caseId: String!
+  dateCreated: DateTime! @createdAt
+  title: String!
+  content: String
+  author: String
+  type: String
+}
+
+type ImportantDate {
+  id: ID! @id
+  importantDateType: String
+  ImportantDateDetails: String
+}
