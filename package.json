@@ -29,8 +29,13 @@
     "eslint": "^6.5.1",
     "express": "^4.17.1",
     "jsdoc": "^3.6.3",
+    "jsonwebtoken": "^8.5.1",
     "morgan": "^1.9.1",
-    "nodemon": "^1.19.3"
+    "superagent": "^5.1.0"
+  },
+  "devDependencies": {
+    "jest": "^24.9.0",
+    "supertest": "^4.0.2"
   }
 >>>>>>> 1d9a4e587eefa18ca6064775bbef68a1da6b461f
 }
