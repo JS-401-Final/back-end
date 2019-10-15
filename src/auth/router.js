@@ -11,7 +11,7 @@ const authRouter = express.Router();
 authRouter.get('/oauth', (req,res,next) => {
   oauth.authorize(req)
     .then( token => {
-      res.status(200).send(token);
+      res.redirect(301, `http://localhost:3000/?token=${token}`);
     })
     .catch(next);
 });
