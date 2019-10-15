@@ -7,8 +7,10 @@
     "test": "jest --verbose --coverage",
     "start": "node index.js",
     "watch": "nodemon index.js",
-    "lint": "eslint '**/*.js'",
-    "jsdoc": "jsdoc -c ./docs/config/jsdoc.config.json"
+    "lint": "eslint '**/*.js' --fix",
+    "jsdoc": "jsdoc -c ./docs/config/jsdoc.config.json",
+    "startDB": "prisma deploy",
+    "seedDB": "prisma reset -f && node ./prisma-database/create-fake-data"
   },
   "keywords": [],
   "author": "",
@@ -21,6 +23,8 @@
     "jsdoc": "^3.6.3",
     "jsonwebtoken": "^8.5.1",
     "morgan": "^1.9.1",
+    "nodemon": "^1.19.3",
+    "prisma-client-lib": "^1.34.10",
     "superagent": "^5.1.0"
   },
   "devDependencies": {
