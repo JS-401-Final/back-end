@@ -13,16 +13,6 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-<<<<<<< HEAD
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/JS-401-Final/back-end.git"
-  },
-  "bugs": {
-    "url": "https://github.com/JS-401-Final/back-end/issues"
-  },
-  "homepage": "https://github.com/JS-401-Final/back-end#readme"
-=======
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^8.1.0",
@@ -37,5 +27,4 @@
     "jest": "^24.9.0",
     "supertest": "^4.0.2"
   }
->>>>>>> 1d9a4e587eefa18ca6064775bbef68a1da6b461f
 }
