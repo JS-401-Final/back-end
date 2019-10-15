@@ -17,7 +17,7 @@ type Case {
   caseNumberDetails: String
   generalCaseDetails: String
   caseContacts: [Contact] @relation(name: "CaseContacts")
-  client: [Contact] @relation(name: "ClientContacts")
+  client: Contact @relation(name: "ClientContacts")
   staffAttorneys: [Contact] @relation(name: "StaffContacts")
   staffAssistants: [Contact] @relation(name: "StaffAssistantContacts")
   opposingPartys: [Contact] @relation(name: "OppPartyContacts")
@@ -29,7 +29,7 @@ type Case {
 
 type Contact {
   id: ID! @id
-  contactType: contactType
+  contactType: String
   firstName: String!
   lastName: String!
   homeStreet: String
@@ -41,25 +41,16 @@ type Contact {
   workStreet2: String
   emailMain: String
   emailBackup: String
-  socialSecurity: Int
-  cellPhone: Int
-  workPhone: Int
-  homePhone: Int
-  fax: Int
+  socialSecurity: Float
+  cellPhone: Float
+  workPhone: Float
+  homePhone: Float
+  fax: Float
   contactComment: String
-}
-enum contactType {
-  Attorney
-  Assistant
-  Client
-  ReferringParty
-  OpposingParty
-  OpposingAttorney
 }
 
 type Note {
   id: ID! @id
-  caseId: String!
   dateCreated: DateTime! @createdAt
   title: String!
   content: String
