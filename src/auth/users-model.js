@@ -7,13 +7,13 @@
 
 const jwt = require('jsonwebtoken');
 
-//REPLACE WITH USER MODEL FOR PRISMA
-const users = new mongoose.Schema({
+// TODO - REPLACE WITH USER MODEL FOR PRISMA
+const usersSchema = {
   username: {type:String, required:true, unique:true},
   password: {type:String, required:true},
   email: {type: String},
   role: {type: String, default:'user', enum: ['admin','editor','user']},
-});
+};
 
 
 /**
@@ -21,7 +21,7 @@ const users = new mongoose.Schema({
  * @param email
  * @returns {Promise<never>|Promise<unknown>}
  */
-users.statics.createFromOauth = function(email) {
+const createFromOauth = function(email) {
 
   if(! email) { return Promise.reject('Validation Error'); }
 
