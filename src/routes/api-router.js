@@ -41,13 +41,20 @@ router.get('/cases', async (req, res) => {
 
 
 router.post('/contact', async (req, res) => {
-  const newContactInfo = await prisma.createContact(req.body);
-  res.json(newContactInfo);
+  const newContact = await prisma.createContact(req.body);
+  res.json(newContact);
 });
 
 router.get('/contacts', async (req, res) => {
   const contacts = await prisma.contacts();
   res.json(contacts);
 });
+
+// router.post('/caseContactsNotes', async (req, res) => {
+//   const newCase = await prisma.createCase(req.body.case);
+//   const newContact = await prisma.createContact(req.body.contact);
+//   const newNote = await prisma.createNote(req.body.note);
+//   res.json(newCase, newContact, newNote);
+// });
 
 module.exports = router;
