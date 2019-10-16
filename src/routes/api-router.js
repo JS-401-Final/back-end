@@ -59,8 +59,18 @@ router.get('/case/:id', async (req, res) => {
       caseId: req.params.id,
     },
   }).$fragment(getCaseByIdFragment);
-
+  console.log(retrievedCase);
   res.json(retrievedCase);
+});
+
+router.patch('/case/:id', async (req, res) => {
+  const updatedCase = await prisma.updateCase({
+    data: req.body,
+    where: {
+      caseId : req.params.id,
+    },
+  }).$fragment(getCaseByIdFragment);
+  res.json(updatedCase);
 });
 
 //// ====== CONTACT Routes ======
