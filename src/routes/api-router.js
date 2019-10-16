@@ -15,7 +15,7 @@ router.get('/users', async (req, res) => {
 });
 
 router.get('/user/:id', async (req, res) => {
-  const user = await prisma.user({id: req.params.id});
+  const user = await prisma.user({ id: req.params.id });
   res.json(user);
 });
 
@@ -40,6 +40,16 @@ router.get('/cases', async (req, res) => {
 });
 
 
+router.get('/case/:id', async (req, res) => {
+  const retrievedCase = await prisma.cases({
+    where: {
+      caseId: req.params.id,
+    },
+  }).$fragment(getCaseByIdFragment);
+
+  res.json(retrievedCase);
+});
+
 router.post('/contact', async (req, res) => {
   const newContact = await prisma.createContact(req.body);
   res.json(newContact);
@@ -49,6 +59,67 @@ router.get('/contacts', async (req, res) => {
   const contacts = await prisma.contacts();
   res.json(contacts);
 });
+
+const getCaseByIdFragment = `
+fragment CaseWithContacts on Case {
+  id
+  caseId
+  title
+  status
+  referralType
+  legalPlan
+  importantDates {
+    id
+  }
+  caseNumberDetails
+  generalCaseDetails
+  caseContacts {
+    id
+    firstName
+    lastName
+  }
+  client {
+    id
+    firstName
+    lastName
+  }
+  staffAttorneys {
+    id
+    firstName
+    lastName
+  }
+  staffAssistants {
+    id
+    firstName
+    lastName
+  }
+  opposingPartys {
+    id
+    firstName
+    lastName
+  }
+  opposingAttorneys {
+    id
+    firstName
+    lastName
+  }
+  referringPartys {
+    id
+    firstName
+    lastName
+  }
+  associatedContacts {
+    id
+    firstName
+    lastName
+  }
+  caseNotes {
+    id
+    dateCreated
+    title
+  }
+}
+`;
 
 // router.post('/caseContactsNotes', async (req, res) => {
 //   const newCase = await prisma.createCase(req.body.case);
