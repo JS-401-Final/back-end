@@ -2,7 +2,7 @@ const { prisma } = require('./generated/prisma-client');
 
 async function createMockData() {
 
-  const newUser = await prisma.createUser({
+  await prisma.createUser({
     userName: 'Deploy name',
   });
 
