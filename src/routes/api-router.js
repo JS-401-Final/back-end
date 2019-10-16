@@ -48,15 +48,15 @@ router.post('/case', async (req, res) => {
 });
 
 router.get('/cases', async (req, res) => {
-  const cases = await prisma.cases();
-  res.json(cases);
+  const retrievedCase = await prisma.cases();
+  res.json(retrievedCase);
 });
 
 
 router.get('/case/:id', async (req, res) => {
   const retrievedCase = await prisma.cases({
     where: {
-      caseId: req.params.id,
+      id: req.params.id,
     },
   }).$fragment(getCaseByIdFragment);
 
@@ -72,7 +72,8 @@ router.post('/contact', async (req, res) => {
 
 router.get('/contacts', async (req, res) => {
   // if body has a search and name property set
-  let nameToFilterBy = req.body.search && req.body.search.name;
+  let nameToFilterBy = req.query && req.query.name;
+  console.log(nameToFilterBy);
   // get all contacts
   const contacts = await prisma.contacts();
   // filter contacts by nameToFilterBy
