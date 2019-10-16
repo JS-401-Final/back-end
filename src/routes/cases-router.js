@@ -73,7 +73,7 @@ fragment CaseWithContacts on Case {
     firstName
     lastName
   }
-  opposingPartys {
+  opposingParties {
     id
     firstName
     lastName
@@ -83,7 +83,7 @@ fragment CaseWithContacts on Case {
     firstName
     lastName
   }
-  referringPartys {
+  referringParties {
     id
     firstName
     lastName
