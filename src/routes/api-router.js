@@ -1,8 +1,11 @@
 'use strict';
 
+const FuzzySearch = require('fuzzy-search');
 const express = require('express');
 const router = express.Router();
 const { prisma } = require('../../prisma-database/generated/prisma-client');
+
+//// ====== USER Routes ======
 
 router.post('/user', async (req, res) => {
   const newUser = await prisma.createUser(req.body);
@@ -19,6 +22,8 @@ router.get('/user/:id', async (req, res) => {
   res.json(user);
 });
 
+//// ====== NOTES Routes ======
+
 router.post('/note', async (req, res) => {
   const newNote = await prisma.createNote(req.body);
   res.json(newNote);
@@ -28,6 +33,14 @@ router.get('/notes', async (req, res) => {
   const notes = await prisma.notes();
   res.json(notes);
 });
+
+router.get('/note/:id', async (req, res) => {
+  const note = await prisma.note({ id: req.params.id });
+  res.json(note);
+});
+
+
+//// ====== CASE Routes ======
 
 router.post('/case', async (req, res) => {
   const newCase = await prisma.createCase(req.body);
@@ -50,14 +63,31 @@ router.get('/case/:id', async (req, res) => {
   res.json(retrievedCase);
 });
 
+//// ====== CONTACT Routes ======
+
 router.post('/contact', async (req, res) => {
   const newContact = await prisma.createContact(req.body);
   res.json(newContact);
 });
 
 router.get('/contacts', async (req, res) => {
+  // if body has a search and name property set
+  let nameToFilterBy = req.body.search && req.body.search.name;
+  // get all contacts
   const contacts = await prisma.contacts();
-  res.json(contacts);
+  // filter contacts by nameToFilterBy
+  const searcher = new FuzzySearch(contacts, ['firstName', 'lastName'], {
+    caseSensitive: false,
+    sort: true,
+  });
+  const result = searcher.search(nameToFilterBy);
+  // return filtered list of contacts
+  res.json(result);
+});
+
+router.get('/contact/:id', async (req, res) => {
+  const contact = await prisma.contact({ id: req.params.id });
+  res.json(contact);
 });
 
 const getCaseByIdFragment = `

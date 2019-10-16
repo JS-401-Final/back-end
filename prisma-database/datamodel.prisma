@@ -24,7 +24,7 @@ type Case {
   opposingAttorneys: [Contact] @relation(name: "OppAttorneyContacts")
   referringPartys: [Contact] @relation(name: "ReferringContacts")
   associatedContacts: [Contact] @relation(name: "AssociatedContacts")
-  caseNotes: [Note]
+  caseNotes: [Note] @relation(name: "CaseNotes", link: TABLE)
 }
 
 type Contact {
@@ -52,9 +52,10 @@ type Contact {
 type Note {
   id: ID! @id
   dateCreated: DateTime! @createdAt
+  case: Case @relation(name: "CaseNotes")
   title: String!
   content: String
-  author: String
+  author: User
   type: String
 }
 
