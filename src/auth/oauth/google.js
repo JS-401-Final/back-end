@@ -8,12 +8,11 @@ async function createUserInDatabase (userData){
   const newUser = await prisma.createUser(userData);
   console.log(newUser);
 }
-  
+
 
 const authorize = (req) => {
 
   let code = req.query.code;
-  // console.log('(1) CODE:', code);
 
   return superagent.post('https://oauth2.googleapis.com/token')
     .type('form')
@@ -26,7 +25,6 @@ const authorize = (req) => {
     })
     .then( response => {
       let access_token = response.body.access_token;
-      // console.log('(2) ACCESS TOKEN:', access_token);
       return access_token;
     })
     .then(token => {
@@ -35,12 +33,10 @@ const authorize = (req) => {
         .then( response => {
           let user = response.body;
           user.access_token = token;
-          console.log('(3) GOOGLEUSER', user);
           return user;
         });
     })
     .then(oauthUser => {
-      console.log('(4) CREATE ACCOUNT', oauthUser);
       let userData = {
         userName: oauthUser.name,
         email: oauthUser.email,
@@ -48,16 +44,18 @@ const authorize = (req) => {
       return prisma.user({email: oauthUser.email})
         .then(user => {
           if(user){
-            return Users.generateToken();
+            req.body.user = user;
+            return Users.generateToken(user);
           } else {
             return createUserInDatabase(userData)
-              .then(newUser => Users.generateToken());
+              .then(newUser => {
+                req.body.user = newUser;
+                Users.generateToken(newUser);
+              });
           }
         });
     })
     .catch(error => error);
-
-
 };
 
 module.exports = {authorize};
