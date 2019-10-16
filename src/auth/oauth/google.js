@@ -1,7 +1,7 @@
 'use strict';
 
 const superagent = require('superagent');
-//const Users = require('../users-model.js');
+const Users = require('../users-model.js');
 
 const authorize = (req) => {
 
@@ -39,7 +39,7 @@ const authorize = (req) => {
     })
     .then(actualRealUser => {
       console.log('(5) ALMOST ...', actualRealUser);
-      //return actualRealUser.generateToken();
+      return Users.generateToken();
     })
     .catch(error => error);
 

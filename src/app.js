@@ -4,6 +4,7 @@
  */
 
 const cors = require('cors');
+const apiRouter = require('./routes/api-router');
 const express = require('express');
 const morgan = require('morgan');
 
@@ -22,7 +23,9 @@ app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 
+
 // Routes
+app.use(apiRouter);
 app.use(authRouter);
 
 app.use(handle404);
