@@ -8,7 +8,7 @@ type User {
 
 type Case {
   id: ID! @id
-  caseId: String!
+  caseId: String! @unique
   title: String
   status: String
   referralType: String 
