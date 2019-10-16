@@ -17,10 +17,6 @@ var models = [
     embedded: false,
   },
   {
-    name: 'contactType',
-    embedded: false,
-  },
-  {
     name: 'Note',
     embedded: false,
   },

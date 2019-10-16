@@ -3,7 +3,7 @@ const { prisma } = require('./generated/prisma-client');
 async function createMockData() {
 
   const newUser = await prisma.createUser({
-    userName: 'Deploy name',
+    userName: 'Temp username',
   });
 
   await prisma.createUser({
@@ -33,7 +33,7 @@ async function createMockData() {
       },
     },
   });
- 
+
   await prisma.createUser({
     email: 'ben@email.com',
     userName: 'ben',
@@ -62,8 +62,11 @@ async function createMockData() {
     },
   });
 
-  let existingIds = await prisma.contacts().id();
-  console.log(existingIds);
+  let existingUserIds = await prisma.users().id();
+  console.log('existingUserIds', existingUserIds);
+
+  let existingContactIds = await prisma.contacts().id();
+  console.log('existingContactIds', existingContactIds);
 
   await prisma.createCase({
     caseId: 'CASEID-123456',
@@ -75,7 +78,7 @@ async function createMockData() {
     generalCaseDetails: 'this is the general case details',
     caseContacts: {
       connect: {
-        id: existingIds[0].id,
+        id: existingContactIds[0].id,
       },
     },
     client: {
@@ -85,57 +88,72 @@ async function createMockData() {
       },
     },
     staffAttorneys: {
-      create: [ {
+      create: [{
         firstName: 'Finigan',
         lastName: 'Finepants',
-      } ],
+      }],
     },
     staffAssistants: {
-      create: [ {
+      create: [{
         firstName: 'Gina',
         lastName: 'Grape',
-      } ],
-    }, 
+      }],
+    },
     opposingPartys: {
-      create: [ {
+      create: [{
         firstName: 'Harry',
         lastName: 'Hogwarts',
-      } ],
+      }],
     },
     opposingAttorneys: {
-      create: [ {
+      create: [{
         firstName: 'Indilent',
         lastName: 'Insert',
-      } ],
-    }, 
+      }],
+    },
     referringPartys: {
-      create: [ {
+      create: [{
         firstName: 'Jillian',
         lastName: 'Juniper',
-      } ],
+      }],
     },
     associatedContacts: {
-      create: [ {
+      create: [{
         firstName: 'Killmonger',
         lastName: 'Kulian',
-      } ],
+      }],
     },
     caseNotes: {
-      create: [ {
+      create: [{
         title: 'Case1-Note1',
+        author: {
+          connect: {
+            id: existingUserIds[0].id,
+          },
+        },
       },
       {
         title: 'Case1-Note2',
+        author: {
+          connect: {
+            id: existingUserIds[0].id,
+          },
+        },
       },
       {
         title: 'Case1-Note3',
-      }   ],
+        author: {
+          connect: {
+            id: existingUserIds[0].id,
+          },
+        },
+      }],
     },
   });
 
-  existingIds = await prisma.contacts().id();
-  console.log(existingIds);
-  
+  existingContactIds = await prisma.contacts().id();
+  console.log(existingContactIds);
+
   await prisma.createCase({
     caseId: 'CASEID-ABCDEFG',
     title: 'case 2',
@@ -144,7 +162,7 @@ async function createMockData() {
     generalCaseDetails: 'this is the general case details',
     caseContacts: {
       connect: {
-        id: existingIds[4].id,
+        id: existingContactIds[4].id,
       },
     },
     client: {
@@ -154,34 +172,44 @@ async function createMockData() {
       },
     },
     staffAttorneys: {
-      connect: [ 
-        { id: existingIds[5].id }, 
-        { id: existingIds[6].id }, 
-        { id: existingIds[7].id }, 
+      connect: [
+        { id: existingContactIds[5].id },
+        { id: existingContactIds[6].id },
+        { id: existingContactIds[7].id },
       ],
     },
     opposingPartys: {
-      create: [ {
+      create: [{
         firstName: 'Nanny',
         lastName: 'Nari',
-      } ],
+      }],
     },
     opposingAttorneys: {
-      create: [ {
+      create: [{
         firstName: 'Oblong',
         lastName: 'Oscar',
-      } ],
-    }, 
+      }],
+    },
     caseNotes: {
-      create: [ {
+      create: [{
         title: 'Case2-Note1',
+        author: {
+          connect: {
+            id: existingUserIds[1].id,
+          },
+        },
       },
       {
         title: 'Case2-Note2',
-      } ],
+        author: {
+          connect: {
+            id: existingUserIds[2].id,
+          },
+        },
+      }],
     },
   });
-  
+
 
   // Read all users from the database and print them to the console
   const result = await prisma.contacts();
