@@ -1,44 +1,8 @@
 'use strict';
 
-const FuzzySearch = require('fuzzy-search');
 const express = require('express');
 const router = express.Router();
 const { prisma } = require('../../prisma-database/generated/prisma-client');
-
-//// ====== USER Routes ======
-
-router.post('/user', async (req, res) => {
-  const newUser = await prisma.createUser(req.body);
-  res.json(newUser);
-});
-
-router.get('/users', async (req, res) => {
-  const users = await prisma.users();
-  res.json(users);
-});
-
-router.get('/user/:id', async (req, res) => {
-  const user = await prisma.user({ id: req.params.id });
-  res.json(user);
-});
-
-//// ====== NOTES Routes ======
-
-router.post('/note', async (req, res) => {
-  const newNote = await prisma.createNote(req.body);
-  res.json(newNote);
-});
-
-router.get('/notes', async (req, res) => {
-  const notes = await prisma.notes();
-  res.json(notes);
-});
-
-router.get('/note/:id', async (req, res) => {
-  const note = await prisma.note({ id: req.params.id });
-  res.json(note);
-});
-
 
 //// ====== CASE Routes ======
 
@@ -61,34 +25,6 @@ router.get('/case/:id', async (req, res) => {
   }).$fragment(getCaseByIdFragment);
 
   res.json(retrievedCase);
-});
-
-//// ====== CONTACT Routes ======
-
-router.post('/contact', async (req, res) => {
-  const newContact = await prisma.createContact(req.body);
-  res.json(newContact);
-});
-
-router.get('/contacts', async (req, res) => {
-  // if body has a search and name property set
-  let nameToFilterBy = req.query && req.query.name;
-  console.log(nameToFilterBy);
-  // get all contacts
-  const contacts = await prisma.contacts();
-  // filter contacts by nameToFilterBy
-  const searcher = new FuzzySearch(contacts, ['firstName', 'lastName'], {
-    caseSensitive: false,
-    sort: true,
-  });
-  const result = searcher.search(nameToFilterBy);
-  // return filtered list of contacts
-  res.json(result);
-});
-
-router.get('/contact/:id', async (req, res) => {
-  const contact = await prisma.contact({ id: req.params.id });
-  res.json(contact);
 });
 
 const getCaseByIdFragment = `
