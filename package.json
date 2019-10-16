@@ -9,7 +9,7 @@
     "watch": "nodemon index.js",
     "lint": "eslint '**/*.js' --fix",
     "jsdoc": "jsdoc -c ./docs/config/jsdoc.config.json",
-    "startDB": "prisma deploy",
+    "deployDB": "prisma deploy -f",
     "seedDB": "prisma reset -f && node ./prisma-database/create-fake-data"
   },
   "keywords": [],
