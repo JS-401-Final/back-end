@@ -7,14 +7,6 @@
 
 const jwt = require('jsonwebtoken');
 
-
-/**
- *
- * @param email
- * @returns {Promise<never>|Promise<unknown>}
- */
-
-
 /**
  *
  * @param token
@@ -36,11 +28,10 @@ const authenticateToken = function(token) {
  * @param type
  * @returns {undefined|*}
  */
-const generateToken = function(type) {
+const generateToken = (user) => {
 
   let token = {
-    id: this._id,
-    role: this.role,
+    id: user.id,
   };
 
   let signOptions = { expiresIn: process.env.TOKEN_EXPIRE_TIME};
