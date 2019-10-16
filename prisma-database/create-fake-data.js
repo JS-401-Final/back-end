@@ -99,7 +99,7 @@ async function createMockData() {
         lastName: 'Grape',
       }],
     },
-    opposingPartys: {
+    opposingParties: {
       create: [{
         firstName: 'Harry',
         lastName: 'Hogwarts',
@@ -111,7 +111,7 @@ async function createMockData() {
         lastName: 'Insert',
       }],
     },
-    referringPartys: {
+    referringParties: {
       create: [{
         firstName: 'Jillian',
         lastName: 'Juniper',
@@ -178,7 +178,7 @@ async function createMockData() {
         { id: existingContactIds[7].id },
       ],
     },
-    opposingPartys: {
+    opposingParties: {
       create: [{
         firstName: 'Nanny',
         lastName: 'Nari',

@@ -20,9 +20,9 @@ type Case {
   client: Contact @relation(name: "ClientContacts")
   staffAttorneys: [Contact] @relation(name: "StaffContacts")
   staffAssistants: [Contact] @relation(name: "StaffAssistantContacts")
-  opposingPartys: [Contact] @relation(name: "OppPartyContacts")
+  opposingParties: [Contact] @relation(name: "OppPartyContacts")
   opposingAttorneys: [Contact] @relation(name: "OppAttorneyContacts")
-  referringPartys: [Contact] @relation(name: "ReferringContacts")
+  referringParties: [Contact] @relation(name: "ReferringContacts")
   associatedContacts: [Contact] @relation(name: "AssociatedContacts")
   caseNotes: [Note] @relation(name: "CaseNotes", link: TABLE)
 }
@@ -62,5 +62,5 @@ type Note {
 type ImportantDate {
   id: ID! @id
   importantDateType: String
-  ImportantDateDetails: String
+  importantDateDetails: String
 }
