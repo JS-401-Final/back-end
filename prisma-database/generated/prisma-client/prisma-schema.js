@@ -315,21 +315,26 @@ type Contact {
   contactType: contactType
   firstName: String!
   lastName: String!
+  socialSecurity: Int
+  birthdate: Int
   homeStreet: String
   homeStreet2: String
   homeCity: String
   homeState: String
   homeZip: String
+  workCompanyName: String
   workStreet: String
   workStreet2: String
+  workCity: String
+  workState: String
+  workZip: Int
   emailMain: String
   emailBackup: String
-  socialSecurity: Int
-  cellPhone: Int
-  workPhone: Int
-  homePhone: Int
+  primaryPhone: Int
+  secondaryPhone: Int
+  mobilePhone: Int
   fax: Int
-  contactComment: String
+  comments: String
 }
 
 type ContactConnection {
