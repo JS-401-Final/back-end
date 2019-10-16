@@ -11,6 +11,7 @@ const authRouter = express.Router();
 authRouter.get('/oauth', (req,res,next) => {
   oauth.authorize(req)
     .then( token => {
+      console.log(token);
       res.cookie('X-401d19-OAuth-token',token);
       res.redirect(301, process.env.CLIENT_URL);
     })
