@@ -12,7 +12,6 @@ authRouter.get('/oauth', (req,res,next) => {
   oauth.authorize(req)
     .then( token => {
       const { userName, id } = req.body.user;
-      console.log(userName, id);
       res.cookie('X-401d19-OAuth-token', token);
       res.cookie('userName', userName);
       res.cookie('userID', id);
