@@ -7,7 +7,7 @@
 const express = require('express');
 const router = express.Router();
 const { prisma } = require('../../prisma-database/generated/prisma-client');
-
+const auth = require('../auth/middleware');
 
 /**
  * This function creates a new user in the database
@@ -28,7 +28,7 @@ router.post('/user', async (req, res) => {
  * @param {function} callback - express callback
  * @returns { (Array | Error) } - an array of all users
  */
-router.get('/users', async (req, res) => {
+router.get('/users', auth, async (req, res) => {
   const users = await prisma.users();
   res.json(users);
 });
@@ -40,7 +40,7 @@ router.get('/users', async (req, res) => {
  * @param {function} callback - express callback
  * @returns { (Object | Error) } - a single user object
  */
-router.get('/user/:id', async (req, res) => {
+router.get('/user/:id', auth, async (req, res) => {
   const user = await prisma.user({ id: req.params.id });
   res.json(user);
 });
