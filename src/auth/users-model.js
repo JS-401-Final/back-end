@@ -1,11 +1,11 @@
 'use strict';
-
 /**
  * User Model
  * @module src/auth/users-model
  */
 
 const jwt = require('jsonwebtoken');
+const { prisma } = require('../../prisma-database/generated/prisma-client');
 
 /**
  *
@@ -13,14 +13,13 @@ const jwt = require('jsonwebtoken');
  * @returns {Promise<never>|void|Query}
  */
 const authenticateToken = function(token) {
-//TODO:: UPDATE TO FIND USER WITH PRISMA METHOD
-  // try {
-  //   let parsedToken = jwt.verify(token, process.env.SECRET);
-  //   let query = {_id: parsedToken.id};
-  //   return this.findOne(query);
-  // } catch (error) {
-  //   throw new Error('Invalid Token');
-  // }
+  try {
+    let parsedToken = jwt.verify(token, process.env.SECRET);
+    let query = {id: parsedToken.id};
+    return prisma.user(query);
+  } catch (error) {
+    throw new Error('Invalid Token');
+  }
 };
 
 /**
@@ -39,5 +38,7 @@ const generateToken = (user) => {
   return jwt.sign(token, process.env.SECRET, signOptions);
 };
 
-module.exports = {};
-module.exports.generateToken = generateToken;
+module.exports = {
+  authenticateToken,
+  generateToken,
+};

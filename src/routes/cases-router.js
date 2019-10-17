@@ -7,6 +7,7 @@
 const express = require('express');
 const router = express.Router();
 const { prisma } = require('../../prisma-database/generated/prisma-client');
+const auth = require('../auth/middleware');
 
 /**
  * This function creates a new case in the database
@@ -15,7 +16,7 @@ const { prisma } = require('../../prisma-database/generated/prisma-client');
  * @param {function} callback - express callback
  * @returns { (Object | Error) } - the newly created case object
  */
-router.post('/case', async (req, res) => {
+router.post('/case', auth, async (req, res) => {
   const newCase = await prisma.createCase(req.body);
   res.json(newCase);
 });
@@ -28,9 +29,6 @@ router.post('/case', async (req, res) => {
  * @returns { (Array | Error) } - an array of all cases
  */
 router.get('/cases', async (req, res) => {
-  // const retrievedCase = await prisma.cases();
-  // res.json(retrievedCase);
-
   const retrievedCase = await prisma.cases().$fragment(getCaseByIdFragment);
   res.json(retrievedCase);
 });
@@ -42,7 +40,7 @@ router.get('/cases', async (req, res) => {
  * @param {function} callback - express callback
  * @returns { (Object | Error) } - a single case object
  */
-router.get('/case/:id', async (req, res) => {
+router.get('/case/:id', auth, async (req, res) => {
   const retrievedCase = await prisma.cases({
     where: {
       id: req.params.id,
@@ -59,7 +57,7 @@ router.get('/case/:id', async (req, res) => {
  * @param {function} callback - express callback
  * @returns { (Object | Error) } - a single case object that was created
  */
-router.patch('/case/:id', async (req, res) => {
+router.patch('/case/:id', auth, async (req, res) => {
   const updatedCase = await prisma.updateCase({
     data: req.body,
     where: {
