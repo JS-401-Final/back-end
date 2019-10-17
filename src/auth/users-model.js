@@ -15,7 +15,6 @@ const { prisma } = require('../../prisma-database/generated/prisma-client');
 const authenticateToken = function(token) {
   try {
     let parsedToken = jwt.verify(token, process.env.SECRET);
-    console.log(parsedToken);
     let query = {id: parsedToken.id};
     return prisma.user(query);
   } catch (error) {
