@@ -44,8 +44,13 @@ router.get('/notes', auth, async (req, res) => {
  * @param {function} callback - express callback
  * @returns { (Object | Error) } - a single note object
  */
+
 router.get('/note/:id', auth, async (req, res) => {
-  const note = await prisma.note({ id: req.params.id });
+  const note = await prisma.notes({
+    where: {
+      id: req.params.id,
+    },
+  }).$fragment(getNoteByIdFragment);
   res.json(note);
 });
 
@@ -56,6 +61,7 @@ const getNoteByIdFragment = `
       dateCreated
       case {
         id
+        caseId
       }
       title
       content
