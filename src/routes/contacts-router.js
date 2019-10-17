@@ -4,6 +4,7 @@ const FuzzySearch = require('fuzzy-search');
 const express = require('express');
 const router = express.Router();
 const { prisma } = require('../../prisma-database/generated/prisma-client');
+const auth = require('../auth/middleware');
 
 //// ====== CONTACT Routes ======
 
