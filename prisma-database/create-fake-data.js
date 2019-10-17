@@ -126,6 +126,7 @@ async function createMockData() {
     caseNotes: {
       create: [{
         title: 'Case1-Note1',
+        content: 'this is content',
         author: {
           connect: {
             id: existingUserIds[0].id,
@@ -134,6 +135,7 @@ async function createMockData() {
       },
       {
         title: 'Case1-Note2',
+        content: 'this is content',
         author: {
           connect: {
             id: existingUserIds[0].id,
@@ -142,6 +144,7 @@ async function createMockData() {
       },
       {
         title: 'Case1-Note3',
+        content: 'this is content',
         author: {
           connect: {
             id: existingUserIds[0].id,
