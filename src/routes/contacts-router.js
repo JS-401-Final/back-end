@@ -8,7 +8,7 @@ const auth = require('../auth/middleware');
 
 //// ====== CONTACT Routes ======
 
-router.post('/contact', async (req, res) => {
+router.post('/contact', auth, async (req, res) => {
   const newContact = await prisma.createContact(req.body);
   res.json(newContact);
 });
