@@ -39,6 +39,7 @@ const generateToken = (user) => {
   return jwt.sign(token, process.env.SECRET, signOptions);
 };
 
-module.exports = {};
-module.exports.generateToken = generateToken;
-module.exports.authenticateToken = authenticateToken;
+module.exports = {
+  authenticateToken,
+  generateToken,
+};
