@@ -10,7 +10,7 @@
     "lint": "eslint '**/*.js' --fix",
     "jsdoc": "jsdoc -c ./docs/config/jsdoc.config.json",
     "deployDB": "prisma deploy -f",
-    "seedDB": "prisma reset -f && node ./prisma-database/create-fake-data"
+    "seedDB": "prisma reset -f && node ./prisma-database/seed-database"
   },
   "keywords": [],
   "author": "",
