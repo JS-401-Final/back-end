@@ -13,7 +13,12 @@ router.post('/note', async (req, res) => {
 });
 
 router.get('/notes', async (req, res) => {
-  const notes = await prisma.notes();
+  const notes = await prisma.notes({
+    where: {
+      id: req.params.id,
+    },
+  }).$fragment(getNoteByIdFragment);
+
   res.json(notes);
 });
 
@@ -21,5 +26,21 @@ router.get('/note/:id', async (req, res) => {
   const note = await prisma.note({ id: req.params.id });
   res.json(note);
 });
+
+const getNoteByIdFragment = `
+    fragment NotesWithAuthors on Notes {
+      id
+      dateCreated
+      case {
+        id
+      }
+      title
+      content
+      author {
+        userName
+      }
+      type
+    }
+`;
 
 module.exports = router;
