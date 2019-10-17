@@ -6,6 +6,7 @@
 const express = require('express');
 const router = express.Router();
 const { prisma } = require('../../prisma-database/generated/prisma-client');
+const auth = require('../auth/middleware');
 
 /**
  * This function creates a new note in the database
@@ -14,7 +15,7 @@ const { prisma } = require('../../prisma-database/generated/prisma-client');
  * @param {function} callback - express callback
  * @returns { (Object | Error) } - the newly created note object
  */
-router.post('/note', async (req, res) => {
+router.post('/note', auth, async (req, res) => {
   const newNote = await prisma.createNote(req.body);
   res.json(newNote);
 });
@@ -26,7 +27,7 @@ router.post('/note', async (req, res) => {
  * @param {function} callback - express callback
  * @returns { (Array | Error) } - an array of all notes
  */
-router.get('/notes', async (req, res) => {
+router.get('/notes', auth, async (req, res) => {
   const notes = await prisma.notes({
     where: {
       id: req.params.id,
@@ -43,16 +44,13 @@ router.get('/notes', async (req, res) => {
  * @param {function} callback - express callback
  * @returns { (Object | Error) } - a single note object
  */
-router.get('/note/:id', async (req, res) => {
-  // const note = await prisma.note({ id: req.params.id });
-  // res.json(note);
 
+router.get('/note/:id', auth, async (req, res) => {
   const note = await prisma.notes({
     where: {
       id: req.params.id,
     },
   }).$fragment(getNoteByIdFragment);
-
   res.json(note);
 });
 
