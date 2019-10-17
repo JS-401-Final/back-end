@@ -1,37 +1,51 @@
 'use strict';
-const jwt = require('jsonwebtoken');
-const prisma = {
-  user: ({id: id}) => {
-    return ;
-  },
-};
+
+
+process.env.TOKEN_EXPIRE_TIME = '24h';
+process.env.SECRET = 'testsecret';
+const User = require('../../../src/auth/users-model');
+// const prisma = require('../../../prisma-database/generated/prisma-client').prisma;
+//
+// jest.mock('../../../prisma-database/generated/prisma-client');
+
+// const prisma = {
+//   user: (query) => {
+//     for (let id in query){
+//       for (let i = 0; i < users.length; i++){
+//         if(query[id] === users[i].id){
+//           return users[i];
+//         }
+//       }
+//     }
+//   },
+// };
 
 const users = [
   {
-    id: 1,
+    id: '1',
     firstName: 'Jane',
     lastName: 'Doe',
   },
   {
-    id: 2,
+    id: '2',
     firstName: 'John',
     lastName: 'Smith',
   },
 ];
 
-describe('Users Model', () => {
-  test('Generate Token', () => {
-    
-  });
-  test('Test unauthorized access', () => {
-    superagent.post('http://localhost:4000/contact')
-      .send({firstName: 'Jane',lastName: 'Doe'})
-      .then( response => {
-        expect(response.status).toBe(500);
-      })
-      .catch( error => {
-        return error;
-      });
 
+describe('Users Model', () => {
+
+  test('Generate Token', () => {
+    expect(User.generateToken(users[1])).toBeTruthy();
   });
+
+  test('Authenticate Token', () => {
+    // prisma.user.mockImplementation(() => Promise.resolve(users[1]));
+    let token = User.generateToken(users[1]);
+    console.log(token);
+    let user =  User.authenticateToken(token);
+    expect(user).toBeTruthy();
+  });
+
 });
