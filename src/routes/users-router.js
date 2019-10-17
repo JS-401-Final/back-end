@@ -16,7 +16,7 @@ const auth = require('../auth/middleware');
  * @param {function} callback - express callback
  * @returns { (Object | Error) } - the newly created user object
  */
-router.post('/user', async (req, res) => {
+router.post('/user', auth, async (req, res) => {
   const newUser = await prisma.createUser(req.body);
   res.json(newUser);
 });
