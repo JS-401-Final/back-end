@@ -97,6 +97,9 @@ fragment CaseWithContacts on Case {
     id
     dateCreated
     title
+    author {
+      userName
+    }
   }
 }
 `;
