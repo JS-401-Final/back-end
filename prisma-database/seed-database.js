@@ -3,12 +3,12 @@ const { prisma } = require('./generated/prisma-client');
 async function createMockData() {
 
   const newUser = await prisma.createUser({
-    userName: 'Adam First',
+    userName: 'Adam Smith',
   });
 
   await prisma.createUser({
     email: 'alfred@email.com',
-    userName: 'Alfred',
+    userName: 'Alfred Alfy',
     role: 'admin',
     contact: {
       create: {
@@ -36,7 +36,7 @@ async function createMockData() {
 
   await prisma.createUser({
     email: 'ben@email.com',
-    userName: 'Ben',
+    userName: 'Ben Benjy',
     role: 'ben',
     contact: {
       create: {
@@ -70,12 +70,12 @@ async function createMockData() {
 
   await prisma.createCase({
     caseId: 'CASEID-123456',
-    title: 'Case 1 Title',
-    status: 'open',
-    referralType: 'none',
-    legalPlan: 'none',
-    caseNumberDetails: 'this the case number details',
-    generalCaseDetails: 'this is the general case details',
+    title: 'Case 1',
+    status: 'Open',
+    referralType: 'None',
+    legalPlan: 'None',
+    caseNumberDetails: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    generalCaseDetails: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     caseContacts: {
       connect: {
         id: existingContactIds[0].id,
@@ -99,7 +99,7 @@ async function createMockData() {
         workPhone: '1234567890',
         homePhone: '1234567890',
         fax: '1234567890',
-        contactComment: 'This is a comment about Ephriam on his contact card',
+        contactComment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
       },
     },
     staffAttorneys: {
@@ -164,7 +164,7 @@ async function createMockData() {
         workPhone: '1234567890',
         homePhone: '1234567890',
         fax: '1234567890',
-        contactComment: 'This is a comment about Gina on his contact card',
+        contactComment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
       }],
     },
     opposingAttorneys: {
@@ -185,7 +185,7 @@ async function createMockData() {
         workPhone: '1234567890',
         homePhone: '1234567890',
         fax: '1234567890',
-        contactComment: 'This is a comment about Ingrid on his contact card',
+        contactComment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         contactType: 'attorney',
       }],
     },
@@ -207,7 +207,7 @@ async function createMockData() {
         workPhone: '1234567890',
         homePhone: '1234567890',
         fax: '1234567890',
-        contactComment: 'This is a comment about Jillian on his contact card',
+        contactComment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
         contactType: 'refer',
       }],
     },
@@ -229,13 +229,14 @@ async function createMockData() {
         workPhone: '1234567890',
         homePhone: '1234567890',
         fax: '1234567890',
-        contactComment: 'This is a comment about Kulian on his contact card',
+        contactComment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         contactType: 'related',
       }],
     },
     caseNotes: {
       create: [{
         title: 'Case1-Note1',
+        content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         author: {
           connect: {
             id: existingUserIds[0].id,
@@ -244,6 +245,7 @@ async function createMockData() {
       },
       {
         title: 'Case1-Note2',
+        content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         author: {
           connect: {
             id: existingUserIds[0].id,
@@ -252,6 +254,7 @@ async function createMockData() {
       },
       {
         title: 'Case1-Note3',
+        content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         author: {
           connect: {
             id: existingUserIds[0].id,
@@ -266,8 +269,8 @@ async function createMockData() {
 
   await prisma.createCase({
     caseId: 'CASEID-ABCDEFG',
-    title: 'case 2',
-    status: 'open',
+    title: 'Case 2',
+    status: 'Open',
     caseNumberDetails: 'this the case number details',
     generalCaseDetails: 'this is the general case details',
     caseContacts: {
