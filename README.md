@@ -7,14 +7,14 @@
 1. Clone this repo
 2. `$ npm i`
 3. Create a project on Google's Developer console and create a client secret and client id for [OAuth](https://developers.google.com/identity/protocols/OAuth2WebServer).  
-4. Set environment variables for:
+4. Set environment variables for:  
 `GOOGLE_CLIENT_ID` - from Google  
 `GOOGLE_CLIENT_SECRET` - from Google  
 `PORT` - the port for your server  
 `SECRET` - the signature string for JWT   
 `CLIENT_URL` - the url for your CaseHawk front end
 5. Set up a [Prisma Databse Client](https://www.prisma.io/docs/get-started/01-setting-up-prisma-new-database-JAVASCRIPT-a002/)
-6. Seed the database `$ npm run seedDB`
+6. Seed the database `$ npm run deployDB`
 7. Start the server `$node index.js`
 
 ##Authorization
@@ -33,17 +33,39 @@ In addition to a white list, functionality to support multi-tenancy should be im
 
 ##Routes
 
+#### Endpoints
+
+`/case`  
+`/cases`  
+`/case/:id`  
+`/contact`  
+`/contacts`  
+`/contact/:id`  
+`/note`  
+`/notes`  
+`/note/:id`  
+`/user`  
+`/users`  
+`/user/:id`  
+
 ####Overview
 
+Currently, routes directly access the Prisma database client.  Queries are not restricted or filtered based on userid or any other criteria.  In other words, a route returns all information in the database.
+
 ####Next Steps
+
+Routes should be refactored to allow for queries based on user id and eventually, account id.  It would also be best practice to refactor database queries into a separate file.
 
 ##Database
 
 ####Overview
 
-The app uses Postgres and Prisma for our database stack. 
+The app uses Postgres and Prisma for our database stack. The data models will eventually need additionaly flexibility to support multiple many to many relationships. 
 
 ####Next Steps
+
+##UML
+![UML](BackendUML.jpg)
 
 ## Contributors
 - 401d31
