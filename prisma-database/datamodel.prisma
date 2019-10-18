@@ -8,7 +8,7 @@ type User {
 
 type Case {
   id: ID! @id
-  caseId: String! @unique
+  caseId: String @unique
   title: String
   status: String
   referralType: String 
@@ -41,11 +41,11 @@ type Contact {
   workStreet2: String
   emailMain: String
   emailBackup: String
-  socialSecurity: Float
-  cellPhone: Float
-  workPhone: Float
-  homePhone: Float
-  fax: Float
+  socialSecurity: String
+  cellPhone: String
+  workPhone: String
+  homePhone: String
+  fax: String
   contactComment: String
 }
 

@@ -28,8 +28,8 @@ router.post('/case', auth, async (req, res) => {
  * @param {function} callback - express callback
  * @returns { (Array | Error) } - an array of all cases
  */
-router.get('/cases', auth, async (req, res) => {
-  const retrievedCase = await prisma.cases();
+router.get('/cases', async (req, res) => {
+  const retrievedCase = await prisma.cases().$fragment(getCaseByIdFragment);
   res.json(retrievedCase);
 });
 

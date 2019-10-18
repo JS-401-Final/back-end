@@ -7,7 +7,8 @@
     "test": "jest --verbose --coverage",
     "start": "node index.js",
     "watch": "nodemon index.js",
-    "lint": "eslint '**/*.js' --fix",
+    "lint": "eslint '**/*.js'",
+    "lintFix": "eslint '**/*.js' --fix",
     "jsdoc": "jsdoc -c ./docs/config/jsdoc.config.json",
     "deployDB": "prisma reset -f && prisma deploy -f && node ./prisma-database/seed-database"
   },
