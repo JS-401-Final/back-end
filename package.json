@@ -9,8 +9,7 @@
     "watch": "nodemon index.js",
     "lint": "eslint '**/*.js' --fix",
     "jsdoc": "jsdoc -c ./docs/config/jsdoc.config.json",
-    "deployDB": "prisma deploy -f",
-    "seedDB": "prisma reset -f && node ./prisma-database/seed-database"
+    "deployDB": "prisma reset -f && prisma deploy -f && node ./prisma-database/seed-database"
   },
   "keywords": [],
   "author": "",

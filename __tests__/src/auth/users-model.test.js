@@ -1,6 +1,5 @@
 'use strict';
 
-
 process.env.TOKEN_EXPIRE_TIME = '24h';
 process.env.SECRET = 'testsecret';
 const User = require('../../../src/auth/users-model');
@@ -24,10 +23,6 @@ prisma.user = jest.fn((query) => {
 });
 
 describe('Users Model', () => {
-
-  test('Generate Token', () => {
-    expect(User.generateToken(users[1])).toBeTruthy();
-  });
 
   test('Authenticate Token', () => {
     const token = User.generateToken(users[1]);

@@ -1,4 +1,9 @@
 'use strict';
+/**
+ * @module router/contacts
+ * @requires express
+ * @requires fuzzy-search
+ */
 
 const FuzzySearch = require('fuzzy-search');
 const express = require('express');
@@ -8,12 +13,30 @@ const auth = require('../auth/middleware');
 
 //// ====== CONTACT Routes ======
 
+/**
+ * This function creates a new contact in the database
+ * @function POST
+ * @param {string} path - Express Path
+ * @param {function} callback - express callback
+ * @returns { (Object | Error) } - the newly created contact object
+ */
 router.post('/contact', auth, async (req, res) => {
   const newContact = await prisma.createContact(req.body);
   res.json(newContact);
 });
 
-router.get('/contacts', async (req, res) => {
+/**
+ * This function gets all constact data from database
+ * @function GET
+ * @example <caption>Example query string</caption>
+ * localhost:4000/constact/?name=john
+ * returns all constacts that have John in the first or last name fields
+ * filtered and sorted by fuzzy search
+ * @param {string} path - express path - *optional name query field
+ * @param {function} callback - express callback
+ * @returns { (Array | Error) } - an array of all constacts optionally filtered by 'name' query
+ */
+router.get('/contacts', auth, async (req, res) => {
   // if body has a search and name property set
   let nameToFilterBy = req.query && req.query.name;
   console.log(nameToFilterBy);
@@ -29,7 +52,14 @@ router.get('/contacts', async (req, res) => {
   res.json(result);
 });
 
-router.get('/contact/:id', async (req, res) => {
+/**
+ * This function gets a contact from database
+ * @function GET/:id
+ * @param {string} path - express path
+ * @param {function} callback - express callback
+ * @returns { (Object | Error) } - a single contact object
+ */
+router.get('/contact/:id', auth, async (req, res) => {
   const contact = await prisma.contact({ id: req.params.id });
   res.json(contact);
 });

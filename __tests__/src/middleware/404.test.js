@@ -1,25 +1,25 @@
 'use strict';
-const superagent = require('superagent');
+
+const rootDir = process.cwd();
+const { server } = require(`${rootDir}/src/app.js`);
+const supertest = require('supertest')(server);
+
+
 
 describe('Error Handling for routes', () => {
+
   test('Test invalid route', () => {
-    superagent.get('http://localhost:4000/testRoute')
+    return supertest.get('/testRoute')
       .then( response => {
-        expect(response.status).toBe(400);
-      })
-      .catch( error => {
-        return error;
+        expect(response.status).toBe(404);
       });
   });
+
   test('Test unauthorized access', () => {
-    superagent.post('http://localhost:4000/contact')
+    return supertest.post('/contact')
       .send({firstName: 'Jane',lastName: 'Doe'})
       .then( response => {
         expect(response.status).toBe(500);
-      })
-      .catch( error => {
-        return error;
       });
-
   });
 });
