@@ -4,3 +4,4 @@
 **/*.min.js
 **/coverage/*
 **/build/*
+**/generated/*
