@@ -11,8 +11,6 @@ const router = express.Router();
 const { prisma } = require('../../prisma-database/generated/prisma-client');
 const auth = require('../auth/middleware');
 
-//// ====== CONTACT Routes ======
-
 /**
  * This function creates a new contact in the database
  * @function POST
