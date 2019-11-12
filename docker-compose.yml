@@ -10,17 +10,20 @@ services:
         port: 4466
         databases:
           default:
-            connector: mysql
-            host: mysql
-            port: 3306
-            user: root
+            connector: postgres
+            host: localhost
+            schema: public
+            database: casehawk
+            port: 5432
+            user: prisma
             password: prisma
-  mysql:
-    image: mysql:5.7
+  postgres:
+    image: postgres:10.3
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: prisma
+      POSTGRES_USER: prisma
+      POSTGRES_PASSWORD: prisma
     volumes:
-      - mysql:/var/lib/mysql
+      - postgres:/var/lib/postgresql/data
 volumes:
-  mysql: ~
+  postgres: ~
