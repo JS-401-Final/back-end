@@ -37,16 +37,25 @@ type Contact {
   homeCity: String
   homeState: String
   homeZip: String
+  workCompanyName: String
   workStreet: String
   workStreet2: String
+  workCity: String
+  workState: String
+  workZip: String
   emailMain: String
   emailBackup: String
   socialSecurity: String
+  birthdate: String
   cellPhone: String
   workPhone: String
   homePhone: String
+  primaryPhone: String
+  secondaryPhone: String
+  mobilePhone: String
   fax: String
   contactComment: String
+  comments: String
 }
 
 type Note {
