@@ -263,6 +263,14 @@ export interface ClientConstructor<T> {
  * Types
  */
 
+export type ImportantDateOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "importantDateType_ASC"
+  | "importantDateType_DESC"
+  | "importantDateDetails_ASC"
+  | "importantDateDetails_DESC";
+
 export type ContactOrderByInput =
   | "id_ASC"
   | "id_DESC"
@@ -282,26 +290,44 @@ export type ContactOrderByInput =
   | "homeState_DESC"
   | "homeZip_ASC"
   | "homeZip_DESC"
+  | "workCompanyName_ASC"
+  | "workCompanyName_DESC"
   | "workStreet_ASC"
   | "workStreet_DESC"
   | "workStreet2_ASC"
   | "workStreet2_DESC"
+  | "workCity_ASC"
+  | "workCity_DESC"
+  | "workState_ASC"
+  | "workState_DESC"
+  | "workZip_ASC"
+  | "workZip_DESC"
   | "emailMain_ASC"
   | "emailMain_DESC"
   | "emailBackup_ASC"
   | "emailBackup_DESC"
   | "socialSecurity_ASC"
   | "socialSecurity_DESC"
+  | "birthdate_ASC"
+  | "birthdate_DESC"
   | "cellPhone_ASC"
   | "cellPhone_DESC"
   | "workPhone_ASC"
   | "workPhone_DESC"
   | "homePhone_ASC"
   | "homePhone_DESC"
+  | "primaryPhone_ASC"
+  | "primaryPhone_DESC"
+  | "secondaryPhone_ASC"
+  | "secondaryPhone_DESC"
+  | "mobilePhone_ASC"
+  | "mobilePhone_DESC"
   | "fax_ASC"
   | "fax_DESC"
   | "contactComment_ASC"
-  | "contactComment_DESC";
+  | "contactComment_DESC"
+  | "comments_ASC"
+  | "comments_DESC";
 
 export type NoteOrderByInput =
   | "id_ASC"
@@ -314,14 +340,6 @@ export type NoteOrderByInput =
   | "content_DESC"
   | "type_ASC"
   | "type_DESC";
-
-export type ImportantDateOrderByInput =
-  | "id_ASC"
-  | "id_DESC"
-  | "importantDateType_ASC"
-  | "importantDateType_DESC"
-  | "importantDateDetails_ASC"
-  | "importantDateDetails_DESC";
 
 export type CaseOrderByInput =
   | "id_ASC"
@@ -353,36 +371,57 @@ export type UserOrderByInput =
 
 export type MutationType = "CREATED" | "UPDATED" | "DELETED";
 
-export interface ImportantDateUpsertWithWhereUniqueNestedInput {
-  where: ImportantDateWhereUniqueInput;
-  update: ImportantDateUpdateDataInput;
-  create: ImportantDateCreateInput;
-}
-
 export type CaseWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
   caseId?: Maybe<String>;
 }>;
 
-export interface ContactUpdateManyInput {
-  create?: Maybe<ContactCreateInput[] | ContactCreateInput>;
-  update?: Maybe<
-    | ContactUpdateWithWhereUniqueNestedInput[]
-    | ContactUpdateWithWhereUniqueNestedInput
-  >;
-  upsert?: Maybe<
-    | ContactUpsertWithWhereUniqueNestedInput[]
-    | ContactUpsertWithWhereUniqueNestedInput
-  >;
-  delete?: Maybe<ContactWhereUniqueInput[] | ContactWhereUniqueInput>;
-  connect?: Maybe<ContactWhereUniqueInput[] | ContactWhereUniqueInput>;
-  set?: Maybe<ContactWhereUniqueInput[] | ContactWhereUniqueInput>;
-  disconnect?: Maybe<ContactWhereUniqueInput[] | ContactWhereUniqueInput>;
-  deleteMany?: Maybe<ContactScalarWhereInput[] | ContactScalarWhereInput>;
-  updateMany?: Maybe<
-    | ContactUpdateManyWithWhereNestedInput[]
-    | ContactUpdateManyWithWhereNestedInput
-  >;
+export interface ImportantDateWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  importantDateType?: Maybe<String>;
+  importantDateType_not?: Maybe<String>;
+  importantDateType_in?: Maybe<String[] | String>;
+  importantDateType_not_in?: Maybe<String[] | String>;
+  importantDateType_lt?: Maybe<String>;
+  importantDateType_lte?: Maybe<String>;
+  importantDateType_gt?: Maybe<String>;
+  importantDateType_gte?: Maybe<String>;
+  importantDateType_contains?: Maybe<String>;
+  importantDateType_not_contains?: Maybe<String>;
+  importantDateType_starts_with?: Maybe<String>;
+  importantDateType_not_starts_with?: Maybe<String>;
+  importantDateType_ends_with?: Maybe<String>;
+  importantDateType_not_ends_with?: Maybe<String>;
+  importantDateDetails?: Maybe<String>;
+  importantDateDetails_not?: Maybe<String>;
+  importantDateDetails_in?: Maybe<String[] | String>;
+  importantDateDetails_not_in?: Maybe<String[] | String>;
+  importantDateDetails_lt?: Maybe<String>;
+  importantDateDetails_lte?: Maybe<String>;
+  importantDateDetails_gt?: Maybe<String>;
+  importantDateDetails_gte?: Maybe<String>;
+  importantDateDetails_contains?: Maybe<String>;
+  importantDateDetails_not_contains?: Maybe<String>;
+  importantDateDetails_starts_with?: Maybe<String>;
+  importantDateDetails_not_starts_with?: Maybe<String>;
+  importantDateDetails_ends_with?: Maybe<String>;
+  importantDateDetails_not_ends_with?: Maybe<String>;
+  AND?: Maybe<ImportantDateWhereInput[] | ImportantDateWhereInput>;
+  OR?: Maybe<ImportantDateWhereInput[] | ImportantDateWhereInput>;
+  NOT?: Maybe<ImportantDateWhereInput[] | ImportantDateWhereInput>;
 }
 
 export interface ContactWhereInput {
@@ -512,6 +551,20 @@ export interface ContactWhereInput {
   homeZip_not_starts_with?: Maybe<String>;
   homeZip_ends_with?: Maybe<String>;
   homeZip_not_ends_with?: Maybe<String>;
+  workCompanyName?: Maybe<String>;
+  workCompanyName_not?: Maybe<String>;
+  workCompanyName_in?: Maybe<String[] | String>;
+  workCompanyName_not_in?: Maybe<String[] | String>;
+  workCompanyName_lt?: Maybe<String>;
+  workCompanyName_lte?: Maybe<String>;
+  workCompanyName_gt?: Maybe<String>;
+  workCompanyName_gte?: Maybe<String>;
+  workCompanyName_contains?: Maybe<String>;
+  workCompanyName_not_contains?: Maybe<String>;
+  workCompanyName_starts_with?: Maybe<String>;
+  workCompanyName_not_starts_with?: Maybe<String>;
+  workCompanyName_ends_with?: Maybe<String>;
+  workCompanyName_not_ends_with?: Maybe<String>;
   workStreet?: Maybe<String>;
   workStreet_not?: Maybe<String>;
   workStreet_in?: Maybe<String[] | String>;
@@ -540,6 +593,48 @@ export interface ContactWhereInput {
   workStreet2_not_starts_with?: Maybe<String>;
   workStreet2_ends_with?: Maybe<String>;
   workStreet2_not_ends_with?: Maybe<String>;
+  workCity?: Maybe<String>;
+  workCity_not?: Maybe<String>;
+  workCity_in?: Maybe<String[] | String>;
+  workCity_not_in?: Maybe<String[] | String>;
+  workCity_lt?: Maybe<String>;
+  workCity_lte?: Maybe<String>;
+  workCity_gt?: Maybe<String>;
+  workCity_gte?: Maybe<String>;
+  workCity_contains?: Maybe<String>;
+  workCity_not_contains?: Maybe<String>;
+  workCity_starts_with?: Maybe<String>;
+  workCity_not_starts_with?: Maybe<String>;
+  workCity_ends_with?: Maybe<String>;
+  workCity_not_ends_with?: Maybe<String>;
+  workState?: Maybe<String>;
+  workState_not?: Maybe<String>;
+  workState_in?: Maybe<String[] | String>;
+  workState_not_in?: Maybe<String[] | String>;
+  workState_lt?: Maybe<String>;
+  workState_lte?: Maybe<String>;
+  workState_gt?: Maybe<String>;
+  workState_gte?: Maybe<String>;
+  workState_contains?: Maybe<String>;
+  workState_not_contains?: Maybe<String>;
+  workState_starts_with?: Maybe<String>;
+  workState_not_starts_with?: Maybe<String>;
+  workState_ends_with?: Maybe<String>;
+  workState_not_ends_with?: Maybe<String>;
+  workZip?: Maybe<String>;
+  workZip_not?: Maybe<String>;
+  workZip_in?: Maybe<String[] | String>;
+  workZip_not_in?: Maybe<String[] | String>;
+  workZip_lt?: Maybe<String>;
+  workZip_lte?: Maybe<String>;
+  workZip_gt?: Maybe<String>;
+  workZip_gte?: Maybe<String>;
+  workZip_contains?: Maybe<String>;
+  workZip_not_contains?: Maybe<String>;
+  workZip_starts_with?: Maybe<String>;
+  workZip_not_starts_with?: Maybe<String>;
+  workZip_ends_with?: Maybe<String>;
+  workZip_not_ends_with?: Maybe<String>;
   emailMain?: Maybe<String>;
   emailMain_not?: Maybe<String>;
   emailMain_in?: Maybe<String[] | String>;
@@ -582,6 +677,20 @@ export interface ContactWhereInput {
   socialSecurity_not_starts_with?: Maybe<String>;
   socialSecurity_ends_with?: Maybe<String>;
   socialSecurity_not_ends_with?: Maybe<String>;
+  birthdate?: Maybe<String>;
+  birthdate_not?: Maybe<String>;
+  birthdate_in?: Maybe<String[] | String>;
+  birthdate_not_in?: Maybe<String[] | String>;
+  birthdate_lt?: Maybe<String>;
+  birthdate_lte?: Maybe<String>;
+  birthdate_gt?: Maybe<String>;
+  birthdate_gte?: Maybe<String>;
+  birthdate_contains?: Maybe<String>;
+  birthdate_not_contains?: Maybe<String>;
+  birthdate_starts_with?: Maybe<String>;
+  birthdate_not_starts_with?: Maybe<String>;
+  birthdate_ends_with?: Maybe<String>;
+  birthdate_not_ends_with?: Maybe<String>;
   cellPhone?: Maybe<String>;
   cellPhone_not?: Maybe<String>;
   cellPhone_in?: Maybe<String[] | String>;
@@ -624,6 +733,48 @@ export interface ContactWhereInput {
   homePhone_not_starts_with?: Maybe<String>;
   homePhone_ends_with?: Maybe<String>;
   homePhone_not_ends_with?: Maybe<String>;
+  primaryPhone?: Maybe<String>;
+  primaryPhone_not?: Maybe<String>;
+  primaryPhone_in?: Maybe<String[] | String>;
+  primaryPhone_not_in?: Maybe<String[] | String>;
+  primaryPhone_lt?: Maybe<String>;
+  primaryPhone_lte?: Maybe<String>;
+  primaryPhone_gt?: Maybe<String>;
+  primaryPhone_gte?: Maybe<String>;
+  primaryPhone_contains?: Maybe<String>;
+  primaryPhone_not_contains?: Maybe<String>;
+  primaryPhone_starts_with?: Maybe<String>;
+  primaryPhone_not_starts_with?: Maybe<String>;
+  primaryPhone_ends_with?: Maybe<String>;
+  primaryPhone_not_ends_with?: Maybe<String>;
+  secondaryPhone?: Maybe<String>;
+  secondaryPhone_not?: Maybe<String>;
+  secondaryPhone_in?: Maybe<String[] | String>;
+  secondaryPhone_not_in?: Maybe<String[] | String>;
+  secondaryPhone_lt?: Maybe<String>;
+  secondaryPhone_lte?: Maybe<String>;
+  secondaryPhone_gt?: Maybe<String>;
+  secondaryPhone_gte?: Maybe<String>;
+  secondaryPhone_contains?: Maybe<String>;
+  secondaryPhone_not_contains?: Maybe<String>;
+  secondaryPhone_starts_with?: Maybe<String>;
+  secondaryPhone_not_starts_with?: Maybe<String>;
+  secondaryPhone_ends_with?: Maybe<String>;
+  secondaryPhone_not_ends_with?: Maybe<String>;
+  mobilePhone?: Maybe<String>;
+  mobilePhone_not?: Maybe<String>;
+  mobilePhone_in?: Maybe<String[] | String>;
+  mobilePhone_not_in?: Maybe<String[] | String>;
+  mobilePhone_lt?: Maybe<String>;
+  mobilePhone_lte?: Maybe<String>;
+  mobilePhone_gt?: Maybe<String>;
+  mobilePhone_gte?: Maybe<String>;
+  mobilePhone_contains?: Maybe<String>;
+  mobilePhone_not_contains?: Maybe<String>;
+  mobilePhone_starts_with?: Maybe<String>;
+  mobilePhone_not_starts_with?: Maybe<String>;
+  mobilePhone_ends_with?: Maybe<String>;
+  mobilePhone_not_ends_with?: Maybe<String>;
   fax?: Maybe<String>;
   fax_not?: Maybe<String>;
   fax_in?: Maybe<String[] | String>;
@@ -652,37 +803,95 @@ export interface ContactWhereInput {
   contactComment_not_starts_with?: Maybe<String>;
   contactComment_ends_with?: Maybe<String>;
   contactComment_not_ends_with?: Maybe<String>;
+  comments?: Maybe<String>;
+  comments_not?: Maybe<String>;
+  comments_in?: Maybe<String[] | String>;
+  comments_not_in?: Maybe<String[] | String>;
+  comments_lt?: Maybe<String>;
+  comments_lte?: Maybe<String>;
+  comments_gt?: Maybe<String>;
+  comments_gte?: Maybe<String>;
+  comments_contains?: Maybe<String>;
+  comments_not_contains?: Maybe<String>;
+  comments_starts_with?: Maybe<String>;
+  comments_not_starts_with?: Maybe<String>;
+  comments_ends_with?: Maybe<String>;
+  comments_not_ends_with?: Maybe<String>;
   AND?: Maybe<ContactWhereInput[] | ContactWhereInput>;
   OR?: Maybe<ContactWhereInput[] | ContactWhereInput>;
   NOT?: Maybe<ContactWhereInput[] | ContactWhereInput>;
 }
 
-export interface ImportantDateCreateManyInput {
-  create?: Maybe<ImportantDateCreateInput[] | ImportantDateCreateInput>;
-  connect?: Maybe<
-    ImportantDateWhereUniqueInput[] | ImportantDateWhereUniqueInput
-  >;
-}
-
-export interface UserUpsertNestedInput {
-  update: UserUpdateDataInput;
-  create: UserCreateInput;
-}
-
-export interface ImportantDateCreateInput {
+export interface NoteWhereInput {
   id?: Maybe<ID_Input>;
-  importantDateType?: Maybe<String>;
-  importantDateDetails?: Maybe<String>;
-}
-
-export interface ContactUpdateWithWhereUniqueNestedInput {
-  where: ContactWhereUniqueInput;
-  data: ContactUpdateDataInput;
-}
-
-export interface ContactCreateManyInput {
-  create?: Maybe<ContactCreateInput[] | ContactCreateInput>;
-  connect?: Maybe<ContactWhereUniqueInput[] | ContactWhereUniqueInput>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  dateCreated?: Maybe<DateTimeInput>;
+  dateCreated_not?: Maybe<DateTimeInput>;
+  dateCreated_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  dateCreated_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  dateCreated_lt?: Maybe<DateTimeInput>;
+  dateCreated_lte?: Maybe<DateTimeInput>;
+  dateCreated_gt?: Maybe<DateTimeInput>;
+  dateCreated_gte?: Maybe<DateTimeInput>;
+  case?: Maybe<CaseWhereInput>;
+  title?: Maybe<String>;
+  title_not?: Maybe<String>;
+  title_in?: Maybe<String[] | String>;
+  title_not_in?: Maybe<String[] | String>;
+  title_lt?: Maybe<String>;
+  title_lte?: Maybe<String>;
+  title_gt?: Maybe<String>;
+  title_gte?: Maybe<String>;
+  title_contains?: Maybe<String>;
+  title_not_contains?: Maybe<String>;
+  title_starts_with?: Maybe<String>;
+  title_not_starts_with?: Maybe<String>;
+  title_ends_with?: Maybe<String>;
+  title_not_ends_with?: Maybe<String>;
+  content?: Maybe<String>;
+  content_not?: Maybe<String>;
+  content_in?: Maybe<String[] | String>;
+  content_not_in?: Maybe<String[] | String>;
+  content_lt?: Maybe<String>;
+  content_lte?: Maybe<String>;
+  content_gt?: Maybe<String>;
+  content_gte?: Maybe<String>;
+  content_contains?: Maybe<String>;
+  content_not_contains?: Maybe<String>;
+  content_starts_with?: Maybe<String>;
+  content_not_starts_with?: Maybe<String>;
+  content_ends_with?: Maybe<String>;
+  content_not_ends_with?: Maybe<String>;
+  author?: Maybe<UserWhereInput>;
+  type?: Maybe<String>;
+  type_not?: Maybe<String>;
+  type_in?: Maybe<String[] | String>;
+  type_not_in?: Maybe<String[] | String>;
+  type_lt?: Maybe<String>;
+  type_lte?: Maybe<String>;
+  type_gt?: Maybe<String>;
+  type_gte?: Maybe<String>;
+  type_contains?: Maybe<String>;
+  type_not_contains?: Maybe<String>;
+  type_starts_with?: Maybe<String>;
+  type_not_starts_with?: Maybe<String>;
+  type_ends_with?: Maybe<String>;
+  type_not_ends_with?: Maybe<String>;
+  AND?: Maybe<NoteWhereInput[] | NoteWhereInput>;
+  OR?: Maybe<NoteWhereInput[] | NoteWhereInput>;
+  NOT?: Maybe<NoteWhereInput[] | NoteWhereInput>;
 }
 
 export interface CaseWhereInput {
@@ -831,6 +1040,125 @@ export interface CaseWhereInput {
   NOT?: Maybe<CaseWhereInput[] | CaseWhereInput>;
 }
 
+export interface UserWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  email?: Maybe<String>;
+  email_not?: Maybe<String>;
+  email_in?: Maybe<String[] | String>;
+  email_not_in?: Maybe<String[] | String>;
+  email_lt?: Maybe<String>;
+  email_lte?: Maybe<String>;
+  email_gt?: Maybe<String>;
+  email_gte?: Maybe<String>;
+  email_contains?: Maybe<String>;
+  email_not_contains?: Maybe<String>;
+  email_starts_with?: Maybe<String>;
+  email_not_starts_with?: Maybe<String>;
+  email_ends_with?: Maybe<String>;
+  email_not_ends_with?: Maybe<String>;
+  userName?: Maybe<String>;
+  userName_not?: Maybe<String>;
+  userName_in?: Maybe<String[] | String>;
+  userName_not_in?: Maybe<String[] | String>;
+  userName_lt?: Maybe<String>;
+  userName_lte?: Maybe<String>;
+  userName_gt?: Maybe<String>;
+  userName_gte?: Maybe<String>;
+  userName_contains?: Maybe<String>;
+  userName_not_contains?: Maybe<String>;
+  userName_starts_with?: Maybe<String>;
+  userName_not_starts_with?: Maybe<String>;
+  userName_ends_with?: Maybe<String>;
+  userName_not_ends_with?: Maybe<String>;
+  role?: Maybe<String>;
+  role_not?: Maybe<String>;
+  role_in?: Maybe<String[] | String>;
+  role_not_in?: Maybe<String[] | String>;
+  role_lt?: Maybe<String>;
+  role_lte?: Maybe<String>;
+  role_gt?: Maybe<String>;
+  role_gte?: Maybe<String>;
+  role_contains?: Maybe<String>;
+  role_not_contains?: Maybe<String>;
+  role_starts_with?: Maybe<String>;
+  role_not_starts_with?: Maybe<String>;
+  role_ends_with?: Maybe<String>;
+  role_not_ends_with?: Maybe<String>;
+  contact?: Maybe<ContactWhereInput>;
+  AND?: Maybe<UserWhereInput[] | UserWhereInput>;
+  OR?: Maybe<UserWhereInput[] | UserWhereInput>;
+  NOT?: Maybe<UserWhereInput[] | UserWhereInput>;
+}
+
+export type ContactWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export type ImportantDateWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export type NoteWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export type UserWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+  email?: Maybe<String>;
+}>;
+
+export interface CaseCreateInput {
+  id?: Maybe<ID_Input>;
+  caseId?: Maybe<String>;
+  title?: Maybe<String>;
+  status?: Maybe<String>;
+  referralType?: Maybe<String>;
+  legalPlan?: Maybe<String>;
+  importantDates?: Maybe<ImportantDateCreateManyInput>;
+  caseNumberDetails?: Maybe<String>;
+  generalCaseDetails?: Maybe<String>;
+  caseContacts?: Maybe<ContactCreateManyInput>;
+  client?: Maybe<ContactCreateOneInput>;
+  staffAttorneys?: Maybe<ContactCreateManyInput>;
+  staffAssistants?: Maybe<ContactCreateManyInput>;
+  opposingParties?: Maybe<ContactCreateManyInput>;
+  opposingAttorneys?: Maybe<ContactCreateManyInput>;
+  referringParties?: Maybe<ContactCreateManyInput>;
+  associatedContacts?: Maybe<ContactCreateManyInput>;
+  caseNotes?: Maybe<NoteCreateManyWithoutCaseInput>;
+}
+
+export interface ImportantDateCreateManyInput {
+  create?: Maybe<ImportantDateCreateInput[] | ImportantDateCreateInput>;
+  connect?: Maybe<
+    ImportantDateWhereUniqueInput[] | ImportantDateWhereUniqueInput
+  >;
+}
+
+export interface ImportantDateCreateInput {
+  id?: Maybe<ID_Input>;
+  importantDateType?: Maybe<String>;
+  importantDateDetails?: Maybe<String>;
+}
+
+export interface ContactCreateManyInput {
+  create?: Maybe<ContactCreateInput[] | ContactCreateInput>;
+  connect?: Maybe<ContactWhereUniqueInput[] | ContactWhereUniqueInput>;
+}
+
 export interface ContactCreateInput {
   id?: Maybe<ID_Input>;
   contactType?: Maybe<String>;
@@ -841,27 +1169,25 @@ export interface ContactCreateInput {
   homeCity?: Maybe<String>;
   homeState?: Maybe<String>;
   homeZip?: Maybe<String>;
+  workCompanyName?: Maybe<String>;
   workStreet?: Maybe<String>;
   workStreet2?: Maybe<String>;
+  workCity?: Maybe<String>;
+  workState?: Maybe<String>;
+  workZip?: Maybe<String>;
   emailMain?: Maybe<String>;
   emailBackup?: Maybe<String>;
   socialSecurity?: Maybe<String>;
+  birthdate?: Maybe<String>;
   cellPhone?: Maybe<String>;
   workPhone?: Maybe<String>;
   homePhone?: Maybe<String>;
+  primaryPhone?: Maybe<String>;
+  secondaryPhone?: Maybe<String>;
+  mobilePhone?: Maybe<String>;
   fax?: Maybe<String>;
   contactComment?: Maybe<String>;
-}
-
-export interface NoteSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<NoteWhereInput>;
-  AND?: Maybe<NoteSubscriptionWhereInput[] | NoteSubscriptionWhereInput>;
-  OR?: Maybe<NoteSubscriptionWhereInput[] | NoteSubscriptionWhereInput>;
-  NOT?: Maybe<NoteSubscriptionWhereInput[] | NoteSubscriptionWhereInput>;
+  comments?: Maybe<String>;
 }
 
 export interface ContactCreateOneInput {
@@ -869,31 +1195,9 @@ export interface ContactCreateOneInput {
   connect?: Maybe<ContactWhereUniqueInput>;
 }
 
-export interface ContactSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<ContactWhereInput>;
-  AND?: Maybe<ContactSubscriptionWhereInput[] | ContactSubscriptionWhereInput>;
-  OR?: Maybe<ContactSubscriptionWhereInput[] | ContactSubscriptionWhereInput>;
-  NOT?: Maybe<ContactSubscriptionWhereInput[] | ContactSubscriptionWhereInput>;
-}
-
 export interface NoteCreateManyWithoutCaseInput {
   create?: Maybe<NoteCreateWithoutCaseInput[] | NoteCreateWithoutCaseInput>;
   connect?: Maybe<NoteWhereUniqueInput[] | NoteWhereUniqueInput>;
-}
-
-export interface CaseSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<CaseWhereInput>;
-  AND?: Maybe<CaseSubscriptionWhereInput[] | CaseSubscriptionWhereInput>;
-  OR?: Maybe<CaseSubscriptionWhereInput[] | CaseSubscriptionWhereInput>;
-  NOT?: Maybe<CaseSubscriptionWhereInput[] | CaseSubscriptionWhereInput>;
 }
 
 export interface NoteCreateWithoutCaseInput {
@@ -904,21 +1208,9 @@ export interface NoteCreateWithoutCaseInput {
   type?: Maybe<String>;
 }
 
-export interface UserUpdateInput {
-  email?: Maybe<String>;
-  userName?: Maybe<String>;
-  role?: Maybe<String>;
-  contact?: Maybe<ContactUpdateOneInput>;
-}
-
 export interface UserCreateOneInput {
   create?: Maybe<UserCreateInput>;
   connect?: Maybe<UserWhereUniqueInput>;
-}
-
-export interface CaseUpsertWithoutCaseNotesInput {
-  update: CaseUpdateWithoutCaseNotesDataInput;
-  create: CaseCreateWithoutCaseNotesInput;
 }
 
 export interface UserCreateInput {
@@ -927,25 +1219,6 @@ export interface UserCreateInput {
   userName: String;
   role?: Maybe<String>;
   contact?: Maybe<ContactCreateOneInput>;
-}
-
-export interface CaseUpdateWithoutCaseNotesDataInput {
-  caseId?: Maybe<String>;
-  title?: Maybe<String>;
-  status?: Maybe<String>;
-  referralType?: Maybe<String>;
-  legalPlan?: Maybe<String>;
-  importantDates?: Maybe<ImportantDateUpdateManyInput>;
-  caseNumberDetails?: Maybe<String>;
-  generalCaseDetails?: Maybe<String>;
-  caseContacts?: Maybe<ContactUpdateManyInput>;
-  client?: Maybe<ContactUpdateOneInput>;
-  staffAttorneys?: Maybe<ContactUpdateManyInput>;
-  staffAssistants?: Maybe<ContactUpdateManyInput>;
-  opposingParties?: Maybe<ContactUpdateManyInput>;
-  opposingAttorneys?: Maybe<ContactUpdateManyInput>;
-  referringParties?: Maybe<ContactUpdateManyInput>;
-  associatedContacts?: Maybe<ContactUpdateManyInput>;
 }
 
 export interface CaseUpdateInput {
@@ -966,14 +1239,6 @@ export interface CaseUpdateInput {
   referringParties?: Maybe<ContactUpdateManyInput>;
   associatedContacts?: Maybe<ContactUpdateManyInput>;
   caseNotes?: Maybe<NoteUpdateManyWithoutCaseInput>;
-}
-
-export interface NoteUpdateInput {
-  case?: Maybe<CaseUpdateOneWithoutCaseNotesInput>;
-  title?: Maybe<String>;
-  content?: Maybe<String>;
-  author?: Maybe<UserUpdateOneInput>;
-  type?: Maybe<String>;
 }
 
 export interface ImportantDateUpdateManyInput {
@@ -1005,38 +1270,9 @@ export interface ImportantDateUpdateManyInput {
   >;
 }
 
-export interface CaseCreateWithoutCaseNotesInput {
-  id?: Maybe<ID_Input>;
-  caseId?: Maybe<String>;
-  title?: Maybe<String>;
-  status?: Maybe<String>;
-  referralType?: Maybe<String>;
-  legalPlan?: Maybe<String>;
-  importantDates?: Maybe<ImportantDateCreateManyInput>;
-  caseNumberDetails?: Maybe<String>;
-  generalCaseDetails?: Maybe<String>;
-  caseContacts?: Maybe<ContactCreateManyInput>;
-  client?: Maybe<ContactCreateOneInput>;
-  staffAttorneys?: Maybe<ContactCreateManyInput>;
-  staffAssistants?: Maybe<ContactCreateManyInput>;
-  opposingParties?: Maybe<ContactCreateManyInput>;
-  opposingAttorneys?: Maybe<ContactCreateManyInput>;
-  referringParties?: Maybe<ContactCreateManyInput>;
-  associatedContacts?: Maybe<ContactCreateManyInput>;
-}
-
 export interface ImportantDateUpdateWithWhereUniqueNestedInput {
   where: ImportantDateWhereUniqueInput;
   data: ImportantDateUpdateDataInput;
-}
-
-export interface NoteCreateInput {
-  id?: Maybe<ID_Input>;
-  case?: Maybe<CaseCreateOneWithoutCaseNotesInput>;
-  title: String;
-  content?: Maybe<String>;
-  author?: Maybe<UserCreateOneInput>;
-  type?: Maybe<String>;
 }
 
 export interface ImportantDateUpdateDataInput {
@@ -1044,100 +1280,10 @@ export interface ImportantDateUpdateDataInput {
   importantDateDetails?: Maybe<String>;
 }
 
-export interface ImportantDateUpdateManyMutationInput {
-  importantDateType?: Maybe<String>;
-  importantDateDetails?: Maybe<String>;
-}
-
-export interface NoteScalarWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  dateCreated?: Maybe<DateTimeInput>;
-  dateCreated_not?: Maybe<DateTimeInput>;
-  dateCreated_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  dateCreated_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  dateCreated_lt?: Maybe<DateTimeInput>;
-  dateCreated_lte?: Maybe<DateTimeInput>;
-  dateCreated_gt?: Maybe<DateTimeInput>;
-  dateCreated_gte?: Maybe<DateTimeInput>;
-  title?: Maybe<String>;
-  title_not?: Maybe<String>;
-  title_in?: Maybe<String[] | String>;
-  title_not_in?: Maybe<String[] | String>;
-  title_lt?: Maybe<String>;
-  title_lte?: Maybe<String>;
-  title_gt?: Maybe<String>;
-  title_gte?: Maybe<String>;
-  title_contains?: Maybe<String>;
-  title_not_contains?: Maybe<String>;
-  title_starts_with?: Maybe<String>;
-  title_not_starts_with?: Maybe<String>;
-  title_ends_with?: Maybe<String>;
-  title_not_ends_with?: Maybe<String>;
-  content?: Maybe<String>;
-  content_not?: Maybe<String>;
-  content_in?: Maybe<String[] | String>;
-  content_not_in?: Maybe<String[] | String>;
-  content_lt?: Maybe<String>;
-  content_lte?: Maybe<String>;
-  content_gt?: Maybe<String>;
-  content_gte?: Maybe<String>;
-  content_contains?: Maybe<String>;
-  content_not_contains?: Maybe<String>;
-  content_starts_with?: Maybe<String>;
-  content_not_starts_with?: Maybe<String>;
-  content_ends_with?: Maybe<String>;
-  content_not_ends_with?: Maybe<String>;
-  type?: Maybe<String>;
-  type_not?: Maybe<String>;
-  type_in?: Maybe<String[] | String>;
-  type_not_in?: Maybe<String[] | String>;
-  type_lt?: Maybe<String>;
-  type_lte?: Maybe<String>;
-  type_gt?: Maybe<String>;
-  type_gte?: Maybe<String>;
-  type_contains?: Maybe<String>;
-  type_not_contains?: Maybe<String>;
-  type_starts_with?: Maybe<String>;
-  type_not_starts_with?: Maybe<String>;
-  type_ends_with?: Maybe<String>;
-  type_not_ends_with?: Maybe<String>;
-  AND?: Maybe<NoteScalarWhereInput[] | NoteScalarWhereInput>;
-  OR?: Maybe<NoteScalarWhereInput[] | NoteScalarWhereInput>;
-  NOT?: Maybe<NoteScalarWhereInput[] | NoteScalarWhereInput>;
-}
-
-export interface ContactUpdateManyMutationInput {
-  contactType?: Maybe<String>;
-  firstName?: Maybe<String>;
-  lastName?: Maybe<String>;
-  homeStreet?: Maybe<String>;
-  homeStreet2?: Maybe<String>;
-  homeCity?: Maybe<String>;
-  homeState?: Maybe<String>;
-  homeZip?: Maybe<String>;
-  workStreet?: Maybe<String>;
-  workStreet2?: Maybe<String>;
-  emailMain?: Maybe<String>;
-  emailBackup?: Maybe<String>;
-  socialSecurity?: Maybe<String>;
-  cellPhone?: Maybe<String>;
-  workPhone?: Maybe<String>;
-  homePhone?: Maybe<String>;
-  fax?: Maybe<String>;
-  contactComment?: Maybe<String>;
+export interface ImportantDateUpsertWithWhereUniqueNestedInput {
+  where: ImportantDateWhereUniqueInput;
+  update: ImportantDateUpdateDataInput;
+  create: ImportantDateCreateInput;
 }
 
 export interface ImportantDateScalarWhereInput {
@@ -1188,36 +1334,9 @@ export interface ImportantDateScalarWhereInput {
   NOT?: Maybe<ImportantDateScalarWhereInput[] | ImportantDateScalarWhereInput>;
 }
 
-export interface ContactUpdateInput {
-  contactType?: Maybe<String>;
-  firstName?: Maybe<String>;
-  lastName?: Maybe<String>;
-  homeStreet?: Maybe<String>;
-  homeStreet2?: Maybe<String>;
-  homeCity?: Maybe<String>;
-  homeState?: Maybe<String>;
-  homeZip?: Maybe<String>;
-  workStreet?: Maybe<String>;
-  workStreet2?: Maybe<String>;
-  emailMain?: Maybe<String>;
-  emailBackup?: Maybe<String>;
-  socialSecurity?: Maybe<String>;
-  cellPhone?: Maybe<String>;
-  workPhone?: Maybe<String>;
-  homePhone?: Maybe<String>;
-  fax?: Maybe<String>;
-  contactComment?: Maybe<String>;
-}
-
 export interface ImportantDateUpdateManyWithWhereNestedInput {
   where: ImportantDateScalarWhereInput;
   data: ImportantDateUpdateManyDataInput;
-}
-
-export interface NoteUpdateManyDataInput {
-  title?: Maybe<String>;
-  content?: Maybe<String>;
-  type?: Maybe<String>;
 }
 
 export interface ImportantDateUpdateManyDataInput {
@@ -1225,116 +1344,30 @@ export interface ImportantDateUpdateManyDataInput {
   importantDateDetails?: Maybe<String>;
 }
 
-export interface UserSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<UserWhereInput>;
-  AND?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
-  OR?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
-  NOT?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
-}
-
-export interface NoteUpsertWithWhereUniqueWithoutCaseInput {
-  where: NoteWhereUniqueInput;
-  update: NoteUpdateWithoutCaseDataInput;
-  create: NoteCreateWithoutCaseInput;
-}
-
-export interface ImportantDateSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<ImportantDateWhereInput>;
-  AND?: Maybe<
-    ImportantDateSubscriptionWhereInput[] | ImportantDateSubscriptionWhereInput
+export interface ContactUpdateManyInput {
+  create?: Maybe<ContactCreateInput[] | ContactCreateInput>;
+  update?: Maybe<
+    | ContactUpdateWithWhereUniqueNestedInput[]
+    | ContactUpdateWithWhereUniqueNestedInput
   >;
-  OR?: Maybe<
-    ImportantDateSubscriptionWhereInput[] | ImportantDateSubscriptionWhereInput
+  upsert?: Maybe<
+    | ContactUpsertWithWhereUniqueNestedInput[]
+    | ContactUpsertWithWhereUniqueNestedInput
   >;
-  NOT?: Maybe<
-    ImportantDateSubscriptionWhereInput[] | ImportantDateSubscriptionWhereInput
+  delete?: Maybe<ContactWhereUniqueInput[] | ContactWhereUniqueInput>;
+  connect?: Maybe<ContactWhereUniqueInput[] | ContactWhereUniqueInput>;
+  set?: Maybe<ContactWhereUniqueInput[] | ContactWhereUniqueInput>;
+  disconnect?: Maybe<ContactWhereUniqueInput[] | ContactWhereUniqueInput>;
+  deleteMany?: Maybe<ContactScalarWhereInput[] | ContactScalarWhereInput>;
+  updateMany?: Maybe<
+    | ContactUpdateManyWithWhereNestedInput[]
+    | ContactUpdateManyWithWhereNestedInput
   >;
 }
 
-export interface NoteWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  dateCreated?: Maybe<DateTimeInput>;
-  dateCreated_not?: Maybe<DateTimeInput>;
-  dateCreated_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  dateCreated_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  dateCreated_lt?: Maybe<DateTimeInput>;
-  dateCreated_lte?: Maybe<DateTimeInput>;
-  dateCreated_gt?: Maybe<DateTimeInput>;
-  dateCreated_gte?: Maybe<DateTimeInput>;
-  case?: Maybe<CaseWhereInput>;
-  title?: Maybe<String>;
-  title_not?: Maybe<String>;
-  title_in?: Maybe<String[] | String>;
-  title_not_in?: Maybe<String[] | String>;
-  title_lt?: Maybe<String>;
-  title_lte?: Maybe<String>;
-  title_gt?: Maybe<String>;
-  title_gte?: Maybe<String>;
-  title_contains?: Maybe<String>;
-  title_not_contains?: Maybe<String>;
-  title_starts_with?: Maybe<String>;
-  title_not_starts_with?: Maybe<String>;
-  title_ends_with?: Maybe<String>;
-  title_not_ends_with?: Maybe<String>;
-  content?: Maybe<String>;
-  content_not?: Maybe<String>;
-  content_in?: Maybe<String[] | String>;
-  content_not_in?: Maybe<String[] | String>;
-  content_lt?: Maybe<String>;
-  content_lte?: Maybe<String>;
-  content_gt?: Maybe<String>;
-  content_gte?: Maybe<String>;
-  content_contains?: Maybe<String>;
-  content_not_contains?: Maybe<String>;
-  content_starts_with?: Maybe<String>;
-  content_not_starts_with?: Maybe<String>;
-  content_ends_with?: Maybe<String>;
-  content_not_ends_with?: Maybe<String>;
-  author?: Maybe<UserWhereInput>;
-  type?: Maybe<String>;
-  type_not?: Maybe<String>;
-  type_in?: Maybe<String[] | String>;
-  type_not_in?: Maybe<String[] | String>;
-  type_lt?: Maybe<String>;
-  type_lte?: Maybe<String>;
-  type_gt?: Maybe<String>;
-  type_gte?: Maybe<String>;
-  type_contains?: Maybe<String>;
-  type_not_contains?: Maybe<String>;
-  type_starts_with?: Maybe<String>;
-  type_not_starts_with?: Maybe<String>;
-  type_ends_with?: Maybe<String>;
-  type_not_ends_with?: Maybe<String>;
-  AND?: Maybe<NoteWhereInput[] | NoteWhereInput>;
-  OR?: Maybe<NoteWhereInput[] | NoteWhereInput>;
-  NOT?: Maybe<NoteWhereInput[] | NoteWhereInput>;
-}
-
-export interface UserUpdateManyMutationInput {
-  email?: Maybe<String>;
-  userName?: Maybe<String>;
-  role?: Maybe<String>;
+export interface ContactUpdateWithWhereUniqueNestedInput {
+  where: ContactWhereUniqueInput;
+  data: ContactUpdateDataInput;
 }
 
 export interface ContactUpdateDataInput {
@@ -1346,31 +1379,32 @@ export interface ContactUpdateDataInput {
   homeCity?: Maybe<String>;
   homeState?: Maybe<String>;
   homeZip?: Maybe<String>;
+  workCompanyName?: Maybe<String>;
   workStreet?: Maybe<String>;
   workStreet2?: Maybe<String>;
+  workCity?: Maybe<String>;
+  workState?: Maybe<String>;
+  workZip?: Maybe<String>;
   emailMain?: Maybe<String>;
   emailBackup?: Maybe<String>;
   socialSecurity?: Maybe<String>;
+  birthdate?: Maybe<String>;
   cellPhone?: Maybe<String>;
   workPhone?: Maybe<String>;
   homePhone?: Maybe<String>;
+  primaryPhone?: Maybe<String>;
+  secondaryPhone?: Maybe<String>;
+  mobilePhone?: Maybe<String>;
   fax?: Maybe<String>;
   contactComment?: Maybe<String>;
+  comments?: Maybe<String>;
 }
-
-export type ContactWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
 
 export interface ContactUpsertWithWhereUniqueNestedInput {
   where: ContactWhereUniqueInput;
   update: ContactUpdateDataInput;
   create: ContactCreateInput;
 }
-
-export type ImportantDateWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
 
 export interface ContactScalarWhereInput {
   id?: Maybe<ID_Input>;
@@ -1499,6 +1533,20 @@ export interface ContactScalarWhereInput {
   homeZip_not_starts_with?: Maybe<String>;
   homeZip_ends_with?: Maybe<String>;
   homeZip_not_ends_with?: Maybe<String>;
+  workCompanyName?: Maybe<String>;
+  workCompanyName_not?: Maybe<String>;
+  workCompanyName_in?: Maybe<String[] | String>;
+  workCompanyName_not_in?: Maybe<String[] | String>;
+  workCompanyName_lt?: Maybe<String>;
+  workCompanyName_lte?: Maybe<String>;
+  workCompanyName_gt?: Maybe<String>;
+  workCompanyName_gte?: Maybe<String>;
+  workCompanyName_contains?: Maybe<String>;
+  workCompanyName_not_contains?: Maybe<String>;
+  workCompanyName_starts_with?: Maybe<String>;
+  workCompanyName_not_starts_with?: Maybe<String>;
+  workCompanyName_ends_with?: Maybe<String>;
+  workCompanyName_not_ends_with?: Maybe<String>;
   workStreet?: Maybe<String>;
   workStreet_not?: Maybe<String>;
   workStreet_in?: Maybe<String[] | String>;
@@ -1527,6 +1575,48 @@ export interface ContactScalarWhereInput {
   workStreet2_not_starts_with?: Maybe<String>;
   workStreet2_ends_with?: Maybe<String>;
   workStreet2_not_ends_with?: Maybe<String>;
+  workCity?: Maybe<String>;
+  workCity_not?: Maybe<String>;
+  workCity_in?: Maybe<String[] | String>;
+  workCity_not_in?: Maybe<String[] | String>;
+  workCity_lt?: Maybe<String>;
+  workCity_lte?: Maybe<String>;
+  workCity_gt?: Maybe<String>;
+  workCity_gte?: Maybe<String>;
+  workCity_contains?: Maybe<String>;
+  workCity_not_contains?: Maybe<String>;
+  workCity_starts_with?: Maybe<String>;
+  workCity_not_starts_with?: Maybe<String>;
+  workCity_ends_with?: Maybe<String>;
+  workCity_not_ends_with?: Maybe<String>;
+  workState?: Maybe<String>;
+  workState_not?: Maybe<String>;
+  workState_in?: Maybe<String[] | String>;
+  workState_not_in?: Maybe<String[] | String>;
+  workState_lt?: Maybe<String>;
+  workState_lte?: Maybe<String>;
+  workState_gt?: Maybe<String>;
+  workState_gte?: Maybe<String>;
+  workState_contains?: Maybe<String>;
+  workState_not_contains?: Maybe<String>;
+  workState_starts_with?: Maybe<String>;
+  workState_not_starts_with?: Maybe<String>;
+  workState_ends_with?: Maybe<String>;
+  workState_not_ends_with?: Maybe<String>;
+  workZip?: Maybe<String>;
+  workZip_not?: Maybe<String>;
+  workZip_in?: Maybe<String[] | String>;
+  workZip_not_in?: Maybe<String[] | String>;
+  workZip_lt?: Maybe<String>;
+  workZip_lte?: Maybe<String>;
+  workZip_gt?: Maybe<String>;
+  workZip_gte?: Maybe<String>;
+  workZip_contains?: Maybe<String>;
+  workZip_not_contains?: Maybe<String>;
+  workZip_starts_with?: Maybe<String>;
+  workZip_not_starts_with?: Maybe<String>;
+  workZip_ends_with?: Maybe<String>;
+  workZip_not_ends_with?: Maybe<String>;
   emailMain?: Maybe<String>;
   emailMain_not?: Maybe<String>;
   emailMain_in?: Maybe<String[] | String>;
@@ -1569,6 +1659,20 @@ export interface ContactScalarWhereInput {
   socialSecurity_not_starts_with?: Maybe<String>;
   socialSecurity_ends_with?: Maybe<String>;
   socialSecurity_not_ends_with?: Maybe<String>;
+  birthdate?: Maybe<String>;
+  birthdate_not?: Maybe<String>;
+  birthdate_in?: Maybe<String[] | String>;
+  birthdate_not_in?: Maybe<String[] | String>;
+  birthdate_lt?: Maybe<String>;
+  birthdate_lte?: Maybe<String>;
+  birthdate_gt?: Maybe<String>;
+  birthdate_gte?: Maybe<String>;
+  birthdate_contains?: Maybe<String>;
+  birthdate_not_contains?: Maybe<String>;
+  birthdate_starts_with?: Maybe<String>;
+  birthdate_not_starts_with?: Maybe<String>;
+  birthdate_ends_with?: Maybe<String>;
+  birthdate_not_ends_with?: Maybe<String>;
   cellPhone?: Maybe<String>;
   cellPhone_not?: Maybe<String>;
   cellPhone_in?: Maybe<String[] | String>;
@@ -1611,6 +1715,48 @@ export interface ContactScalarWhereInput {
   homePhone_not_starts_with?: Maybe<String>;
   homePhone_ends_with?: Maybe<String>;
   homePhone_not_ends_with?: Maybe<String>;
+  primaryPhone?: Maybe<String>;
+  primaryPhone_not?: Maybe<String>;
+  primaryPhone_in?: Maybe<String[] | String>;
+  primaryPhone_not_in?: Maybe<String[] | String>;
+  primaryPhone_lt?: Maybe<String>;
+  primaryPhone_lte?: Maybe<String>;
+  primaryPhone_gt?: Maybe<String>;
+  primaryPhone_gte?: Maybe<String>;
+  primaryPhone_contains?: Maybe<String>;
+  primaryPhone_not_contains?: Maybe<String>;
+  primaryPhone_starts_with?: Maybe<String>;
+  primaryPhone_not_starts_with?: Maybe<String>;
+  primaryPhone_ends_with?: Maybe<String>;
+  primaryPhone_not_ends_with?: Maybe<String>;
+  secondaryPhone?: Maybe<String>;
+  secondaryPhone_not?: Maybe<String>;
+  secondaryPhone_in?: Maybe<String[] | String>;
+  secondaryPhone_not_in?: Maybe<String[] | String>;
+  secondaryPhone_lt?: Maybe<String>;
+  secondaryPhone_lte?: Maybe<String>;
+  secondaryPhone_gt?: Maybe<String>;
+  secondaryPhone_gte?: Maybe<String>;
+  secondaryPhone_contains?: Maybe<String>;
+  secondaryPhone_not_contains?: Maybe<String>;
+  secondaryPhone_starts_with?: Maybe<String>;
+  secondaryPhone_not_starts_with?: Maybe<String>;
+  secondaryPhone_ends_with?: Maybe<String>;
+  secondaryPhone_not_ends_with?: Maybe<String>;
+  mobilePhone?: Maybe<String>;
+  mobilePhone_not?: Maybe<String>;
+  mobilePhone_in?: Maybe<String[] | String>;
+  mobilePhone_not_in?: Maybe<String[] | String>;
+  mobilePhone_lt?: Maybe<String>;
+  mobilePhone_lte?: Maybe<String>;
+  mobilePhone_gt?: Maybe<String>;
+  mobilePhone_gte?: Maybe<String>;
+  mobilePhone_contains?: Maybe<String>;
+  mobilePhone_not_contains?: Maybe<String>;
+  mobilePhone_starts_with?: Maybe<String>;
+  mobilePhone_not_starts_with?: Maybe<String>;
+  mobilePhone_ends_with?: Maybe<String>;
+  mobilePhone_not_ends_with?: Maybe<String>;
   fax?: Maybe<String>;
   fax_not?: Maybe<String>;
   fax_in?: Maybe<String[] | String>;
@@ -1639,24 +1785,29 @@ export interface ContactScalarWhereInput {
   contactComment_not_starts_with?: Maybe<String>;
   contactComment_ends_with?: Maybe<String>;
   contactComment_not_ends_with?: Maybe<String>;
+  comments?: Maybe<String>;
+  comments_not?: Maybe<String>;
+  comments_in?: Maybe<String[] | String>;
+  comments_not_in?: Maybe<String[] | String>;
+  comments_lt?: Maybe<String>;
+  comments_lte?: Maybe<String>;
+  comments_gt?: Maybe<String>;
+  comments_gte?: Maybe<String>;
+  comments_contains?: Maybe<String>;
+  comments_not_contains?: Maybe<String>;
+  comments_starts_with?: Maybe<String>;
+  comments_not_starts_with?: Maybe<String>;
+  comments_ends_with?: Maybe<String>;
+  comments_not_ends_with?: Maybe<String>;
   AND?: Maybe<ContactScalarWhereInput[] | ContactScalarWhereInput>;
   OR?: Maybe<ContactScalarWhereInput[] | ContactScalarWhereInput>;
   NOT?: Maybe<ContactScalarWhereInput[] | ContactScalarWhereInput>;
 }
 
-export type NoteWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
-
 export interface ContactUpdateManyWithWhereNestedInput {
   where: ContactScalarWhereInput;
   data: ContactUpdateManyDataInput;
 }
-
-export type UserWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-  email?: Maybe<String>;
-}>;
 
 export interface ContactUpdateManyDataInput {
   contactType?: Maybe<String>;
@@ -1667,21 +1818,25 @@ export interface ContactUpdateManyDataInput {
   homeCity?: Maybe<String>;
   homeState?: Maybe<String>;
   homeZip?: Maybe<String>;
+  workCompanyName?: Maybe<String>;
   workStreet?: Maybe<String>;
   workStreet2?: Maybe<String>;
+  workCity?: Maybe<String>;
+  workState?: Maybe<String>;
+  workZip?: Maybe<String>;
   emailMain?: Maybe<String>;
   emailBackup?: Maybe<String>;
   socialSecurity?: Maybe<String>;
+  birthdate?: Maybe<String>;
   cellPhone?: Maybe<String>;
   workPhone?: Maybe<String>;
   homePhone?: Maybe<String>;
+  primaryPhone?: Maybe<String>;
+  secondaryPhone?: Maybe<String>;
+  mobilePhone?: Maybe<String>;
   fax?: Maybe<String>;
   contactComment?: Maybe<String>;
-}
-
-export interface NoteUpdateManyWithWhereNestedInput {
-  where: NoteScalarWhereInput;
-  data: NoteUpdateManyDataInput;
+  comments?: Maybe<String>;
 }
 
 export interface ContactUpdateOneInput {
@@ -1693,78 +1848,9 @@ export interface ContactUpdateOneInput {
   connect?: Maybe<ContactWhereUniqueInput>;
 }
 
-export interface UserWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  email?: Maybe<String>;
-  email_not?: Maybe<String>;
-  email_in?: Maybe<String[] | String>;
-  email_not_in?: Maybe<String[] | String>;
-  email_lt?: Maybe<String>;
-  email_lte?: Maybe<String>;
-  email_gt?: Maybe<String>;
-  email_gte?: Maybe<String>;
-  email_contains?: Maybe<String>;
-  email_not_contains?: Maybe<String>;
-  email_starts_with?: Maybe<String>;
-  email_not_starts_with?: Maybe<String>;
-  email_ends_with?: Maybe<String>;
-  email_not_ends_with?: Maybe<String>;
-  userName?: Maybe<String>;
-  userName_not?: Maybe<String>;
-  userName_in?: Maybe<String[] | String>;
-  userName_not_in?: Maybe<String[] | String>;
-  userName_lt?: Maybe<String>;
-  userName_lte?: Maybe<String>;
-  userName_gt?: Maybe<String>;
-  userName_gte?: Maybe<String>;
-  userName_contains?: Maybe<String>;
-  userName_not_contains?: Maybe<String>;
-  userName_starts_with?: Maybe<String>;
-  userName_not_starts_with?: Maybe<String>;
-  userName_ends_with?: Maybe<String>;
-  userName_not_ends_with?: Maybe<String>;
-  role?: Maybe<String>;
-  role_not?: Maybe<String>;
-  role_in?: Maybe<String[] | String>;
-  role_not_in?: Maybe<String[] | String>;
-  role_lt?: Maybe<String>;
-  role_lte?: Maybe<String>;
-  role_gt?: Maybe<String>;
-  role_gte?: Maybe<String>;
-  role_contains?: Maybe<String>;
-  role_not_contains?: Maybe<String>;
-  role_starts_with?: Maybe<String>;
-  role_not_starts_with?: Maybe<String>;
-  role_ends_with?: Maybe<String>;
-  role_not_ends_with?: Maybe<String>;
-  contact?: Maybe<ContactWhereInput>;
-  AND?: Maybe<UserWhereInput[] | UserWhereInput>;
-  OR?: Maybe<UserWhereInput[] | UserWhereInput>;
-  NOT?: Maybe<UserWhereInput[] | UserWhereInput>;
-}
-
 export interface ContactUpsertNestedInput {
   update: ContactUpdateDataInput;
   create: ContactCreateInput;
-}
-
-export interface NoteUpdateManyMutationInput {
-  title?: Maybe<String>;
-  content?: Maybe<String>;
-  type?: Maybe<String>;
 }
 
 export interface NoteUpdateManyWithoutCaseInput {
@@ -1787,16 +1873,16 @@ export interface NoteUpdateManyWithoutCaseInput {
   >;
 }
 
-export interface CaseCreateOneWithoutCaseNotesInput {
-  create?: Maybe<CaseCreateWithoutCaseNotesInput>;
-  connect?: Maybe<CaseWhereUniqueInput>;
+export interface NoteUpdateWithWhereUniqueWithoutCaseInput {
+  where: NoteWhereUniqueInput;
+  data: NoteUpdateWithoutCaseDataInput;
 }
 
-export interface UserUpdateDataInput {
-  email?: Maybe<String>;
-  userName?: Maybe<String>;
-  role?: Maybe<String>;
-  contact?: Maybe<ContactUpdateOneInput>;
+export interface NoteUpdateWithoutCaseDataInput {
+  title?: Maybe<String>;
+  content?: Maybe<String>;
+  author?: Maybe<UserUpdateOneInput>;
+  type?: Maybe<String>;
 }
 
 export interface UserUpdateOneInput {
@@ -1808,33 +1894,25 @@ export interface UserUpdateOneInput {
   connect?: Maybe<UserWhereUniqueInput>;
 }
 
-export interface NoteUpdateWithoutCaseDataInput {
-  title?: Maybe<String>;
-  content?: Maybe<String>;
-  author?: Maybe<UserUpdateOneInput>;
-  type?: Maybe<String>;
+export interface UserUpdateDataInput {
+  email?: Maybe<String>;
+  userName?: Maybe<String>;
+  role?: Maybe<String>;
+  contact?: Maybe<ContactUpdateOneInput>;
 }
 
-export interface NoteUpdateWithWhereUniqueWithoutCaseInput {
+export interface UserUpsertNestedInput {
+  update: UserUpdateDataInput;
+  create: UserCreateInput;
+}
+
+export interface NoteUpsertWithWhereUniqueWithoutCaseInput {
   where: NoteWhereUniqueInput;
-  data: NoteUpdateWithoutCaseDataInput;
+  update: NoteUpdateWithoutCaseDataInput;
+  create: NoteCreateWithoutCaseInput;
 }
 
-export interface ImportantDateUpdateInput {
-  importantDateType?: Maybe<String>;
-  importantDateDetails?: Maybe<String>;
-}
-
-export interface CaseUpdateOneWithoutCaseNotesInput {
-  create?: Maybe<CaseCreateWithoutCaseNotesInput>;
-  update?: Maybe<CaseUpdateWithoutCaseNotesDataInput>;
-  upsert?: Maybe<CaseUpsertWithoutCaseNotesInput>;
-  delete?: Maybe<Boolean>;
-  disconnect?: Maybe<Boolean>;
-  connect?: Maybe<CaseWhereUniqueInput>;
-}
-
-export interface ImportantDateWhereInput {
+export interface NoteScalarWhereInput {
   id?: Maybe<ID_Input>;
   id_not?: Maybe<ID_Input>;
   id_in?: Maybe<ID_Input[] | ID_Input>;
@@ -1849,40 +1927,167 @@ export interface ImportantDateWhereInput {
   id_not_starts_with?: Maybe<ID_Input>;
   id_ends_with?: Maybe<ID_Input>;
   id_not_ends_with?: Maybe<ID_Input>;
-  importantDateType?: Maybe<String>;
-  importantDateType_not?: Maybe<String>;
-  importantDateType_in?: Maybe<String[] | String>;
-  importantDateType_not_in?: Maybe<String[] | String>;
-  importantDateType_lt?: Maybe<String>;
-  importantDateType_lte?: Maybe<String>;
-  importantDateType_gt?: Maybe<String>;
-  importantDateType_gte?: Maybe<String>;
-  importantDateType_contains?: Maybe<String>;
-  importantDateType_not_contains?: Maybe<String>;
-  importantDateType_starts_with?: Maybe<String>;
-  importantDateType_not_starts_with?: Maybe<String>;
-  importantDateType_ends_with?: Maybe<String>;
-  importantDateType_not_ends_with?: Maybe<String>;
-  importantDateDetails?: Maybe<String>;
-  importantDateDetails_not?: Maybe<String>;
-  importantDateDetails_in?: Maybe<String[] | String>;
-  importantDateDetails_not_in?: Maybe<String[] | String>;
-  importantDateDetails_lt?: Maybe<String>;
-  importantDateDetails_lte?: Maybe<String>;
-  importantDateDetails_gt?: Maybe<String>;
-  importantDateDetails_gte?: Maybe<String>;
-  importantDateDetails_contains?: Maybe<String>;
-  importantDateDetails_not_contains?: Maybe<String>;
-  importantDateDetails_starts_with?: Maybe<String>;
-  importantDateDetails_not_starts_with?: Maybe<String>;
-  importantDateDetails_ends_with?: Maybe<String>;
-  importantDateDetails_not_ends_with?: Maybe<String>;
-  AND?: Maybe<ImportantDateWhereInput[] | ImportantDateWhereInput>;
-  OR?: Maybe<ImportantDateWhereInput[] | ImportantDateWhereInput>;
-  NOT?: Maybe<ImportantDateWhereInput[] | ImportantDateWhereInput>;
+  dateCreated?: Maybe<DateTimeInput>;
+  dateCreated_not?: Maybe<DateTimeInput>;
+  dateCreated_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  dateCreated_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  dateCreated_lt?: Maybe<DateTimeInput>;
+  dateCreated_lte?: Maybe<DateTimeInput>;
+  dateCreated_gt?: Maybe<DateTimeInput>;
+  dateCreated_gte?: Maybe<DateTimeInput>;
+  title?: Maybe<String>;
+  title_not?: Maybe<String>;
+  title_in?: Maybe<String[] | String>;
+  title_not_in?: Maybe<String[] | String>;
+  title_lt?: Maybe<String>;
+  title_lte?: Maybe<String>;
+  title_gt?: Maybe<String>;
+  title_gte?: Maybe<String>;
+  title_contains?: Maybe<String>;
+  title_not_contains?: Maybe<String>;
+  title_starts_with?: Maybe<String>;
+  title_not_starts_with?: Maybe<String>;
+  title_ends_with?: Maybe<String>;
+  title_not_ends_with?: Maybe<String>;
+  content?: Maybe<String>;
+  content_not?: Maybe<String>;
+  content_in?: Maybe<String[] | String>;
+  content_not_in?: Maybe<String[] | String>;
+  content_lt?: Maybe<String>;
+  content_lte?: Maybe<String>;
+  content_gt?: Maybe<String>;
+  content_gte?: Maybe<String>;
+  content_contains?: Maybe<String>;
+  content_not_contains?: Maybe<String>;
+  content_starts_with?: Maybe<String>;
+  content_not_starts_with?: Maybe<String>;
+  content_ends_with?: Maybe<String>;
+  content_not_ends_with?: Maybe<String>;
+  type?: Maybe<String>;
+  type_not?: Maybe<String>;
+  type_in?: Maybe<String[] | String>;
+  type_not_in?: Maybe<String[] | String>;
+  type_lt?: Maybe<String>;
+  type_lte?: Maybe<String>;
+  type_gt?: Maybe<String>;
+  type_gte?: Maybe<String>;
+  type_contains?: Maybe<String>;
+  type_not_contains?: Maybe<String>;
+  type_starts_with?: Maybe<String>;
+  type_not_starts_with?: Maybe<String>;
+  type_ends_with?: Maybe<String>;
+  type_not_ends_with?: Maybe<String>;
+  AND?: Maybe<NoteScalarWhereInput[] | NoteScalarWhereInput>;
+  OR?: Maybe<NoteScalarWhereInput[] | NoteScalarWhereInput>;
+  NOT?: Maybe<NoteScalarWhereInput[] | NoteScalarWhereInput>;
 }
 
-export interface CaseCreateInput {
+export interface NoteUpdateManyWithWhereNestedInput {
+  where: NoteScalarWhereInput;
+  data: NoteUpdateManyDataInput;
+}
+
+export interface NoteUpdateManyDataInput {
+  title?: Maybe<String>;
+  content?: Maybe<String>;
+  type?: Maybe<String>;
+}
+
+export interface CaseUpdateManyMutationInput {
+  caseId?: Maybe<String>;
+  title?: Maybe<String>;
+  status?: Maybe<String>;
+  referralType?: Maybe<String>;
+  legalPlan?: Maybe<String>;
+  caseNumberDetails?: Maybe<String>;
+  generalCaseDetails?: Maybe<String>;
+}
+
+export interface ContactUpdateInput {
+  contactType?: Maybe<String>;
+  firstName?: Maybe<String>;
+  lastName?: Maybe<String>;
+  homeStreet?: Maybe<String>;
+  homeStreet2?: Maybe<String>;
+  homeCity?: Maybe<String>;
+  homeState?: Maybe<String>;
+  homeZip?: Maybe<String>;
+  workCompanyName?: Maybe<String>;
+  workStreet?: Maybe<String>;
+  workStreet2?: Maybe<String>;
+  workCity?: Maybe<String>;
+  workState?: Maybe<String>;
+  workZip?: Maybe<String>;
+  emailMain?: Maybe<String>;
+  emailBackup?: Maybe<String>;
+  socialSecurity?: Maybe<String>;
+  birthdate?: Maybe<String>;
+  cellPhone?: Maybe<String>;
+  workPhone?: Maybe<String>;
+  homePhone?: Maybe<String>;
+  primaryPhone?: Maybe<String>;
+  secondaryPhone?: Maybe<String>;
+  mobilePhone?: Maybe<String>;
+  fax?: Maybe<String>;
+  contactComment?: Maybe<String>;
+  comments?: Maybe<String>;
+}
+
+export interface ContactUpdateManyMutationInput {
+  contactType?: Maybe<String>;
+  firstName?: Maybe<String>;
+  lastName?: Maybe<String>;
+  homeStreet?: Maybe<String>;
+  homeStreet2?: Maybe<String>;
+  homeCity?: Maybe<String>;
+  homeState?: Maybe<String>;
+  homeZip?: Maybe<String>;
+  workCompanyName?: Maybe<String>;
+  workStreet?: Maybe<String>;
+  workStreet2?: Maybe<String>;
+  workCity?: Maybe<String>;
+  workState?: Maybe<String>;
+  workZip?: Maybe<String>;
+  emailMain?: Maybe<String>;
+  emailBackup?: Maybe<String>;
+  socialSecurity?: Maybe<String>;
+  birthdate?: Maybe<String>;
+  cellPhone?: Maybe<String>;
+  workPhone?: Maybe<String>;
+  homePhone?: Maybe<String>;
+  primaryPhone?: Maybe<String>;
+  secondaryPhone?: Maybe<String>;
+  mobilePhone?: Maybe<String>;
+  fax?: Maybe<String>;
+  contactComment?: Maybe<String>;
+  comments?: Maybe<String>;
+}
+
+export interface ImportantDateUpdateInput {
+  importantDateType?: Maybe<String>;
+  importantDateDetails?: Maybe<String>;
+}
+
+export interface ImportantDateUpdateManyMutationInput {
+  importantDateType?: Maybe<String>;
+  importantDateDetails?: Maybe<String>;
+}
+
+export interface NoteCreateInput {
+  id?: Maybe<ID_Input>;
+  case?: Maybe<CaseCreateOneWithoutCaseNotesInput>;
+  title: String;
+  content?: Maybe<String>;
+  author?: Maybe<UserCreateOneInput>;
+  type?: Maybe<String>;
+}
+
+export interface CaseCreateOneWithoutCaseNotesInput {
+  create?: Maybe<CaseCreateWithoutCaseNotesInput>;
+  connect?: Maybe<CaseWhereUniqueInput>;
+}
+
+export interface CaseCreateWithoutCaseNotesInput {
   id?: Maybe<ID_Input>;
   caseId?: Maybe<String>;
   title?: Maybe<String>;
@@ -1900,324 +2105,131 @@ export interface CaseCreateInput {
   opposingAttorneys?: Maybe<ContactCreateManyInput>;
   referringParties?: Maybe<ContactCreateManyInput>;
   associatedContacts?: Maybe<ContactCreateManyInput>;
-  caseNotes?: Maybe<NoteCreateManyWithoutCaseInput>;
 }
 
-export interface CaseUpdateManyMutationInput {
+export interface NoteUpdateInput {
+  case?: Maybe<CaseUpdateOneWithoutCaseNotesInput>;
+  title?: Maybe<String>;
+  content?: Maybe<String>;
+  author?: Maybe<UserUpdateOneInput>;
+  type?: Maybe<String>;
+}
+
+export interface CaseUpdateOneWithoutCaseNotesInput {
+  create?: Maybe<CaseCreateWithoutCaseNotesInput>;
+  update?: Maybe<CaseUpdateWithoutCaseNotesDataInput>;
+  upsert?: Maybe<CaseUpsertWithoutCaseNotesInput>;
+  delete?: Maybe<Boolean>;
+  disconnect?: Maybe<Boolean>;
+  connect?: Maybe<CaseWhereUniqueInput>;
+}
+
+export interface CaseUpdateWithoutCaseNotesDataInput {
   caseId?: Maybe<String>;
   title?: Maybe<String>;
   status?: Maybe<String>;
   referralType?: Maybe<String>;
   legalPlan?: Maybe<String>;
+  importantDates?: Maybe<ImportantDateUpdateManyInput>;
   caseNumberDetails?: Maybe<String>;
   generalCaseDetails?: Maybe<String>;
+  caseContacts?: Maybe<ContactUpdateManyInput>;
+  client?: Maybe<ContactUpdateOneInput>;
+  staffAttorneys?: Maybe<ContactUpdateManyInput>;
+  staffAssistants?: Maybe<ContactUpdateManyInput>;
+  opposingParties?: Maybe<ContactUpdateManyInput>;
+  opposingAttorneys?: Maybe<ContactUpdateManyInput>;
+  referringParties?: Maybe<ContactUpdateManyInput>;
+  associatedContacts?: Maybe<ContactUpdateManyInput>;
+}
+
+export interface CaseUpsertWithoutCaseNotesInput {
+  update: CaseUpdateWithoutCaseNotesDataInput;
+  create: CaseCreateWithoutCaseNotesInput;
+}
+
+export interface NoteUpdateManyMutationInput {
+  title?: Maybe<String>;
+  content?: Maybe<String>;
+  type?: Maybe<String>;
+}
+
+export interface UserUpdateInput {
+  email?: Maybe<String>;
+  userName?: Maybe<String>;
+  role?: Maybe<String>;
+  contact?: Maybe<ContactUpdateOneInput>;
+}
+
+export interface UserUpdateManyMutationInput {
+  email?: Maybe<String>;
+  userName?: Maybe<String>;
+  role?: Maybe<String>;
+}
+
+export interface CaseSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<CaseWhereInput>;
+  AND?: Maybe<CaseSubscriptionWhereInput[] | CaseSubscriptionWhereInput>;
+  OR?: Maybe<CaseSubscriptionWhereInput[] | CaseSubscriptionWhereInput>;
+  NOT?: Maybe<CaseSubscriptionWhereInput[] | CaseSubscriptionWhereInput>;
+}
+
+export interface ContactSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<ContactWhereInput>;
+  AND?: Maybe<ContactSubscriptionWhereInput[] | ContactSubscriptionWhereInput>;
+  OR?: Maybe<ContactSubscriptionWhereInput[] | ContactSubscriptionWhereInput>;
+  NOT?: Maybe<ContactSubscriptionWhereInput[] | ContactSubscriptionWhereInput>;
+}
+
+export interface ImportantDateSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<ImportantDateWhereInput>;
+  AND?: Maybe<
+    ImportantDateSubscriptionWhereInput[] | ImportantDateSubscriptionWhereInput
+  >;
+  OR?: Maybe<
+    ImportantDateSubscriptionWhereInput[] | ImportantDateSubscriptionWhereInput
+  >;
+  NOT?: Maybe<
+    ImportantDateSubscriptionWhereInput[] | ImportantDateSubscriptionWhereInput
+  >;
+}
+
+export interface NoteSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<NoteWhereInput>;
+  AND?: Maybe<NoteSubscriptionWhereInput[] | NoteSubscriptionWhereInput>;
+  OR?: Maybe<NoteSubscriptionWhereInput[] | NoteSubscriptionWhereInput>;
+  NOT?: Maybe<NoteSubscriptionWhereInput[] | NoteSubscriptionWhereInput>;
+}
+
+export interface UserSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<UserWhereInput>;
+  AND?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
+  OR?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
+  NOT?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
 }
 
 export interface NodeNode {
   id: ID_Output;
-}
-
-export interface UserPreviousValues {
-  id: ID_Output;
-  email?: String;
-  userName: String;
-  role?: String;
-}
-
-export interface UserPreviousValuesPromise
-  extends Promise<UserPreviousValues>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  email: () => Promise<String>;
-  userName: () => Promise<String>;
-  role: () => Promise<String>;
-}
-
-export interface UserPreviousValuesSubscription
-  extends Promise<AsyncIterator<UserPreviousValues>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  email: () => Promise<AsyncIterator<String>>;
-  userName: () => Promise<AsyncIterator<String>>;
-  role: () => Promise<AsyncIterator<String>>;
-}
-
-export interface CaseEdge {
-  node: Case;
-  cursor: String;
-}
-
-export interface CaseEdgePromise extends Promise<CaseEdge>, Fragmentable {
-  node: <T = CasePromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface CaseEdgeSubscription
-  extends Promise<AsyncIterator<CaseEdge>>,
-    Fragmentable {
-  node: <T = CaseSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface Contact {
-  id: ID_Output;
-  contactType?: String;
-  firstName: String;
-  lastName: String;
-  homeStreet?: String;
-  homeStreet2?: String;
-  homeCity?: String;
-  homeState?: String;
-  homeZip?: String;
-  workStreet?: String;
-  workStreet2?: String;
-  emailMain?: String;
-  emailBackup?: String;
-  socialSecurity?: String;
-  cellPhone?: String;
-  workPhone?: String;
-  homePhone?: String;
-  fax?: String;
-  contactComment?: String;
-}
-
-export interface ContactPromise extends Promise<Contact>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  contactType: () => Promise<String>;
-  firstName: () => Promise<String>;
-  lastName: () => Promise<String>;
-  homeStreet: () => Promise<String>;
-  homeStreet2: () => Promise<String>;
-  homeCity: () => Promise<String>;
-  homeState: () => Promise<String>;
-  homeZip: () => Promise<String>;
-  workStreet: () => Promise<String>;
-  workStreet2: () => Promise<String>;
-  emailMain: () => Promise<String>;
-  emailBackup: () => Promise<String>;
-  socialSecurity: () => Promise<String>;
-  cellPhone: () => Promise<String>;
-  workPhone: () => Promise<String>;
-  homePhone: () => Promise<String>;
-  fax: () => Promise<String>;
-  contactComment: () => Promise<String>;
-}
-
-export interface ContactSubscription
-  extends Promise<AsyncIterator<Contact>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  contactType: () => Promise<AsyncIterator<String>>;
-  firstName: () => Promise<AsyncIterator<String>>;
-  lastName: () => Promise<AsyncIterator<String>>;
-  homeStreet: () => Promise<AsyncIterator<String>>;
-  homeStreet2: () => Promise<AsyncIterator<String>>;
-  homeCity: () => Promise<AsyncIterator<String>>;
-  homeState: () => Promise<AsyncIterator<String>>;
-  homeZip: () => Promise<AsyncIterator<String>>;
-  workStreet: () => Promise<AsyncIterator<String>>;
-  workStreet2: () => Promise<AsyncIterator<String>>;
-  emailMain: () => Promise<AsyncIterator<String>>;
-  emailBackup: () => Promise<AsyncIterator<String>>;
-  socialSecurity: () => Promise<AsyncIterator<String>>;
-  cellPhone: () => Promise<AsyncIterator<String>>;
-  workPhone: () => Promise<AsyncIterator<String>>;
-  homePhone: () => Promise<AsyncIterator<String>>;
-  fax: () => Promise<AsyncIterator<String>>;
-  contactComment: () => Promise<AsyncIterator<String>>;
-}
-
-export interface ContactNullablePromise
-  extends Promise<Contact | null>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  contactType: () => Promise<String>;
-  firstName: () => Promise<String>;
-  lastName: () => Promise<String>;
-  homeStreet: () => Promise<String>;
-  homeStreet2: () => Promise<String>;
-  homeCity: () => Promise<String>;
-  homeState: () => Promise<String>;
-  homeZip: () => Promise<String>;
-  workStreet: () => Promise<String>;
-  workStreet2: () => Promise<String>;
-  emailMain: () => Promise<String>;
-  emailBackup: () => Promise<String>;
-  socialSecurity: () => Promise<String>;
-  cellPhone: () => Promise<String>;
-  workPhone: () => Promise<String>;
-  homePhone: () => Promise<String>;
-  fax: () => Promise<String>;
-  contactComment: () => Promise<String>;
-}
-
-export interface ImportantDate {
-  id: ID_Output;
-  importantDateType?: String;
-  importantDateDetails?: String;
-}
-
-export interface ImportantDatePromise
-  extends Promise<ImportantDate>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  importantDateType: () => Promise<String>;
-  importantDateDetails: () => Promise<String>;
-}
-
-export interface ImportantDateSubscription
-  extends Promise<AsyncIterator<ImportantDate>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  importantDateType: () => Promise<AsyncIterator<String>>;
-  importantDateDetails: () => Promise<AsyncIterator<String>>;
-}
-
-export interface ImportantDateNullablePromise
-  extends Promise<ImportantDate | null>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  importantDateType: () => Promise<String>;
-  importantDateDetails: () => Promise<String>;
-}
-
-export interface AggregateUser {
-  count: Int;
-}
-
-export interface AggregateUserPromise
-  extends Promise<AggregateUser>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateUserSubscription
-  extends Promise<AsyncIterator<AggregateUser>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface PageInfo {
-  hasNextPage: Boolean;
-  hasPreviousPage: Boolean;
-  startCursor?: String;
-  endCursor?: String;
-}
-
-export interface PageInfoPromise extends Promise<PageInfo>, Fragmentable {
-  hasNextPage: () => Promise<Boolean>;
-  hasPreviousPage: () => Promise<Boolean>;
-  startCursor: () => Promise<String>;
-  endCursor: () => Promise<String>;
-}
-
-export interface PageInfoSubscription
-  extends Promise<AsyncIterator<PageInfo>>,
-    Fragmentable {
-  hasNextPage: () => Promise<AsyncIterator<Boolean>>;
-  hasPreviousPage: () => Promise<AsyncIterator<Boolean>>;
-  startCursor: () => Promise<AsyncIterator<String>>;
-  endCursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface UserConnection {
-  pageInfo: PageInfo;
-  edges: UserEdge[];
-}
-
-export interface UserConnectionPromise
-  extends Promise<UserConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<UserEdge>>() => T;
-  aggregate: <T = AggregateUserPromise>() => T;
-}
-
-export interface UserConnectionSubscription
-  extends Promise<AsyncIterator<UserConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<UserEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateUserSubscription>() => T;
-}
-
-export interface UserEdge {
-  node: User;
-  cursor: String;
-}
-
-export interface UserEdgePromise extends Promise<UserEdge>, Fragmentable {
-  node: <T = UserPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface UserEdgeSubscription
-  extends Promise<AsyncIterator<UserEdge>>,
-    Fragmentable {
-  node: <T = UserSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface NoteSubscriptionPayload {
-  mutation: MutationType;
-  node: Note;
-  updatedFields: String[];
-  previousValues: NotePreviousValues;
-}
-
-export interface NoteSubscriptionPayloadPromise
-  extends Promise<NoteSubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = NotePromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = NotePreviousValuesPromise>() => T;
-}
-
-export interface NoteSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<NoteSubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = NoteSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = NotePreviousValuesSubscription>() => T;
-}
-
-export interface BatchPayload {
-  count: Long;
-}
-
-export interface BatchPayloadPromise
-  extends Promise<BatchPayload>,
-    Fragmentable {
-  count: () => Promise<Long>;
-}
-
-export interface BatchPayloadSubscription
-  extends Promise<AsyncIterator<BatchPayload>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Long>>;
-}
-
-export interface CaseConnection {
-  pageInfo: PageInfo;
-  edges: CaseEdge[];
-}
-
-export interface CaseConnectionPromise
-  extends Promise<CaseConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<CaseEdge>>() => T;
-  aggregate: <T = AggregateCasePromise>() => T;
-}
-
-export interface CaseConnectionSubscription
-  extends Promise<AsyncIterator<CaseConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<CaseEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateCaseSubscription>() => T;
 }
 
 export interface Case {
@@ -2516,323 +2528,162 @@ export interface CaseNullablePromise
   }) => T;
 }
 
-export interface NoteEdge {
-  node: Note;
-  cursor: String;
-}
-
-export interface NoteEdgePromise extends Promise<NoteEdge>, Fragmentable {
-  node: <T = NotePromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface NoteEdgeSubscription
-  extends Promise<AsyncIterator<NoteEdge>>,
-    Fragmentable {
-  node: <T = NoteSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface NotePreviousValues {
-  id: ID_Output;
-  dateCreated: DateTimeOutput;
-  title: String;
-  content?: String;
-  type?: String;
-}
-
-export interface NotePreviousValuesPromise
-  extends Promise<NotePreviousValues>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  dateCreated: () => Promise<DateTimeOutput>;
-  title: () => Promise<String>;
-  content: () => Promise<String>;
-  type: () => Promise<String>;
-}
-
-export interface NotePreviousValuesSubscription
-  extends Promise<AsyncIterator<NotePreviousValues>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  dateCreated: () => Promise<AsyncIterator<DateTimeOutput>>;
-  title: () => Promise<AsyncIterator<String>>;
-  content: () => Promise<AsyncIterator<String>>;
-  type: () => Promise<AsyncIterator<String>>;
-}
-
-export interface AggregateImportantDate {
-  count: Int;
-}
-
-export interface AggregateImportantDatePromise
-  extends Promise<AggregateImportantDate>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateImportantDateSubscription
-  extends Promise<AsyncIterator<AggregateImportantDate>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface CaseSubscriptionPayload {
-  mutation: MutationType;
-  node: Case;
-  updatedFields: String[];
-  previousValues: CasePreviousValues;
-}
-
-export interface CaseSubscriptionPayloadPromise
-  extends Promise<CaseSubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = CasePromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = CasePreviousValuesPromise>() => T;
-}
-
-export interface CaseSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<CaseSubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = CaseSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = CasePreviousValuesSubscription>() => T;
-}
-
-export interface ImportantDateConnection {
-  pageInfo: PageInfo;
-  edges: ImportantDateEdge[];
-}
-
-export interface ImportantDateConnectionPromise
-  extends Promise<ImportantDateConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<ImportantDateEdge>>() => T;
-  aggregate: <T = AggregateImportantDatePromise>() => T;
-}
-
-export interface ImportantDateConnectionSubscription
-  extends Promise<AsyncIterator<ImportantDateConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<ImportantDateEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateImportantDateSubscription>() => T;
-}
-
-export interface CasePreviousValues {
-  id: ID_Output;
-  caseId?: String;
-  title?: String;
-  status?: String;
-  referralType?: String;
-  legalPlan?: String;
-  caseNumberDetails?: String;
-  generalCaseDetails?: String;
-}
-
-export interface CasePreviousValuesPromise
-  extends Promise<CasePreviousValues>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  caseId: () => Promise<String>;
-  title: () => Promise<String>;
-  status: () => Promise<String>;
-  referralType: () => Promise<String>;
-  legalPlan: () => Promise<String>;
-  caseNumberDetails: () => Promise<String>;
-  generalCaseDetails: () => Promise<String>;
-}
-
-export interface CasePreviousValuesSubscription
-  extends Promise<AsyncIterator<CasePreviousValues>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  caseId: () => Promise<AsyncIterator<String>>;
-  title: () => Promise<AsyncIterator<String>>;
-  status: () => Promise<AsyncIterator<String>>;
-  referralType: () => Promise<AsyncIterator<String>>;
-  legalPlan: () => Promise<AsyncIterator<String>>;
-  caseNumberDetails: () => Promise<AsyncIterator<String>>;
-  generalCaseDetails: () => Promise<AsyncIterator<String>>;
-}
-
-export interface ContactEdge {
-  node: Contact;
-  cursor: String;
-}
-
-export interface ContactEdgePromise extends Promise<ContactEdge>, Fragmentable {
-  node: <T = ContactPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface ContactEdgeSubscription
-  extends Promise<AsyncIterator<ContactEdge>>,
-    Fragmentable {
-  node: <T = ContactSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface User {
-  id: ID_Output;
-  email?: String;
-  userName: String;
-  role?: String;
-}
-
-export interface UserPromise extends Promise<User>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  email: () => Promise<String>;
-  userName: () => Promise<String>;
-  role: () => Promise<String>;
-  contact: <T = ContactPromise>() => T;
-}
-
-export interface UserSubscription
-  extends Promise<AsyncIterator<User>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  email: () => Promise<AsyncIterator<String>>;
-  userName: () => Promise<AsyncIterator<String>>;
-  role: () => Promise<AsyncIterator<String>>;
-  contact: <T = ContactSubscription>() => T;
-}
-
-export interface UserNullablePromise
-  extends Promise<User | null>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  email: () => Promise<String>;
-  userName: () => Promise<String>;
-  role: () => Promise<String>;
-  contact: <T = ContactPromise>() => T;
-}
-
-export interface AggregateCase {
-  count: Int;
-}
-
-export interface AggregateCasePromise
-  extends Promise<AggregateCase>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateCaseSubscription
-  extends Promise<AsyncIterator<AggregateCase>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface ContactSubscriptionPayload {
-  mutation: MutationType;
-  node: Contact;
-  updatedFields: String[];
-  previousValues: ContactPreviousValues;
-}
-
-export interface ContactSubscriptionPayloadPromise
-  extends Promise<ContactSubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = ContactPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = ContactPreviousValuesPromise>() => T;
-}
-
-export interface ContactSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<ContactSubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = ContactSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = ContactPreviousValuesSubscription>() => T;
-}
-
-export interface AggregateNote {
-  count: Int;
-}
-
-export interface AggregateNotePromise
-  extends Promise<AggregateNote>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateNoteSubscription
-  extends Promise<AsyncIterator<AggregateNote>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface ImportantDateEdge {
-  node: ImportantDate;
-  cursor: String;
-}
-
-export interface ImportantDateEdgePromise
-  extends Promise<ImportantDateEdge>,
-    Fragmentable {
-  node: <T = ImportantDatePromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface ImportantDateEdgeSubscription
-  extends Promise<AsyncIterator<ImportantDateEdge>>,
-    Fragmentable {
-  node: <T = ImportantDateSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface ImportantDatePreviousValues {
+export interface ImportantDate {
   id: ID_Output;
   importantDateType?: String;
   importantDateDetails?: String;
 }
 
-export interface ImportantDatePreviousValuesPromise
-  extends Promise<ImportantDatePreviousValues>,
+export interface ImportantDatePromise
+  extends Promise<ImportantDate>,
     Fragmentable {
   id: () => Promise<ID_Output>;
   importantDateType: () => Promise<String>;
   importantDateDetails: () => Promise<String>;
 }
 
-export interface ImportantDatePreviousValuesSubscription
-  extends Promise<AsyncIterator<ImportantDatePreviousValues>>,
+export interface ImportantDateSubscription
+  extends Promise<AsyncIterator<ImportantDate>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   importantDateType: () => Promise<AsyncIterator<String>>;
   importantDateDetails: () => Promise<AsyncIterator<String>>;
 }
 
-export interface ImportantDateSubscriptionPayload {
-  mutation: MutationType;
-  node: ImportantDate;
-  updatedFields: String[];
-  previousValues: ImportantDatePreviousValues;
+export interface ImportantDateNullablePromise
+  extends Promise<ImportantDate | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  importantDateType: () => Promise<String>;
+  importantDateDetails: () => Promise<String>;
 }
 
-export interface ImportantDateSubscriptionPayloadPromise
-  extends Promise<ImportantDateSubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = ImportantDatePromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = ImportantDatePreviousValuesPromise>() => T;
+export interface Contact {
+  id: ID_Output;
+  contactType?: String;
+  firstName: String;
+  lastName: String;
+  homeStreet?: String;
+  homeStreet2?: String;
+  homeCity?: String;
+  homeState?: String;
+  homeZip?: String;
+  workCompanyName?: String;
+  workStreet?: String;
+  workStreet2?: String;
+  workCity?: String;
+  workState?: String;
+  workZip?: String;
+  emailMain?: String;
+  emailBackup?: String;
+  socialSecurity?: String;
+  birthdate?: String;
+  cellPhone?: String;
+  workPhone?: String;
+  homePhone?: String;
+  primaryPhone?: String;
+  secondaryPhone?: String;
+  mobilePhone?: String;
+  fax?: String;
+  contactComment?: String;
+  comments?: String;
 }
 
-export interface ImportantDateSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<ImportantDateSubscriptionPayload>>,
+export interface ContactPromise extends Promise<Contact>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  contactType: () => Promise<String>;
+  firstName: () => Promise<String>;
+  lastName: () => Promise<String>;
+  homeStreet: () => Promise<String>;
+  homeStreet2: () => Promise<String>;
+  homeCity: () => Promise<String>;
+  homeState: () => Promise<String>;
+  homeZip: () => Promise<String>;
+  workCompanyName: () => Promise<String>;
+  workStreet: () => Promise<String>;
+  workStreet2: () => Promise<String>;
+  workCity: () => Promise<String>;
+  workState: () => Promise<String>;
+  workZip: () => Promise<String>;
+  emailMain: () => Promise<String>;
+  emailBackup: () => Promise<String>;
+  socialSecurity: () => Promise<String>;
+  birthdate: () => Promise<String>;
+  cellPhone: () => Promise<String>;
+  workPhone: () => Promise<String>;
+  homePhone: () => Promise<String>;
+  primaryPhone: () => Promise<String>;
+  secondaryPhone: () => Promise<String>;
+  mobilePhone: () => Promise<String>;
+  fax: () => Promise<String>;
+  contactComment: () => Promise<String>;
+  comments: () => Promise<String>;
+}
+
+export interface ContactSubscription
+  extends Promise<AsyncIterator<Contact>>,
     Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = ImportantDateSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = ImportantDatePreviousValuesSubscription>() => T;
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  contactType: () => Promise<AsyncIterator<String>>;
+  firstName: () => Promise<AsyncIterator<String>>;
+  lastName: () => Promise<AsyncIterator<String>>;
+  homeStreet: () => Promise<AsyncIterator<String>>;
+  homeStreet2: () => Promise<AsyncIterator<String>>;
+  homeCity: () => Promise<AsyncIterator<String>>;
+  homeState: () => Promise<AsyncIterator<String>>;
+  homeZip: () => Promise<AsyncIterator<String>>;
+  workCompanyName: () => Promise<AsyncIterator<String>>;
+  workStreet: () => Promise<AsyncIterator<String>>;
+  workStreet2: () => Promise<AsyncIterator<String>>;
+  workCity: () => Promise<AsyncIterator<String>>;
+  workState: () => Promise<AsyncIterator<String>>;
+  workZip: () => Promise<AsyncIterator<String>>;
+  emailMain: () => Promise<AsyncIterator<String>>;
+  emailBackup: () => Promise<AsyncIterator<String>>;
+  socialSecurity: () => Promise<AsyncIterator<String>>;
+  birthdate: () => Promise<AsyncIterator<String>>;
+  cellPhone: () => Promise<AsyncIterator<String>>;
+  workPhone: () => Promise<AsyncIterator<String>>;
+  homePhone: () => Promise<AsyncIterator<String>>;
+  primaryPhone: () => Promise<AsyncIterator<String>>;
+  secondaryPhone: () => Promise<AsyncIterator<String>>;
+  mobilePhone: () => Promise<AsyncIterator<String>>;
+  fax: () => Promise<AsyncIterator<String>>;
+  contactComment: () => Promise<AsyncIterator<String>>;
+  comments: () => Promise<AsyncIterator<String>>;
+}
+
+export interface ContactNullablePromise
+  extends Promise<Contact | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  contactType: () => Promise<String>;
+  firstName: () => Promise<String>;
+  lastName: () => Promise<String>;
+  homeStreet: () => Promise<String>;
+  homeStreet2: () => Promise<String>;
+  homeCity: () => Promise<String>;
+  homeState: () => Promise<String>;
+  homeZip: () => Promise<String>;
+  workCompanyName: () => Promise<String>;
+  workStreet: () => Promise<String>;
+  workStreet2: () => Promise<String>;
+  workCity: () => Promise<String>;
+  workState: () => Promise<String>;
+  workZip: () => Promise<String>;
+  emailMain: () => Promise<String>;
+  emailBackup: () => Promise<String>;
+  socialSecurity: () => Promise<String>;
+  birthdate: () => Promise<String>;
+  cellPhone: () => Promise<String>;
+  workPhone: () => Promise<String>;
+  homePhone: () => Promise<String>;
+  primaryPhone: () => Promise<String>;
+  secondaryPhone: () => Promise<String>;
+  mobilePhone: () => Promise<String>;
+  fax: () => Promise<String>;
+  contactComment: () => Promise<String>;
+  comments: () => Promise<String>;
 }
 
 export interface Note {
@@ -2877,74 +2728,154 @@ export interface NoteNullablePromise
   type: () => Promise<String>;
 }
 
-export interface ContactPreviousValues {
+export interface User {
   id: ID_Output;
-  contactType?: String;
-  firstName: String;
-  lastName: String;
-  homeStreet?: String;
-  homeStreet2?: String;
-  homeCity?: String;
-  homeState?: String;
-  homeZip?: String;
-  workStreet?: String;
-  workStreet2?: String;
-  emailMain?: String;
-  emailBackup?: String;
-  socialSecurity?: String;
-  cellPhone?: String;
-  workPhone?: String;
-  homePhone?: String;
-  fax?: String;
-  contactComment?: String;
+  email?: String;
+  userName: String;
+  role?: String;
 }
 
-export interface ContactPreviousValuesPromise
-  extends Promise<ContactPreviousValues>,
-    Fragmentable {
+export interface UserPromise extends Promise<User>, Fragmentable {
   id: () => Promise<ID_Output>;
-  contactType: () => Promise<String>;
-  firstName: () => Promise<String>;
-  lastName: () => Promise<String>;
-  homeStreet: () => Promise<String>;
-  homeStreet2: () => Promise<String>;
-  homeCity: () => Promise<String>;
-  homeState: () => Promise<String>;
-  homeZip: () => Promise<String>;
-  workStreet: () => Promise<String>;
-  workStreet2: () => Promise<String>;
-  emailMain: () => Promise<String>;
-  emailBackup: () => Promise<String>;
-  socialSecurity: () => Promise<String>;
-  cellPhone: () => Promise<String>;
-  workPhone: () => Promise<String>;
-  homePhone: () => Promise<String>;
-  fax: () => Promise<String>;
-  contactComment: () => Promise<String>;
+  email: () => Promise<String>;
+  userName: () => Promise<String>;
+  role: () => Promise<String>;
+  contact: <T = ContactPromise>() => T;
 }
 
-export interface ContactPreviousValuesSubscription
-  extends Promise<AsyncIterator<ContactPreviousValues>>,
+export interface UserSubscription
+  extends Promise<AsyncIterator<User>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
-  contactType: () => Promise<AsyncIterator<String>>;
-  firstName: () => Promise<AsyncIterator<String>>;
-  lastName: () => Promise<AsyncIterator<String>>;
-  homeStreet: () => Promise<AsyncIterator<String>>;
-  homeStreet2: () => Promise<AsyncIterator<String>>;
-  homeCity: () => Promise<AsyncIterator<String>>;
-  homeState: () => Promise<AsyncIterator<String>>;
-  homeZip: () => Promise<AsyncIterator<String>>;
-  workStreet: () => Promise<AsyncIterator<String>>;
-  workStreet2: () => Promise<AsyncIterator<String>>;
-  emailMain: () => Promise<AsyncIterator<String>>;
-  emailBackup: () => Promise<AsyncIterator<String>>;
-  socialSecurity: () => Promise<AsyncIterator<String>>;
-  cellPhone: () => Promise<AsyncIterator<String>>;
-  workPhone: () => Promise<AsyncIterator<String>>;
-  homePhone: () => Promise<AsyncIterator<String>>;
-  fax: () => Promise<AsyncIterator<String>>;
-  contactComment: () => Promise<AsyncIterator<String>>;
+  email: () => Promise<AsyncIterator<String>>;
+  userName: () => Promise<AsyncIterator<String>>;
+  role: () => Promise<AsyncIterator<String>>;
+  contact: <T = ContactSubscription>() => T;
+}
+
+export interface UserNullablePromise
+  extends Promise<User | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  email: () => Promise<String>;
+  userName: () => Promise<String>;
+  role: () => Promise<String>;
+  contact: <T = ContactPromise>() => T;
+}
+
+export interface CaseConnection {
+  pageInfo: PageInfo;
+  edges: CaseEdge[];
+}
+
+export interface CaseConnectionPromise
+  extends Promise<CaseConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<CaseEdge>>() => T;
+  aggregate: <T = AggregateCasePromise>() => T;
+}
+
+export interface CaseConnectionSubscription
+  extends Promise<AsyncIterator<CaseConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<CaseEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateCaseSubscription>() => T;
+}
+
+export interface PageInfo {
+  hasNextPage: Boolean;
+  hasPreviousPage: Boolean;
+  startCursor?: String;
+  endCursor?: String;
+}
+
+export interface PageInfoPromise extends Promise<PageInfo>, Fragmentable {
+  hasNextPage: () => Promise<Boolean>;
+  hasPreviousPage: () => Promise<Boolean>;
+  startCursor: () => Promise<String>;
+  endCursor: () => Promise<String>;
+}
+
+export interface PageInfoSubscription
+  extends Promise<AsyncIterator<PageInfo>>,
+    Fragmentable {
+  hasNextPage: () => Promise<AsyncIterator<Boolean>>;
+  hasPreviousPage: () => Promise<AsyncIterator<Boolean>>;
+  startCursor: () => Promise<AsyncIterator<String>>;
+  endCursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface CaseEdge {
+  node: Case;
+  cursor: String;
+}
+
+export interface CaseEdgePromise extends Promise<CaseEdge>, Fragmentable {
+  node: <T = CasePromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface CaseEdgeSubscription
+  extends Promise<AsyncIterator<CaseEdge>>,
+    Fragmentable {
+  node: <T = CaseSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregateCase {
+  count: Int;
+}
+
+export interface AggregateCasePromise
+  extends Promise<AggregateCase>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateCaseSubscription
+  extends Promise<AsyncIterator<AggregateCase>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface ContactConnection {
+  pageInfo: PageInfo;
+  edges: ContactEdge[];
+}
+
+export interface ContactConnectionPromise
+  extends Promise<ContactConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<ContactEdge>>() => T;
+  aggregate: <T = AggregateContactPromise>() => T;
+}
+
+export interface ContactConnectionSubscription
+  extends Promise<AsyncIterator<ContactConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<ContactEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateContactSubscription>() => T;
+}
+
+export interface ContactEdge {
+  node: Contact;
+  cursor: String;
+}
+
+export interface ContactEdgePromise extends Promise<ContactEdge>, Fragmentable {
+  node: <T = ContactPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface ContactEdgeSubscription
+  extends Promise<AsyncIterator<ContactEdge>>,
+    Fragmentable {
+  node: <T = ContactSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
 }
 
 export interface AggregateContact {
@@ -2959,6 +2890,62 @@ export interface AggregateContactPromise
 
 export interface AggregateContactSubscription
   extends Promise<AsyncIterator<AggregateContact>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface ImportantDateConnection {
+  pageInfo: PageInfo;
+  edges: ImportantDateEdge[];
+}
+
+export interface ImportantDateConnectionPromise
+  extends Promise<ImportantDateConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<ImportantDateEdge>>() => T;
+  aggregate: <T = AggregateImportantDatePromise>() => T;
+}
+
+export interface ImportantDateConnectionSubscription
+  extends Promise<AsyncIterator<ImportantDateConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<ImportantDateEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateImportantDateSubscription>() => T;
+}
+
+export interface ImportantDateEdge {
+  node: ImportantDate;
+  cursor: String;
+}
+
+export interface ImportantDateEdgePromise
+  extends Promise<ImportantDateEdge>,
+    Fragmentable {
+  node: <T = ImportantDatePromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface ImportantDateEdgeSubscription
+  extends Promise<AsyncIterator<ImportantDateEdge>>,
+    Fragmentable {
+  node: <T = ImportantDateSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregateImportantDate {
+  count: Int;
+}
+
+export interface AggregateImportantDatePromise
+  extends Promise<AggregateImportantDate>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateImportantDateSubscription
+  extends Promise<AsyncIterator<AggregateImportantDate>>,
     Fragmentable {
   count: () => Promise<AsyncIterator<Int>>;
 }
@@ -2982,6 +2969,393 @@ export interface NoteConnectionSubscription
   pageInfo: <T = PageInfoSubscription>() => T;
   edges: <T = Promise<AsyncIterator<NoteEdgeSubscription>>>() => T;
   aggregate: <T = AggregateNoteSubscription>() => T;
+}
+
+export interface NoteEdge {
+  node: Note;
+  cursor: String;
+}
+
+export interface NoteEdgePromise extends Promise<NoteEdge>, Fragmentable {
+  node: <T = NotePromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface NoteEdgeSubscription
+  extends Promise<AsyncIterator<NoteEdge>>,
+    Fragmentable {
+  node: <T = NoteSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregateNote {
+  count: Int;
+}
+
+export interface AggregateNotePromise
+  extends Promise<AggregateNote>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateNoteSubscription
+  extends Promise<AsyncIterator<AggregateNote>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface UserConnection {
+  pageInfo: PageInfo;
+  edges: UserEdge[];
+}
+
+export interface UserConnectionPromise
+  extends Promise<UserConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<UserEdge>>() => T;
+  aggregate: <T = AggregateUserPromise>() => T;
+}
+
+export interface UserConnectionSubscription
+  extends Promise<AsyncIterator<UserConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<UserEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateUserSubscription>() => T;
+}
+
+export interface UserEdge {
+  node: User;
+  cursor: String;
+}
+
+export interface UserEdgePromise extends Promise<UserEdge>, Fragmentable {
+  node: <T = UserPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface UserEdgeSubscription
+  extends Promise<AsyncIterator<UserEdge>>,
+    Fragmentable {
+  node: <T = UserSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregateUser {
+  count: Int;
+}
+
+export interface AggregateUserPromise
+  extends Promise<AggregateUser>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateUserSubscription
+  extends Promise<AsyncIterator<AggregateUser>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface BatchPayload {
+  count: Long;
+}
+
+export interface BatchPayloadPromise
+  extends Promise<BatchPayload>,
+    Fragmentable {
+  count: () => Promise<Long>;
+}
+
+export interface BatchPayloadSubscription
+  extends Promise<AsyncIterator<BatchPayload>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Long>>;
+}
+
+export interface CaseSubscriptionPayload {
+  mutation: MutationType;
+  node: Case;
+  updatedFields: String[];
+  previousValues: CasePreviousValues;
+}
+
+export interface CaseSubscriptionPayloadPromise
+  extends Promise<CaseSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = CasePromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = CasePreviousValuesPromise>() => T;
+}
+
+export interface CaseSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<CaseSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = CaseSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = CasePreviousValuesSubscription>() => T;
+}
+
+export interface CasePreviousValues {
+  id: ID_Output;
+  caseId?: String;
+  title?: String;
+  status?: String;
+  referralType?: String;
+  legalPlan?: String;
+  caseNumberDetails?: String;
+  generalCaseDetails?: String;
+}
+
+export interface CasePreviousValuesPromise
+  extends Promise<CasePreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  caseId: () => Promise<String>;
+  title: () => Promise<String>;
+  status: () => Promise<String>;
+  referralType: () => Promise<String>;
+  legalPlan: () => Promise<String>;
+  caseNumberDetails: () => Promise<String>;
+  generalCaseDetails: () => Promise<String>;
+}
+
+export interface CasePreviousValuesSubscription
+  extends Promise<AsyncIterator<CasePreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  caseId: () => Promise<AsyncIterator<String>>;
+  title: () => Promise<AsyncIterator<String>>;
+  status: () => Promise<AsyncIterator<String>>;
+  referralType: () => Promise<AsyncIterator<String>>;
+  legalPlan: () => Promise<AsyncIterator<String>>;
+  caseNumberDetails: () => Promise<AsyncIterator<String>>;
+  generalCaseDetails: () => Promise<AsyncIterator<String>>;
+}
+
+export interface ContactSubscriptionPayload {
+  mutation: MutationType;
+  node: Contact;
+  updatedFields: String[];
+  previousValues: ContactPreviousValues;
+}
+
+export interface ContactSubscriptionPayloadPromise
+  extends Promise<ContactSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = ContactPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = ContactPreviousValuesPromise>() => T;
+}
+
+export interface ContactSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<ContactSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = ContactSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = ContactPreviousValuesSubscription>() => T;
+}
+
+export interface ContactPreviousValues {
+  id: ID_Output;
+  contactType?: String;
+  firstName: String;
+  lastName: String;
+  homeStreet?: String;
+  homeStreet2?: String;
+  homeCity?: String;
+  homeState?: String;
+  homeZip?: String;
+  workCompanyName?: String;
+  workStreet?: String;
+  workStreet2?: String;
+  workCity?: String;
+  workState?: String;
+  workZip?: String;
+  emailMain?: String;
+  emailBackup?: String;
+  socialSecurity?: String;
+  birthdate?: String;
+  cellPhone?: String;
+  workPhone?: String;
+  homePhone?: String;
+  primaryPhone?: String;
+  secondaryPhone?: String;
+  mobilePhone?: String;
+  fax?: String;
+  contactComment?: String;
+  comments?: String;
+}
+
+export interface ContactPreviousValuesPromise
+  extends Promise<ContactPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  contactType: () => Promise<String>;
+  firstName: () => Promise<String>;
+  lastName: () => Promise<String>;
+  homeStreet: () => Promise<String>;
+  homeStreet2: () => Promise<String>;
+  homeCity: () => Promise<String>;
+  homeState: () => Promise<String>;
+  homeZip: () => Promise<String>;
+  workCompanyName: () => Promise<String>;
+  workStreet: () => Promise<String>;
+  workStreet2: () => Promise<String>;
+  workCity: () => Promise<String>;
+  workState: () => Promise<String>;
+  workZip: () => Promise<String>;
+  emailMain: () => Promise<String>;
+  emailBackup: () => Promise<String>;
+  socialSecurity: () => Promise<String>;
+  birthdate: () => Promise<String>;
+  cellPhone: () => Promise<String>;
+  workPhone: () => Promise<String>;
+  homePhone: () => Promise<String>;
+  primaryPhone: () => Promise<String>;
+  secondaryPhone: () => Promise<String>;
+  mobilePhone: () => Promise<String>;
+  fax: () => Promise<String>;
+  contactComment: () => Promise<String>;
+  comments: () => Promise<String>;
+}
+
+export interface ContactPreviousValuesSubscription
+  extends Promise<AsyncIterator<ContactPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  contactType: () => Promise<AsyncIterator<String>>;
+  firstName: () => Promise<AsyncIterator<String>>;
+  lastName: () => Promise<AsyncIterator<String>>;
+  homeStreet: () => Promise<AsyncIterator<String>>;
+  homeStreet2: () => Promise<AsyncIterator<String>>;
+  homeCity: () => Promise<AsyncIterator<String>>;
+  homeState: () => Promise<AsyncIterator<String>>;
+  homeZip: () => Promise<AsyncIterator<String>>;
+  workCompanyName: () => Promise<AsyncIterator<String>>;
+  workStreet: () => Promise<AsyncIterator<String>>;
+  workStreet2: () => Promise<AsyncIterator<String>>;
+  workCity: () => Promise<AsyncIterator<String>>;
+  workState: () => Promise<AsyncIterator<String>>;
+  workZip: () => Promise<AsyncIterator<String>>;
+  emailMain: () => Promise<AsyncIterator<String>>;
+  emailBackup: () => Promise<AsyncIterator<String>>;
+  socialSecurity: () => Promise<AsyncIterator<String>>;
+  birthdate: () => Promise<AsyncIterator<String>>;
+  cellPhone: () => Promise<AsyncIterator<String>>;
+  workPhone: () => Promise<AsyncIterator<String>>;
+  homePhone: () => Promise<AsyncIterator<String>>;
+  primaryPhone: () => Promise<AsyncIterator<String>>;
+  secondaryPhone: () => Promise<AsyncIterator<String>>;
+  mobilePhone: () => Promise<AsyncIterator<String>>;
+  fax: () => Promise<AsyncIterator<String>>;
+  contactComment: () => Promise<AsyncIterator<String>>;
+  comments: () => Promise<AsyncIterator<String>>;
+}
+
+export interface ImportantDateSubscriptionPayload {
+  mutation: MutationType;
+  node: ImportantDate;
+  updatedFields: String[];
+  previousValues: ImportantDatePreviousValues;
+}
+
+export interface ImportantDateSubscriptionPayloadPromise
+  extends Promise<ImportantDateSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = ImportantDatePromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = ImportantDatePreviousValuesPromise>() => T;
+}
+
+export interface ImportantDateSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<ImportantDateSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = ImportantDateSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = ImportantDatePreviousValuesSubscription>() => T;
+}
+
+export interface ImportantDatePreviousValues {
+  id: ID_Output;
+  importantDateType?: String;
+  importantDateDetails?: String;
+}
+
+export interface ImportantDatePreviousValuesPromise
+  extends Promise<ImportantDatePreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  importantDateType: () => Promise<String>;
+  importantDateDetails: () => Promise<String>;
+}
+
+export interface ImportantDatePreviousValuesSubscription
+  extends Promise<AsyncIterator<ImportantDatePreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  importantDateType: () => Promise<AsyncIterator<String>>;
+  importantDateDetails: () => Promise<AsyncIterator<String>>;
+}
+
+export interface NoteSubscriptionPayload {
+  mutation: MutationType;
+  node: Note;
+  updatedFields: String[];
+  previousValues: NotePreviousValues;
+}
+
+export interface NoteSubscriptionPayloadPromise
+  extends Promise<NoteSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = NotePromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = NotePreviousValuesPromise>() => T;
+}
+
+export interface NoteSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<NoteSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = NoteSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = NotePreviousValuesSubscription>() => T;
+}
+
+export interface NotePreviousValues {
+  id: ID_Output;
+  dateCreated: DateTimeOutput;
+  title: String;
+  content?: String;
+  type?: String;
+}
+
+export interface NotePreviousValuesPromise
+  extends Promise<NotePreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  dateCreated: () => Promise<DateTimeOutput>;
+  title: () => Promise<String>;
+  content: () => Promise<String>;
+  type: () => Promise<String>;
+}
+
+export interface NotePreviousValuesSubscription
+  extends Promise<AsyncIterator<NotePreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  dateCreated: () => Promise<AsyncIterator<DateTimeOutput>>;
+  title: () => Promise<AsyncIterator<String>>;
+  content: () => Promise<AsyncIterator<String>>;
+  type: () => Promise<AsyncIterator<String>>;
 }
 
 export interface UserSubscriptionPayload {
@@ -3009,39 +3383,46 @@ export interface UserSubscriptionPayloadSubscription
   previousValues: <T = UserPreviousValuesSubscription>() => T;
 }
 
-export interface ContactConnection {
-  pageInfo: PageInfo;
-  edges: ContactEdge[];
+export interface UserPreviousValues {
+  id: ID_Output;
+  email?: String;
+  userName: String;
+  role?: String;
 }
 
-export interface ContactConnectionPromise
-  extends Promise<ContactConnection>,
+export interface UserPreviousValuesPromise
+  extends Promise<UserPreviousValues>,
     Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<ContactEdge>>() => T;
-  aggregate: <T = AggregateContactPromise>() => T;
+  id: () => Promise<ID_Output>;
+  email: () => Promise<String>;
+  userName: () => Promise<String>;
+  role: () => Promise<String>;
 }
 
-export interface ContactConnectionSubscription
-  extends Promise<AsyncIterator<ContactConnection>>,
+export interface UserPreviousValuesSubscription
+  extends Promise<AsyncIterator<UserPreviousValues>>,
     Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<ContactEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateContactSubscription>() => T;
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  email: () => Promise<AsyncIterator<String>>;
+  userName: () => Promise<AsyncIterator<String>>;
+  role: () => Promise<AsyncIterator<String>>;
 }
-
-/*
-The `Boolean` scalar type represents `true` or `false`.
-*/
-export type Boolean = boolean;
-
-export type Long = string;
 
 /*
 The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"4"`) or integer (such as `4`) input value will be accepted as an ID.
 */
 export type ID_Input = string | number;
 export type ID_Output = string;
+
+/*
+The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.
+*/
+export type String = string;
+
+/*
+The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1.
+*/
+export type Int = number;
 
 /*
 DateTime scalar input type, allowing Date
@@ -3054,14 +3435,11 @@ DateTime scalar output type, which is always a string
 export type DateTimeOutput = string;
 
 /*
-The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.
+The `Boolean` scalar type represents `true` or `false`.
 */
-export type String = string;
+export type Boolean = boolean;
 
-/*
-The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1.
-*/
-export type Int = number;
+export type Long = string;
 
 /**
  * Model Metadata

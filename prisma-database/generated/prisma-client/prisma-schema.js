@@ -377,16 +377,25 @@ type Contact {
   homeCity: String
   homeState: String
   homeZip: String
+  workCompanyName: String
   workStreet: String
   workStreet2: String
+  workCity: String
+  workState: String
+  workZip: String
   emailMain: String
   emailBackup: String
   socialSecurity: String
+  birthdate: String
   cellPhone: String
   workPhone: String
   homePhone: String
+  primaryPhone: String
+  secondaryPhone: String
+  mobilePhone: String
   fax: String
   contactComment: String
+  comments: String
 }
 
 type ContactConnection {
@@ -405,16 +414,25 @@ input ContactCreateInput {
   homeCity: String
   homeState: String
   homeZip: String
+  workCompanyName: String
   workStreet: String
   workStreet2: String
+  workCity: String
+  workState: String
+  workZip: String
   emailMain: String
   emailBackup: String
   socialSecurity: String
+  birthdate: String
   cellPhone: String
   workPhone: String
   homePhone: String
+  primaryPhone: String
+  secondaryPhone: String
+  mobilePhone: String
   fax: String
   contactComment: String
+  comments: String
 }
 
 input ContactCreateManyInput {
@@ -451,26 +469,44 @@ enum ContactOrderByInput {
   homeState_DESC
   homeZip_ASC
   homeZip_DESC
+  workCompanyName_ASC
+  workCompanyName_DESC
   workStreet_ASC
   workStreet_DESC
   workStreet2_ASC
   workStreet2_DESC
+  workCity_ASC
+  workCity_DESC
+  workState_ASC
+  workState_DESC
+  workZip_ASC
+  workZip_DESC
   emailMain_ASC
   emailMain_DESC
   emailBackup_ASC
   emailBackup_DESC
   socialSecurity_ASC
   socialSecurity_DESC
+  birthdate_ASC
+  birthdate_DESC
   cellPhone_ASC
   cellPhone_DESC
   workPhone_ASC
   workPhone_DESC
   homePhone_ASC
   homePhone_DESC
+  primaryPhone_ASC
+  primaryPhone_DESC
+  secondaryPhone_ASC
+  secondaryPhone_DESC
+  mobilePhone_ASC
+  mobilePhone_DESC
   fax_ASC
   fax_DESC
   contactComment_ASC
   contactComment_DESC
+  comments_ASC
+  comments_DESC
 }
 
 type ContactPreviousValues {
@@ -483,16 +519,25 @@ type ContactPreviousValues {
   homeCity: String
   homeState: String
   homeZip: String
+  workCompanyName: String
   workStreet: String
   workStreet2: String
+  workCity: String
+  workState: String
+  workZip: String
   emailMain: String
   emailBackup: String
   socialSecurity: String
+  birthdate: String
   cellPhone: String
   workPhone: String
   homePhone: String
+  primaryPhone: String
+  secondaryPhone: String
+  mobilePhone: String
   fax: String
   contactComment: String
+  comments: String
 }
 
 input ContactScalarWhereInput {
@@ -622,6 +667,20 @@ input ContactScalarWhereInput {
   homeZip_not_starts_with: String
   homeZip_ends_with: String
   homeZip_not_ends_with: String
+  workCompanyName: String
+  workCompanyName_not: String
+  workCompanyName_in: [String!]
+  workCompanyName_not_in: [String!]
+  workCompanyName_lt: String
+  workCompanyName_lte: String
+  workCompanyName_gt: String
+  workCompanyName_gte: String
+  workCompanyName_contains: String
+  workCompanyName_not_contains: String
+  workCompanyName_starts_with: String
+  workCompanyName_not_starts_with: String
+  workCompanyName_ends_with: String
+  workCompanyName_not_ends_with: String
   workStreet: String
   workStreet_not: String
   workStreet_in: [String!]
@@ -650,6 +709,48 @@ input ContactScalarWhereInput {
   workStreet2_not_starts_with: String
   workStreet2_ends_with: String
   workStreet2_not_ends_with: String
+  workCity: String
+  workCity_not: String
+  workCity_in: [String!]
+  workCity_not_in: [String!]
+  workCity_lt: String
+  workCity_lte: String
+  workCity_gt: String
+  workCity_gte: String
+  workCity_contains: String
+  workCity_not_contains: String
+  workCity_starts_with: String
+  workCity_not_starts_with: String
+  workCity_ends_with: String
+  workCity_not_ends_with: String
+  workState: String
+  workState_not: String
+  workState_in: [String!]
+  workState_not_in: [String!]
+  workState_lt: String
+  workState_lte: String
+  workState_gt: String
+  workState_gte: String
+  workState_contains: String
+  workState_not_contains: String
+  workState_starts_with: String
+  workState_not_starts_with: String
+  workState_ends_with: String
+  workState_not_ends_with: String
+  workZip: String
+  workZip_not: String
+  workZip_in: [String!]
+  workZip_not_in: [String!]
+  workZip_lt: String
+  workZip_lte: String
+  workZip_gt: String
+  workZip_gte: String
+  workZip_contains: String
+  workZip_not_contains: String
+  workZip_starts_with: String
+  workZip_not_starts_with: String
+  workZip_ends_with: String
+  workZip_not_ends_with: String
   emailMain: String
   emailMain_not: String
   emailMain_in: [String!]
@@ -692,6 +793,20 @@ input ContactScalarWhereInput {
   socialSecurity_not_starts_with: String
   socialSecurity_ends_with: String
   socialSecurity_not_ends_with: String
+  birthdate: String
+  birthdate_not: String
+  birthdate_in: [String!]
+  birthdate_not_in: [String!]
+  birthdate_lt: String
+  birthdate_lte: String
+  birthdate_gt: String
+  birthdate_gte: String
+  birthdate_contains: String
+  birthdate_not_contains: String
+  birthdate_starts_with: String
+  birthdate_not_starts_with: String
+  birthdate_ends_with: String
+  birthdate_not_ends_with: String
   cellPhone: String
   cellPhone_not: String
   cellPhone_in: [String!]
@@ -734,6 +849,48 @@ input ContactScalarWhereInput {
   homePhone_not_starts_with: String
   homePhone_ends_with: String
   homePhone_not_ends_with: String
+  primaryPhone: String
+  primaryPhone_not: String
+  primaryPhone_in: [String!]
+  primaryPhone_not_in: [String!]
+  primaryPhone_lt: String
+  primaryPhone_lte: String
+  primaryPhone_gt: String
+  primaryPhone_gte: String
+  primaryPhone_contains: String
+  primaryPhone_not_contains: String
+  primaryPhone_starts_with: String
+  primaryPhone_not_starts_with: String
+  primaryPhone_ends_with: String
+  primaryPhone_not_ends_with: String
+  secondaryPhone: String
+  secondaryPhone_not: String
+  secondaryPhone_in: [String!]
+  secondaryPhone_not_in: [String!]
+  secondaryPhone_lt: String
+  secondaryPhone_lte: String
+  secondaryPhone_gt: String
+  secondaryPhone_gte: String
+  secondaryPhone_contains: String
+  secondaryPhone_not_contains: String
+  secondaryPhone_starts_with: String
+  secondaryPhone_not_starts_with: String
+  secondaryPhone_ends_with: String
+  secondaryPhone_not_ends_with: String
+  mobilePhone: String
+  mobilePhone_not: String
+  mobilePhone_in: [String!]
+  mobilePhone_not_in: [String!]
+  mobilePhone_lt: String
+  mobilePhone_lte: String
+  mobilePhone_gt: String
+  mobilePhone_gte: String
+  mobilePhone_contains: String
+  mobilePhone_not_contains: String
+  mobilePhone_starts_with: String
+  mobilePhone_not_starts_with: String
+  mobilePhone_ends_with: String
+  mobilePhone_not_ends_with: String
   fax: String
   fax_not: String
   fax_in: [String!]
@@ -762,6 +919,20 @@ input ContactScalarWhereInput {
   contactComment_not_starts_with: String
   contactComment_ends_with: String
   contactComment_not_ends_with: String
+  comments: String
+  comments_not: String
+  comments_in: [String!]
+  comments_not_in: [String!]
+  comments_lt: String
+  comments_lte: String
+  comments_gt: String
+  comments_gte: String
+  comments_contains: String
+  comments_not_contains: String
+  comments_starts_with: String
+  comments_not_starts_with: String
+  comments_ends_with: String
+  comments_not_ends_with: String
   AND: [ContactScalarWhereInput!]
   OR: [ContactScalarWhereInput!]
   NOT: [ContactScalarWhereInput!]
@@ -794,16 +965,25 @@ input ContactUpdateDataInput {
   homeCity: String
   homeState: String
   homeZip: String
+  workCompanyName: String
   workStreet: String
   workStreet2: String
+  workCity: String
+  workState: String
+  workZip: String
   emailMain: String
   emailBackup: String
   socialSecurity: String
+  birthdate: String
   cellPhone: String
   workPhone: String
   homePhone: String
+  primaryPhone: String
+  secondaryPhone: String
+  mobilePhone: String
   fax: String
   contactComment: String
+  comments: String
 }
 
 input ContactUpdateInput {
@@ -815,16 +995,25 @@ input ContactUpdateInput {
   homeCity: String
   homeState: String
   homeZip: String
+  workCompanyName: String
   workStreet: String
   workStreet2: String
+  workCity: String
+  workState: String
+  workZip: String
   emailMain: String
   emailBackup: String
   socialSecurity: String
+  birthdate: String
   cellPhone: String
   workPhone: String
   homePhone: String
+  primaryPhone: String
+  secondaryPhone: String
+  mobilePhone: String
   fax: String
   contactComment: String
+  comments: String
 }
 
 input ContactUpdateManyDataInput {
@@ -836,16 +1025,25 @@ input ContactUpdateManyDataInput {
   homeCity: String
   homeState: String
   homeZip: String
+  workCompanyName: String
   workStreet: String
   workStreet2: String
+  workCity: String
+  workState: String
+  workZip: String
   emailMain: String
   emailBackup: String
   socialSecurity: String
+  birthdate: String
   cellPhone: String
   workPhone: String
   homePhone: String
+  primaryPhone: String
+  secondaryPhone: String
+  mobilePhone: String
   fax: String
   contactComment: String
+  comments: String
 }
 
 input ContactUpdateManyInput {
@@ -869,16 +1067,25 @@ input ContactUpdateManyMutationInput {
   homeCity: String
   homeState: String
   homeZip: String
+  workCompanyName: String
   workStreet: String
   workStreet2: String
+  workCity: String
+  workState: String
+  workZip: String
   emailMain: String
   emailBackup: String
   socialSecurity: String
+  birthdate: String
   cellPhone: String
   workPhone: String
   homePhone: String
+  primaryPhone: String
+  secondaryPhone: String
+  mobilePhone: String
   fax: String
   contactComment: String
+  comments: String
 }
 
 input ContactUpdateManyWithWhereNestedInput {
@@ -1038,6 +1245,20 @@ input ContactWhereInput {
   homeZip_not_starts_with: String
   homeZip_ends_with: String
   homeZip_not_ends_with: String
+  workCompanyName: String
+  workCompanyName_not: String
+  workCompanyName_in: [String!]
+  workCompanyName_not_in: [String!]
+  workCompanyName_lt: String
+  workCompanyName_lte: String
+  workCompanyName_gt: String
+  workCompanyName_gte: String
+  workCompanyName_contains: String
+  workCompanyName_not_contains: String
+  workCompanyName_starts_with: String
+  workCompanyName_not_starts_with: String
+  workCompanyName_ends_with: String
+  workCompanyName_not_ends_with: String
   workStreet: String
   workStreet_not: String
   workStreet_in: [String!]
@@ -1066,6 +1287,48 @@ input ContactWhereInput {
   workStreet2_not_starts_with: String
   workStreet2_ends_with: String
   workStreet2_not_ends_with: String
+  workCity: String
+  workCity_not: String
+  workCity_in: [String!]
+  workCity_not_in: [String!]
+  workCity_lt: String
+  workCity_lte: String
+  workCity_gt: String
+  workCity_gte: String
+  workCity_contains: String
+  workCity_not_contains: String
+  workCity_starts_with: String
+  workCity_not_starts_with: String
+  workCity_ends_with: String
+  workCity_not_ends_with: String
+  workState: String
+  workState_not: String
+  workState_in: [String!]
+  workState_not_in: [String!]
+  workState_lt: String
+  workState_lte: String
+  workState_gt: String
+  workState_gte: String
+  workState_contains: String
+  workState_not_contains: String
+  workState_starts_with: String
+  workState_not_starts_with: String
+  workState_ends_with: String
+  workState_not_ends_with: String
+  workZip: String
+  workZip_not: String
+  workZip_in: [String!]
+  workZip_not_in: [String!]
+  workZip_lt: String
+  workZip_lte: String
+  workZip_gt: String
+  workZip_gte: String
+  workZip_contains: String
+  workZip_not_contains: String
+  workZip_starts_with: String
+  workZip_not_starts_with: String
+  workZip_ends_with: String
+  workZip_not_ends_with: String
   emailMain: String
   emailMain_not: String
   emailMain_in: [String!]
@@ -1108,6 +1371,20 @@ input ContactWhereInput {
   socialSecurity_not_starts_with: String
   socialSecurity_ends_with: String
   socialSecurity_not_ends_with: String
+  birthdate: String
+  birthdate_not: String
+  birthdate_in: [String!]
+  birthdate_not_in: [String!]
+  birthdate_lt: String
+  birthdate_lte: String
+  birthdate_gt: String
+  birthdate_gte: String
+  birthdate_contains: String
+  birthdate_not_contains: String
+  birthdate_starts_with: String
+  birthdate_not_starts_with: String
+  birthdate_ends_with: String
+  birthdate_not_ends_with: String
   cellPhone: String
   cellPhone_not: String
   cellPhone_in: [String!]
@@ -1150,6 +1427,48 @@ input ContactWhereInput {
   homePhone_not_starts_with: String
   homePhone_ends_with: String
   homePhone_not_ends_with: String
+  primaryPhone: String
+  primaryPhone_not: String
+  primaryPhone_in: [String!]
+  primaryPhone_not_in: [String!]
+  primaryPhone_lt: String
+  primaryPhone_lte: String
+  primaryPhone_gt: String
+  primaryPhone_gte: String
+  primaryPhone_contains: String
+  primaryPhone_not_contains: String
+  primaryPhone_starts_with: String
+  primaryPhone_not_starts_with: String
+  primaryPhone_ends_with: String
+  primaryPhone_not_ends_with: String
+  secondaryPhone: String
+  secondaryPhone_not: String
+  secondaryPhone_in: [String!]
+  secondaryPhone_not_in: [String!]
+  secondaryPhone_lt: String
+  secondaryPhone_lte: String
+  secondaryPhone_gt: String
+  secondaryPhone_gte: String
+  secondaryPhone_contains: String
+  secondaryPhone_not_contains: String
+  secondaryPhone_starts_with: String
+  secondaryPhone_not_starts_with: String
+  secondaryPhone_ends_with: String
+  secondaryPhone_not_ends_with: String
+  mobilePhone: String
+  mobilePhone_not: String
+  mobilePhone_in: [String!]
+  mobilePhone_not_in: [String!]
+  mobilePhone_lt: String
+  mobilePhone_lte: String
+  mobilePhone_gt: String
+  mobilePhone_gte: String
+  mobilePhone_contains: String
+  mobilePhone_not_contains: String
+  mobilePhone_starts_with: String
+  mobilePhone_not_starts_with: String
+  mobilePhone_ends_with: String
+  mobilePhone_not_ends_with: String
   fax: String
   fax_not: String
   fax_in: [String!]
@@ -1178,6 +1497,20 @@ input ContactWhereInput {
   contactComment_not_starts_with: String
   contactComment_ends_with: String
   contactComment_not_ends_with: String
+  comments: String
+  comments_not: String
+  comments_in: [String!]
+  comments_not_in: [String!]
+  comments_lt: String
+  comments_lte: String
+  comments_gt: String
+  comments_gte: String
+  comments_contains: String
+  comments_not_contains: String
+  comments_starts_with: String
+  comments_not_starts_with: String
+  comments_ends_with: String
+  comments_not_ends_with: String
   AND: [ContactWhereInput!]
   OR: [ContactWhereInput!]
   NOT: [ContactWhereInput!]
