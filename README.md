@@ -4,20 +4,44 @@
 
 ####To run an instance of the back end of CaseHawk:
 
+** DISCLAIMER FOR WINDOWS USERS **
+
+In order for Prisma/Docker to work for you, the following is required:
+- Windows Pro
+- Alternatively, you may download WSL2
+- Note that this requires a Windows 10 build 18917 or higher
+- https://docs.microsoft.com/en-us/windows/wsl/wsl2-install
+
 1. Clone this repo
-2. `$ npm i`
-3. Create a project on Google's Developer console and create a client secret and client id for [OAuth](https://developers.google.com/identity/protocols/OAuth2WebServer).  
-4. Set environment variables for:
+
+2. `$ npm install`
+
+3. Create a project on Google's Developer console and create a client secret and client id for [OAuth](https://developers.google.com/identity/protocols/OAuth2WebServer). Set Redirect URI to http://localhost:3000/oauth and set Js origins to both local 3000 and 4000.
+
+4. Create a .env file and set environment variables for:
 `GOOGLE_CLIENT_ID` - from Google  
 `GOOGLE_CLIENT_SECRET` - from Google  
-`PORT` - the port for your server  
-`SECRET` - the signature string for JWT   
-`CLIENT_URL` - the url for your CaseHawk front end
-5. Set up a [Prisma Databse Client](https://www.prisma.io/docs/get-started/01-setting-up-prisma-new-database-JAVASCRIPT-a002/)
-6. Seed the database `$ npm run seedDB`
-7. Start the server `$node index.js`
+`PORT` - the port for your server (4000)  
+`SECRET` - the signature string for JWT (Can be anything)   
+`CLIENT_URL` - the url for your CaseHawk front end (3000)
+`API_URL` - http://localhost:4000
+`TOKEN_EXPIRE_TIME` - 1h
 
-##Authorization
+5. Download and install [Docker CE](https://docs.docker.com/v17.12/install/)
+
+6. Set up a [Prisma Databse Client](https://www.prisma.io/docs/get-started/01-setting-up-prisma-new-database-JAVASCRIPT-a002/)
+
+7. Seed the database `$ npm run seedDB`
+
+8. Start the server `$node index.js`
+
+9. Refer to the README on the front-end repo for futher instructions.
+
+##Additions from November 2019
+
+We added access to the Google People API so it can fetch, and create data. This is implemented on the back end but currently not on the front. To test these features use Postman or HTTPie. The route of /googlecontacts uses Oauth and the People API to fetch that authenticated users contacts. The route of /importgooglecontacts that uses Oauth to authenticate which contacts you are trying to receive, and writes them to the Prisma DB.
+
+For more info on Google People API reference the [docs](https://developers.google.com/people/api/rest/v1/people)
 
 ####Overview
 
@@ -58,3 +82,9 @@ The app uses Postgres and Prisma for our database stack.
     - Lillian Gales
     - Joanna Arroyo
     - Trae Bennett
+- 401d32
+    - Sarah Gilliam
+    - Peter Carmichael
+    - Matthew Heyert
+    - Johnathon Kimball
+    - Corey Marchand
