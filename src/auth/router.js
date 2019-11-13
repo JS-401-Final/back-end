@@ -11,6 +11,8 @@ authRouter.get('/oauth', (req,res,next) => {
   oauth.authorize(req)
     .then((token) => {
       const { userName, id } = req.user;
+      // This token is the result of users-model generateToken and it has both 
+      // the id of the user and the googleToken
       res.cookie('X-401d19-OAuth-token', token);
       res.cookie('userName', userName);
       res.cookie('userID', id);

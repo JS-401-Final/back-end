@@ -8,7 +8,7 @@
 const User = require('./users-model.js');
 
 module.exports = (req, res, next) => {
-
+  //console.log("authorization",req.headers.authorization);
   try {
     let [authType, authString] = req.headers.authorization.split(/\s+/);
     switch( authType.toLowerCase() ) {

@@ -27,6 +27,8 @@ const authorize = (request) => {
     .send(googleData)
 
     // STEP 2: GET request for Google user data
+    // Note that "response" is NOT the response to the client, it is the response 
+    //   WE got from google. so we can't send anything to the client here.
     .then((response) => {
       console.log('===========>STEP 2 response ');
         
@@ -35,6 +37,9 @@ const authorize = (request) => {
       // user in prismawhatever
         
       const token = response.body.access_token;
+
+      // Let's store it in googleData until the last step
+      googleData.token = token;
       return superagent.get('https://people.googleapis.com/v1/people/me')
         .query({personFields: 'names,emailAddresses'})
         .set('Authorization', `Bearer ${token}`);
@@ -71,7 +76,7 @@ const authorize = (request) => {
     // STEP 4: Generate session token
     .then((user) => {
       request.user = user;
-      return Users.generateToken(user);
+      return Users.generateToken(user, googleData.token);
     });
 };
 
