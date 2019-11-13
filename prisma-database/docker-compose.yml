@@ -11,12 +11,7 @@ services:
         databases:
           default:
             connector: postgres
-<<<<<<< HEAD
             host: postgres
-=======
-            host: host.docker.internal
-            database: casehawk
->>>>>>> c878e10b4603d61a78451014a291e93cf20524bd
             port: 5432
             user: prisma
             password: prisma
