@@ -21,10 +21,22 @@ const contacts_controller = require('../models/controller/contacts-controller');
  * @param {function} callback - express callback
  * @returns { (Object | Error) } - the newly created contact object
  */
-// router.post('/contact', auth, async (req, res) => {
-//   const newContact = await prisma.createContact(req.body);
-//   res.json(newContact);
-// });
+
+router.post('/contact', auth, async (req, res) => {
+  const signed_token = req.cookies['X-401d19-OAuth-token'];
+  console.log('=====> signed_token', signed_token);
+
+  console.log('req.body ========> ', req.body);
+
+  const newContact = await prisma.createContact(req.body);
+  console.log('prisma newContact ========>', newContact);
+
+  const googlePerson = await people_api.create(req, res);
+  console.log('googlePerson  ========>', googlePerson);
+
+  res.json(newContact);
+});
+
 
 /**
  * This function gets all constact data from database

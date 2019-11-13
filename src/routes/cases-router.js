@@ -35,6 +35,7 @@ let caseController = require('../models/controller/cases-controller');
 //   res.json(retrievedCase);
 // });
 
+
 /**
  * This function gets a case from database
  * @function GET/:id
