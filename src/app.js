@@ -26,6 +26,12 @@ app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Documentation
+// 
+// If JSDOC_ROUTE environment variable is present, publish the jsdoc docs on that route.
+if (process.env.JSDOC_ROUTE) {
+  app.use(process.env.JSDOC_ROUTE, express.static('./docs/'));
+}
 
 // Routes
 app.use(casesRouter);
