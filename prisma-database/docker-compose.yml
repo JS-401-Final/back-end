@@ -11,9 +11,7 @@ services:
         databases:
           default:
             connector: postgres
-            host: localhost
-            schema: public
-            database: casehawk
+            host: postgres
             port: 5432
             user: prisma
             password: prisma
