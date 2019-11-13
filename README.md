@@ -7,7 +7,10 @@
 ** DISCLAIMER FOR WINDOWS USERS **
 
 In order for Prisma/Docker to work for you, the following is required:
-- Windows Pro
+
+- Windows Pro and the Docker Desktop for Windows
+- https://docs.docker.com/docker-for-windows/install/
+- https://nickjanetakis.com/blog/setting-up-docker-for-windows-and-wsl-to-work-flawlessly
 - Alternatively, you may download WSL2
 - Note that this requires a Windows 10 build 18917 or higher
 - https://docs.microsoft.com/en-us/windows/wsl/wsl2-install
