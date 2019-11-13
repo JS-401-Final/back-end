@@ -11,6 +11,8 @@ const router = express.Router();
 const { prisma } = require('../../prisma-database/generated/prisma-client');
 const auth = require('../auth/middleware');
 const people_api = require('../models/controller/contacts-people-api');
+const contacts_controller = require('../models/controller/contacts-controller');
+
 
 /**
  * This function creates a new contact in the database
@@ -19,6 +21,7 @@ const people_api = require('../models/controller/contacts-people-api');
  * @param {function} callback - express callback
  * @returns { (Object | Error) } - the newly created contact object
  */
+
 router.post('/contact', auth, async (req, res) => {
   const signed_token = req.cookies['X-401d19-OAuth-token'];
   console.log('=====> signed_token', signed_token);
@@ -34,6 +37,7 @@ router.post('/contact', auth, async (req, res) => {
   res.json(newContact);
 });
 
+
 /**
  * This function gets all constact data from database
  * @function GET
@@ -45,21 +49,21 @@ router.post('/contact', auth, async (req, res) => {
  * @param {function} callback - express callback
  * @returns { (Array | Error) } - an array of all constacts optionally filtered by 'name' query
  */
-router.get('/contacts', auth, async (req, res) => {
-  // if body has a search and name property set
-  let nameToFilterBy = req.query && req.query.name;
-  console.log(nameToFilterBy);
-  // get all contacts
-  const contacts = await prisma.contacts();
-  // filter contacts by nameToFilterBy
-  const searcher = new FuzzySearch(contacts, ['firstName', 'lastName'], {
-    caseSensitive: false,
-    sort: true,
-  });
-  const result = searcher.search(nameToFilterBy);
-  // return filtered list of contacts
-  res.json(result);
-});
+// router.get('/contacts', auth, async (req, res) => {
+//   // if body has a search and name property set
+//   let nameToFilterBy = req.query && req.query.name;
+//   console.log(nameToFilterBy);
+//   // get all contacts
+//   const contacts = await prisma.contacts();
+//   // filter contacts by nameToFilterBy
+//   const searcher = new FuzzySearch(contacts, ['firstName', 'lastName'], {
+//     caseSensitive: false,
+//     sort: true,
+//   });
+//   const result = searcher.search(nameToFilterBy);
+//   // return filtered list of contacts
+//   res.json(result);
+// });
 
 /**
  * This function gets a contact from database
@@ -68,11 +72,13 @@ router.get('/contacts', auth, async (req, res) => {
  * @param {function} callback - express callback
  * @returns { (Object | Error) } - a single contact object
  */
-router.get('/contact/:id', auth, async (req, res) => {
-  const contact = await prisma.contact({ id: req.params.id });
-  res.json(contact);
-});
-
+// router.get('/contact/:id', auth, async (req, res) => {
+//   const contact = await prisma.contact({ id: req.params.id });
+//   res.json(contact);
+// });
+router.post('/contact', auth, contacts_controller.handleCreateNewContact);
+router.get('/contacts', auth, contacts_controller.handleGetContactsFromDB);
+router.get('/contact/:id', auth, contacts_controller.handleGetContactByID);
 router.get('/googleContacts', auth, people_api.fetch);
 router.post('/importGoogleContacts', auth, people_api.import);
 
