@@ -6,6 +6,7 @@
 const cors = require('cors');
 const express = require('express');
 const morgan = require('morgan');
+const cookieParser = require('cookie-parser');
 
 const handleError = require('./middleware/error');
 const handle404 = require('./middleware/404');
@@ -25,7 +26,7 @@ app.use(morgan('dev'));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
+app.use(cookieParser());
 
 // Routes
 app.use(casesRouter);
