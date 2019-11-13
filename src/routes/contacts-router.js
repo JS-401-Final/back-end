@@ -10,7 +10,7 @@ const express = require('express');
 const router = express.Router();
 const { prisma } = require('../../prisma-database/generated/prisma-client');
 const auth = require('../auth/middleware');
-const fetchGoogleContacts = require('../models/controller/contacts-people-api');
+const people_api = require('../models/controller/contacts-people-api');
 
 /**
  * This function creates a new contact in the database
@@ -63,6 +63,7 @@ router.get('/contact/:id', auth, async (req, res) => {
   res.json(contact);
 });
 
-router.get('/googleContacts', auth, fetchGoogleContacts);
+router.get('/googleContacts', auth, people_api.fetch);
+router.post('/importGoogleContacts', auth, people_api.import);
 
 module.exports = router;
