@@ -11,7 +11,7 @@ services:
         databases:
           default:
             connector: postgres
-            host: localhost
+            host: host.docker.internal
             schema: public
             database: casehawk
             port: 5432
