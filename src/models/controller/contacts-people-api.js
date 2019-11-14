@@ -87,7 +87,7 @@ const postContact = (googleToken, givenName, emailAddresses, phoneNumbers) => {
     .set('Authorization', `Bearer ${googleToken}`)
     .send({
       'names': [{givenName}],
-      'emailAddresses': [  {'value': 'emai@niofds.com'} ],
+      'emailAddresses': [  {'value': 'testemail@gmail.com'} ],
       'phoneNumbers': [{'value': 'phone'}],
     })
     .then(googleResponse => {
