@@ -23,6 +23,7 @@ const contacts_controller = require('../models/controller/contacts-controller');
  */
 
 router.post('/contact', auth, async (req, res) => {
+  console.log('here');
   const signed_token = req.cookies['X-401d19-OAuth-token'];
   console.log('=====> signed_token', signed_token);
 
@@ -76,7 +77,7 @@ router.post('/contact', auth, async (req, res) => {
 //   const contact = await prisma.contact({ id: req.params.id });
 //   res.json(contact);
 // });
-router.post('/contact', auth, contacts_controller.handleCreateNewContact);
+// router.post('/contact', auth, contacts_controller.handleCreateNewContact);
 router.get('/contacts', auth, contacts_controller.handleGetContactsFromDB);
 router.get('/contact/:id', auth, contacts_controller.handleGetContactByID);
 router.get('/googleContacts', auth, people_api.fetch);

@@ -17,6 +17,7 @@ authRouter.get('/oauth', (req,res,next) => {
       res.cookie('userName', userName);
       res.cookie('userID', id);
       res.redirect(301, process.env.CLIENT_URL);
+      console.log
     })
     .catch((error) => {
       console.log(error);

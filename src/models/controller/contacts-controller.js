@@ -22,6 +22,7 @@ const people_api = require('./contacts-people-api');
  */
 
 async function handleCreateNewContact(req,res){
+  console.log('Body', req.body);
   const newContact = await prisma.createContact(req.body);
   res.json(newContact);
 }

@@ -12,7 +12,6 @@
  */
 module.exports = (err, req, res, next) => {
   let error = { error: err };
-  console.log(err);
   res.statusCode = 500;
   res.statusMessage = 'Server Error';
   res.setHeader('Content-Type', 'application/json');
