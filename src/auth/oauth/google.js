@@ -20,7 +20,6 @@ const authorize = (request) => {
     redirect_uri: `${process.env.API_URL}/oauth`,
     grant_type: 'authorization_code',
   };
-  console.log('===========>this is googleData, ', googleData);
   // STEP 1: POST request for access token  
   return superagent.post('https://oauth2.googleapis.com/token')
     .type('form')
@@ -30,11 +29,10 @@ const authorize = (request) => {
     // Note that "response" is NOT the response to the client, it is the response 
     //   WE got from google. so we can't send anything to the client here.
     .then((response) => {
-      console.log('===========>STEP 2 response ');
         
       // this actually needs to me just /people/me
       // and you need to select the user email and id so we can create the 
-      // user in prismawhatever
+      // user in prisma
         
       const token = response.body.access_token;
 
@@ -43,32 +41,14 @@ const authorize = (request) => {
       return superagent.get('https://people.googleapis.com/v1/people/me')
         .query({personFields: 'names,emailAddresses'})
         .set('Authorization', `Bearer ${token}`);
-        
-      // This query gets all contacts
-      // return superagent.get('https://people.googleapis.com/v1/people/me/connections')
-      //   .query({personFields: 'names,emailAddresses'})
-      //   .set('Authorization', `Bearer ${token}`);
     })
       
     // STEP 3: Retrieve user from database
     .then((response) => {
-      console.log('===========>STEP 3 response ');
-      console.log('response dot BOOOOOOOODY is ', response.body);
-      
-      // This works when we do people/me/connections
-      // to get a list of people with name/email
-      // const peeps = response.body.connections.map(connection => { 
-      //   return {
-      //     name: connection.names[0].displayName,
-      //     email: connection.emailAddresses ? connection.emailAddresses[0].value : null,
-      //   };
-      // });
-      // console.log(peeps);
 
       const userData = {
         userName: response.body.names[0].displayName,
         email: response.body.emailAddresses[0].value,
-        // nobody wanted that id: response.body.resourceName,
       };
       return userFromOauth(userData);
     })
