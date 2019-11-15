@@ -22,7 +22,7 @@ prisma.user = jest.fn((query) => {
   return users.filter((user) => user.id === query.id)[0];
 });
 
-xdescribe('Users Model', () => {
+describe('Users Model', () => {
 
   test('Authenticate Token', () => {
     const token = User.generateToken(users[1]);

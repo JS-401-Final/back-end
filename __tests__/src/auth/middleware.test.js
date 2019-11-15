@@ -28,7 +28,7 @@ prisma.user = jest.fn((query) => {
   return users.filter((user) => user.id === query.id)[0];
 });
 
-xdescribe('Auth Middleware', () => {
+describe('Auth Middleware', () => {
 
   test('It should return a user with bearer auth', () => {
     

@@ -6,7 +6,7 @@ const supertest = require('supertest')(server);
 
 
 
-xdescribe('Error Handling for routes', () => {
+describe('Error Handling for routes', () => {
 
   test('Test invalid route', () => {
     return supertest.get('/testRoute')

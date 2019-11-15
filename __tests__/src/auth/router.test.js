@@ -2,7 +2,7 @@
 
 
 
-xdescribe('Dummy test', () => {
+describe('Dummy test', () => {
   test('Test test!', () => {
     expect(true).toBeTruthy();
   });
