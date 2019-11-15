@@ -8,7 +8,8 @@
 const User = require('./users-model.js');
 
 module.exports = (req, res, next) => {
-
+  console.log('authrequest');
+  //console.log("authorization",req.headers.authorization);
   try {
     let [authType, authString] = req.headers.authorization.split(/\s+/);
     switch( authType.toLowerCase() ) {
@@ -42,9 +43,11 @@ module.exports = (req, res, next) => {
    * @private
    */
   function _authenticate(user) {
+    console.log('user', user);
     if(user) {
       req.user = user;
       req.token = User.generateToken(user);
+      console.log('auth passed');
       next();
     }
     else {

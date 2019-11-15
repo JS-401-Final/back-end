@@ -27,14 +27,14 @@ const authenticateToken = function(token) {
  * @param type
  * @returns {undefined|*}
  */
-const generateToken = (user) => {
-
+const generateToken = (user, googleToken) => {
+  console.log(user, googleToken);
   let token = {
     id: user.id,
+    googleToken: googleToken,
   };
 
   let signOptions = { expiresIn: process.env.TOKEN_EXPIRE_TIME};
-
   return jwt.sign(token, process.env.SECRET, signOptions);
 };
 
