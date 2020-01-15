@@ -31,20 +31,6 @@ We would recommend that users be created with roles.  An admin role should be gi
 
 In addition to a white list, functionality to support multi-tenancy should be implemented.  Organizations should be created, and an account id should be added to all database models.  Queries will then need to be updated to contain an account id that can be checked on all requests and used to filter search results from the database.
 
-##Routes
-
-####Overview
-
-####Next Steps
-
-##Database
-
-####Overview
-
-The app uses Postgres and Prisma for our database stack. 
-
-####Next Steps
-
 ## Contributors
 - 401d31
     - Austin Hedeen
