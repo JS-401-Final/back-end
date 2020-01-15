@@ -1,5 +1,9 @@
 # JS 401 Final Project :: CaseHawk
 
+## Overview
+
+CaseHawk is an internal management tool for a medium sized law firm.
+
 ## Installation
 
 #### To run an instance of the back end of CaseHawk:
