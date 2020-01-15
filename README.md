@@ -1,8 +1,8 @@
 # JS 401 Final Project :: CaseHawk
 
-##Installation
+## Installation
 
-####To run an instance of the back end of CaseHawk:
+#### To run an instance of the back end of CaseHawk:
 
 1. Clone this repo
 2. `$ npm i`
@@ -17,15 +17,15 @@
 6. Seed the database `$ npm run seedDB`
 7. Start the server `$node index.js`
 
-##Authorization
+## Authorization
 
-####Overview
+#### Overview
 
 Currently, the back end of CaseHawk requires a user to create an account using Google's Oauth service.  There are no additional restrictions on who can create an account at this time. 
 
 All routes are protected with authorization middleware that expects a valid JWT to be sent along with any requests.
 
-####Next Steps
+#### Next Steps
 
 We would recommend that users be created with roles.  An admin role should be given privileges to create a white-list of users who can sign up for an account by using the `/users` endpoint. User creation would then need to be updated to check the whitelist before allowing a user to auth with Google and receive a valid JWT.
 
